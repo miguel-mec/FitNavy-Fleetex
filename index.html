@@ -1,116 +1,27 @@
-<!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NAVYFIT Embarcado</title><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#071a2f">
-<style>
-:root{
-  --navy:#06192d;--navy2:#0a2a49;--blue:#0f4777;--blue2:#155b94;
-  --gold:#d6a51d;--sand:#f4e6b0;--red:#aa151b;--yellow:#f1bf00;
-  --green:#1f7a4d;--bg:#eef3f8;--card:#ffffff;--text:#101820;--muted:#607080;--line:#d9e2ec;
-}
-*{box-sizing:border-box}
-body{
-  font-family:Arial,Helvetica,sans-serif;margin:0;color:var(--text);
-  background:linear-gradient(180deg,#e9eff6 0,#f6f8fb 230px,#eef3f8 100%);
-}
-header{
-  background:
-    radial-gradient(circle at 85% 10%,rgba(214,165,29,.12),transparent 22%),
-    linear-gradient(135deg,#041426 0%,#08223d 42%,#0c3d68 100%);
-  color:white;position:sticky;top:0;z-index:10;
-  box-shadow:0 7px 26px rgba(0,0,0,.32);
-}
-.accentBar{
-  height:7px;
-  background:linear-gradient(90deg,#aa151b 0 13%,#f1bf00 13% 26%,#aa151b 26% 39%,#ffffff 39% 42%,#b22234 42% 52%,#ffffff 52% 58%,#b22234 58% 68%,#ffffff 68% 74%,#b22234 74% 84%,#1b3764 84% 100%);
-}
-.headerContent{max-width:1160px;margin:auto;padding:16px 20px 12px}
-.headerTop{display:flex;align-items:center;gap:15px}
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>NAVYFIT Embarcado v2</title><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#071a2f"><style>
+:root{--navy:#06192d;--blue:#0f4777;--blue2:#155b94;--gold:#d6a51d;--red:#aa151b;--green:#1f7a4d;--bg:#eef3f8;--text:#101820;--muted:#607080;--line:#d9e2ec}
+*{box-sizing:border-box}body{font-family:Arial,Helvetica,sans-serif;margin:0;color:var(--text);background:linear-gradient(180deg,#e9eff6 0,#f6f8fb 230px,#eef3f8 100%)}
+header{background:radial-gradient(circle at 85% 10%,rgba(214,165,29,.12),transparent 22%),linear-gradient(135deg,#041426 0%,#08223d 42%,#0c3d68 100%);color:white;position:sticky;top:0;z-index:10;box-shadow:0 7px 26px rgba(0,0,0,.32)}
+.accentBar{height:7px;background:linear-gradient(90deg,#aa151b 0 13%,#f1bf00 13% 26%,#aa151b 26% 39%,#fff 39% 42%,#b22234 42% 52%,#fff 52% 58%,#b22234 58% 68%,#fff 68% 74%,#b22234 74% 84%,#1b3764 84% 100%)}
+.headerContent{max-width:1160px;margin:auto;padding:16px 20px 12px}.headerTop{display:flex;align-items:center;gap:15px}
 .logo{width:64px;height:64px;border-radius:16px;background:white;object-fit:contain;border:2px solid rgba(255,255,255,.92);box-shadow:0 4px 14px rgba(0,0,0,.28)}
-.titleBlock h1{margin:0;font-size:31px;letter-spacing:1.2px}
-.titleBlock p{margin:5px 0 0;color:#dce7f5;font-size:14px}
-.navSub{font-size:12px;letter-spacing:2.5px;color:var(--gold);font-weight:900;margin-top:5px}
-.headerMeta{margin-left:auto;text-align:right;color:#dce7f5;font-size:12px;letter-spacing:1.4px;text-transform:uppercase}
-.headerMeta strong{color:var(--gold)}
-nav{display:flex;gap:8px;overflow:auto;margin-top:14px;padding-bottom:2px}
-main{max-width:1040px;margin:auto;padding:22px 18px}
-button{
-  background:linear-gradient(180deg,var(--blue2),var(--blue));color:white;border:1px solid rgba(255,255,255,.12);
-  border-radius:11px;padding:10px 15px;font-weight:900;margin:4px;cursor:pointer;
-  box-shadow:0 2px 0 #03101e,0 4px 10px rgba(0,0,0,.12);
-}
-button.active,button.gold{background:linear-gradient(180deg,#f4c43b,#d4a017);color:#101820;border-color:#c99712}
-button.red{background:linear-gradient(180deg,#bd1e24,#7d1217)}
-button.green{background:linear-gradient(180deg,#25945c,#176a41)}
-button.gray{background:#3c4654}
-input,select,textarea{width:100%;padding:12px;border-radius:11px;border:1px solid #bfc8d4;font-size:16px;background:white}
-textarea{min-height:90px}
-.controls{
-  background:rgba(255,255,255,.9);border:1px solid #dbe4ef;border-radius:18px;padding:15px;
-  box-shadow:0 8px 24px rgba(17,42,70,.10);margin-bottom:16px;
-}
-.buttonRow{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
-.card{
-  position:relative;background:white;border-radius:17px;padding:17px 18px;margin:12px 0;
-  box-shadow:0 8px 22px rgba(17,42,70,.11);border-left:7px solid var(--blue);cursor:pointer;overflow:hidden;
-}
-.card:before{content:"";position:absolute;left:0;top:0;right:0;height:1px;background:linear-gradient(90deg,rgba(214,165,29,.7),transparent)}
-.card:after{content:"⚓";position:absolute;right:18px;bottom:-6px;font-size:50px;color:rgba(6,25,45,.055);font-weight:bold}
-.card.redBorder{border-left-color:#9d1b1e}.card.greenBorder{border-left-color:#1f7a4d}
-.card h3{margin:0 0 8px;letter-spacing:.4px}.card p{margin:6px 0}
-.hidden{display:none!important}
-.detail,.panel{
-  background:white;border-radius:17px;padding:18px;box-shadow:0 8px 22px rgba(17,42,70,.11);
-  margin-bottom:14px;border-top:4px solid var(--blue);
-}
-.detail h1{letter-spacing:.5px}.detail h2,.panel h2{color:var(--blue);border-bottom:1px solid var(--line);padding-bottom:6px}
-.pill{background:#e8eef7;color:var(--blue);padding:5px 10px;border-radius:999px;font-weight:bold;display:inline-block;margin:3px}
-.pill.sea{background:#fff3cd;color:#6b4a00}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-.kpi{font-size:32px;font-weight:900;color:var(--blue)}
-.small{font-size:13px;color:var(--muted)}
-.logItem{border-bottom:1px solid #e5e9ef;padding:12px 0}
-.status{font-size:14px;color:#33495c;font-weight:700;margin:10px 0 0}
-.timerBox{position:fixed;left:14px;right:14px;bottom:14px;background:var(--navy);color:white;border-radius:18px;padding:16px;text-align:center;box-shadow:0 8px 30px #0008;z-index:20}
-.timer{font-size:50px;font-weight:900;letter-spacing:2px}
-.progressBar{height:10px;background:#d9e0ea;border-radius:999px;overflow:hidden;margin:10px 0}.progressBar div{height:100%;background:var(--gold);width:0%}
+.titleBlock h1{margin:0;font-size:31px;letter-spacing:1.2px}.titleBlock p{margin:5px 0 0;color:#dce7f5;font-size:14px}.navSub{font-size:12px;letter-spacing:2.5px;color:var(--gold);font-weight:900;margin-top:5px}
+.headerMeta{margin-left:auto;text-align:right;color:#dce7f5;font-size:12px;letter-spacing:1.4px;text-transform:uppercase}.headerMeta strong{color:var(--gold)}
+nav{display:flex;gap:8px;overflow:auto;margin-top:14px;padding-bottom:2px}main{max-width:1040px;margin:auto;padding:22px 18px}
+button{background:linear-gradient(180deg,var(--blue2),var(--blue));color:white;border:1px solid rgba(255,255,255,.12);border-radius:11px;padding:10px 15px;font-weight:900;margin:4px;cursor:pointer;box-shadow:0 2px 0 #03101e,0 4px 10px rgba(0,0,0,.12)}
+button.active,button.gold{background:linear-gradient(180deg,#f4c43b,#d4a017);color:#101820;border-color:#c99712}button.red{background:linear-gradient(180deg,#bd1e24,#7d1217)}button.green{background:linear-gradient(180deg,#25945c,#176a41)}button.gray{background:#3c4654}
+input,select,textarea{width:100%;padding:12px;border-radius:11px;border:1px solid #bfc8d4;font-size:16px;background:white}textarea{min-height:90px}
+.controls{background:rgba(255,255,255,.9);border:1px solid #dbe4ef;border-radius:18px;padding:15px;box-shadow:0 8px 24px rgba(17,42,70,.10);margin-bottom:16px}.buttonRow{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+.card{position:relative;background:white;border-radius:17px;padding:17px 18px;margin:12px 0;box-shadow:0 8px 22px rgba(17,42,70,.11);border-left:7px solid var(--blue);cursor:pointer;overflow:hidden}.card:after{content:"⚓";position:absolute;right:18px;bottom:-6px;font-size:50px;color:rgba(6,25,45,.055);font-weight:bold}.card.redBorder{border-left-color:#9d1b1e}.card.greenBorder{border-left-color:#1f7a4d}.card h3{margin:0 0 8px;letter-spacing:.4px}.card p{margin:6px 0}
+.hidden{display:none!important}.detail,.panel{background:white;border-radius:17px;padding:18px;box-shadow:0 8px 22px rgba(17,42,70,.11);margin-bottom:14px;border-top:4px solid var(--blue)}.detail h1{letter-spacing:.5px}.detail h2,.panel h2{color:var(--blue);border-bottom:1px solid var(--line);padding-bottom:6px}
+.pill{background:#e8eef7;color:var(--blue);padding:5px 10px;border-radius:999px;font-weight:bold;display:inline-block;margin:3px}.pill.sea{background:#fff3cd;color:#6b4a00}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.kpi{font-size:32px;font-weight:900;color:var(--blue)}.small{font-size:13px;color:var(--muted)}.status{font-size:14px;color:#33495c;font-weight:700;margin:10px 0 0}.logItem{border-bottom:1px solid #e5e9ef;padding:12px 0}
+.calendarHeader{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}.calendarGrid{display:grid;grid-template-columns:repeat(7,1fr);gap:7px}.dayName{text-align:center;font-weight:900;color:var(--muted);font-size:12px}.dayCell{min-height:78px;background:#f8fafc;border:1px solid #dbe4ef;border-radius:12px;padding:7px;cursor:pointer;position:relative}.dayCell.hasLog{background:#fff9e6;border-color:#d6a51d}.dayNum{font-weight:900;color:var(--navy)}.dayWorkout{font-size:11px;margin-top:6px;color:#0f4777;font-weight:800;line-height:1.2}.today{outline:3px solid rgba(15,71,119,.25)}
+.timerBox{position:fixed;left:14px;right:14px;bottom:14px;background:var(--navy);color:white;border-radius:18px;padding:16px;text-align:center;box-shadow:0 8px 30px #0008;z-index:20}.timer{font-size:50px;font-weight:900;letter-spacing:2px}.progressBar{height:10px;background:#d9e0ea;border-radius:999px;overflow:hidden;margin:10px 0}.progressBar div{height:100%;background:var(--gold);width:0%}
 table{width:100%;border-collapse:collapse;background:white}td,th{border-bottom:1px solid #e5e9ef;padding:9px;text-align:left}
-@media(max-width:760px){
-  .grid2,.grid3{grid-template-columns:1fr}.headerMeta{display:none}.titleBlock h1{font-size:22px}.logo{width:52px;height:52px}main{padding:12px}.timer{font-size:42px}
-  .navSub{font-size:10px;letter-spacing:1.5px}
-}
-</style>
-</head>
-<body>
-<header>
-  <div class="accentBar"></div>
-  <div class="headerContent">
-    <div class="headerTop">
-      <img src="icon-512.png" class="logo" alt="NAVYFIT">
-      <div class="titleBlock"><h1>NAVYFIT EMBARCADO</h1><p>FLEETEX Edition · Spanish Navy / US Navy training board</p><div class="navSub">FORCE · DISCIPLINE · ENDURANCE</div></div>
-      <div class="headerMeta"><strong>ES / USA</strong><br>Operational Fitness</div>
-    </div>
-    <nav>
-      <button id="tab_libraryView" class="active" onclick="showView('libraryView')">Biblioteca</button>
-      <button id="tab_logView" onclick="showView('logView')">Registro</button>
-      <button id="tab_progressView" onclick="showView('progressView')">Progreso</button>
-      <button id="tab_calculatorView" onclick="showView('calculatorView')">Calculadora</button>
-      <button id="tab_recommendView" onclick="showView('recommendView')">Qué hago hoy</button>
-    </nav>
-  </div>
-</header>
-<main>
-<section id="libraryView" class="view"><div class="controls"><input id="search" placeholder="Buscar: clean, hombro, carry..." oninput="render()"><div class="buttonRow"><button id="b_ALL" class="active" onclick="setBlockFilter('ALL')">Todos</button><button id="b_FAV" onclick="setBlockFilter('FAVORITOS')">Favoritos</button><button id="b_GYM" onclick="setBlockFilter('GYM ONLY')">Gym Only</button><button id="b_FD" onclick="setBlockFilter('FLIGHT DECK OPS')">Flight Deck Ops</button><button id="b_OT" onclick="setBlockFilter('OLYMPIC TACTICAL')">Olympic Tactical</button></div><div class="buttonRow"><button id="s_ALL" class="active" onclick="setSeaFilter('ALL')">🌊 Cualquier mar</button><button id="s_ROUGH" onclick="setSeaFilter('ROUGH')">🔴 Mala mar</button><button id="s_MOD" onclick="setSeaFilter('MODERATE')">🟡 Mar moderada</button><button id="s_CALM" onclick="setSeaFilter('CALM')">🟢 Mar calma</button></div><p id="status" class="status"></p></div><div id="workouts"></div></section>
-<section id="detailView" class="view hidden"><div id="detail" class="detail"></div></section>
-<section id="logView" class="view hidden"><div class="panel"><h2>Registro de entrenamientos</h2><button onclick="exportData()">Exportar backup</button><label><input type="file" onchange="importData(event)" style="display:none"><span class="pill">Importar backup</span></label><div id="logList"></div></div></section>
-<section id="progressView" class="view hidden"><div class="grid2"><div class="panel"><div id="kpiTotal" class="kpi">0</div><b>Total entrenamientos</b></div><div class="panel"><div id="kpi30" class="kpi">0</div><b>Últimos 30 días</b></div></div><div class="panel"><h2>PRs / Pesos de referencia</h2><div class="grid2"><label>Back Squat<input id="backSquat" placeholder="kg"></label><label>Front Squat<input id="frontSquat" placeholder="kg"></label><label>Deadlift<input id="deadlift" placeholder="kg"></label><label>Strict Press<input id="strictPress" placeholder="kg"></label><label>Push Press<input id="pushPress" placeholder="kg"></label><label>Power Clean<input id="powerClean" placeholder="kg"></label><label>Clean & Jerk<input id="cleanJerk" placeholder="kg"></label></div><br><button class="green" onclick="savePRForm()">Guardar PRs</button></div></section>
-<section id="calculatorView" class="view hidden"><div class="panel"><h2>Calculadora de porcentajes</h2><div class="grid3"><label>Ejercicio<select id="calcExercise" onchange="renderCalculator();quickPercentTable()"><option value="backSquat">Back Squat</option><option value="frontSquat">Front Squat</option><option value="deadlift">Deadlift</option><option value="strictPress">Strict Press</option><option value="pushPress">Push Press</option><option value="powerClean">Power Clean</option><option value="cleanJerk">Clean & Jerk</option></select></label><label>Porcentaje<input id="calcPct" value="70" oninput="renderCalculator()"></label><div><p class="small">Resultado</p><div id="calcResult" class="kpi">-</div></div></div><button onclick="quickPercentTable()">Tabla 50-90%</button><div id="pctTable"></div></div></section>
-<section id="recommendView" class="view hidden"><div class="panel"><h2>¿Qué hago hoy?</h2><label>Fatiga operativa<select id="fatigue"><option value="green">🟢 Descansado</option><option value="yellow">🟡 Guardia / sueño regular</option><option value="red">🔴 Guardia + sueño malo</option></select></label><br><br><label><input id="calf" type="checkbox" style="width:auto"> Gemelo tocado / evitar carrera y lunges</label><br><br><button class="green" onclick="suggestToday()">Recomendar entrenamiento</button></div></section>
-</main>
-<div id="timerBox" class="timerBox hidden"><div id="timerTitle">Timer</div><div class="progressBar"><div id="timerProgress"></div></div><div id="timer" class="timer">0:00</div><button class="gold" onclick="pauseTimer()">Pausa/seguir</button><button class="red" onclick="stopTimer()">Cerrar</button></div>
-<script>
+@media(max-width:760px){.grid2,.grid3,.grid4{grid-template-columns:1fr}.headerMeta{display:none}.titleBlock h1{font-size:22px}.logo{width:52px;height:52px}main{padding:12px}.timer{font-size:42px}.dayCell{min-height:66px;padding:5px}.dayWorkout{font-size:10px}.navSub{font-size:10px;letter-spacing:1.5px}}
+</style></head><body><header><div class="accentBar"></div><div class="headerContent"><div class="headerTop"><img src="icon-512.png" class="logo" alt="NAVYFIT"><div class="titleBlock"><h1>NAVYFIT EMBARCADO</h1><p>v2.0 · Training Log · FLEETEX Edition</p><div class="navSub">FORCE · DISCIPLINE · ENDURANCE</div></div><div class="headerMeta"><strong>ES / USA</strong><br>Operational Fitness</div></div><nav><button id="tab_homeView" class="active" onclick="showView('homeView')">Inicio</button><button id="tab_libraryView" onclick="showView('libraryView')">Biblioteca</button><button id="tab_diaryView" onclick="showView('diaryView')">Diario</button><button id="tab_progressView" onclick="showView('progressView')">Progreso</button><button id="tab_calculatorView" onclick="showView('calculatorView')">Calculadora</button><button id="tab_recommendView" onclick="showView('recommendView')">Qué hago hoy</button></nav></div></header><main><section id="homeView" class="view"><div id="homeContent"></div></section><section id="libraryView" class="view hidden"><div class="controls"><input id="search" placeholder="Buscar: clean, hombro, carry..." oninput="render()"><div class="buttonRow"><button id="b_ALL" class="active" onclick="setBlockFilter('ALL')">Todos</button><button id="b_FAV" onclick="setBlockFilter('FAVORITOS')">Favoritos</button><button id="b_GYM" onclick="setBlockFilter('GYM ONLY')">Gym Only</button><button id="b_FD" onclick="setBlockFilter('FLIGHT DECK OPS')">Flight Deck Ops</button><button id="b_OT" onclick="setBlockFilter('OLYMPIC TACTICAL')">Olympic Tactical</button></div><div class="buttonRow"><button id="s_ALL" class="active" onclick="setSeaFilter('ALL')">🌊 Cualquier mar</button><button id="s_ROUGH" onclick="setSeaFilter('ROUGH')">🔴 Mala mar</button><button id="s_MOD" onclick="setSeaFilter('MODERATE')">🟡 Mar moderada</button><button id="s_CALM" onclick="setSeaFilter('CALM')">🟢 Mar calma</button></div><p id="status" class="status"></p></div><div id="workouts"></div></section><section id="detailView" class="view hidden"><div id="detail" class="detail"></div></section><section id="diaryView" class="view hidden"><div class="panel"><div class="calendarHeader"><button onclick="changeMonth(-1)">←</button><h2 id="calendarTitle"></h2><button onclick="changeMonth(1)">→</button></div><div id="calendarGrid" class="calendarGrid"></div></div><div id="dayDetail" class="panel"></div></section><section id="progressView" class="view hidden"><div class="grid4"><div class="panel"><div id="kpiTotal" class="kpi">0</div><b>Total</b></div><div class="panel"><div id="kpiMonth" class="kpi">0</div><b>Este mes</b></div><div class="panel"><div id="kpi30" class="kpi">0</div><b>Últimos 30 días</b></div><div class="panel"><div id="kpiStreak" class="kpi">0</div><b>Racha</b></div></div><div class="grid2"><div class="panel"><h2>Último entrenamiento</h2><div id="lastWorkout"></div></div><div class="panel"><h2>Distribución por bloques</h2><div id="distBlocks"></div></div></div><div class="panel"><h2>PRs / Pesos de referencia</h2><div class="grid2"><label>Back Squat<input id="backSquat" placeholder="kg"></label><label>Front Squat<input id="frontSquat" placeholder="kg"></label><label>Deadlift<input id="deadlift" placeholder="kg"></label><label>Strict Press<input id="strictPress" placeholder="kg"></label><label>Push Press<input id="pushPress" placeholder="kg"></label><label>Power Clean<input id="powerClean" placeholder="kg"></label><label>Clean & Jerk<input id="cleanJerk" placeholder="kg"></label></div><br><button class="green" onclick="savePRForm()">Guardar PRs</button></div></section><section id="calculatorView" class="view hidden"><div class="panel"><h2>Calculadora de porcentajes</h2><div class="grid3"><label>Ejercicio<select id="calcExercise" onchange="renderCalculator();quickPercentTable()"><option value="backSquat">Back Squat</option><option value="frontSquat">Front Squat</option><option value="deadlift">Deadlift</option><option value="strictPress">Strict Press</option><option value="pushPress">Push Press</option><option value="powerClean">Power Clean</option><option value="cleanJerk">Clean & Jerk</option></select></label><label>Porcentaje<input id="calcPct" value="70" oninput="renderCalculator()"></label><div><p class="small">Resultado</p><div id="calcResult" class="kpi">-</div></div></div><button onclick="quickPercentTable()">Tabla 50-90%</button><div id="pctTable"></div></div></section><section id="recommendView" class="view hidden"><div class="panel"><h2>¿Qué hago hoy?</h2><div class="grid2"><label>Estado de mar<select id="recSea"><option value="CALM">🟢 Mar calma</option><option value="MODERATE">🟡 Mar moderada</option><option value="ROUGH">🔴 Mala mar</option></select></label><label>Fatiga operativa<select id="fatigue"><option value="green">🟢 Descansado</option><option value="yellow">🟡 Guardia / sueño regular</option><option value="red">🔴 Guardia + poco sueño</option></select></label><label>Objetivo<select id="goal"><option value="INDIFERENTE">Indiferente</option><option value="FUERZA">Fuerza</option><option value="POTENCIA">Potencia</option><option value="CARDIO">Cardio</option><option value="RECUPERACION">Recuperación</option></select></label></div><h2>Limitaciones físicas</h2><label><input id="calf" type="checkbox" style="width:auto"> Gemelo tocado</label><br><label><input id="knee" type="checkbox" style="width:auto"> Dolor de rodilla</label><br><label><input id="shoulder" type="checkbox" style="width:auto"> Dolor de hombro</label><br><label><input id="lumbar" type="checkbox" style="width:auto"> Fatiga lumbar</label><br><br><button class="green" onclick="suggestToday()">Recomendar entrenamiento</button></div></section></main><div id="timerBox" class="timerBox hidden"><div id="timerTitle">Timer</div><div class="progressBar"><div id="timerProgress"></div></div><div id="timer" class="timer">0:00</div><button class="gold" onclick="pauseTimer()">Pausa/seguir</button><button class="red" onclick="stopTimer()">Cerrar</button></div><script>
 const WORKOUTS = [
   {
     "id": 1,
@@ -133,7 +44,17 @@ const WORKOUTS = [
     "rx": "Thruster 40 kg. Farmer Carry 2x30 kg.",
     "scaled": "Thruster 25-30 kg. Farmer Carry 2x20 kg. Run 150 m o Row 200 m.",
     "sea": "Sustituir carrera y Farmer Carry por 250 m Row y 12 cal Bike.",
-    "seaCategory": "ROUGH"
+    "seaCategory": "ROUGH",
+    "goals": [
+      "FUERZA",
+      "CARDIO"
+    ],
+    "avoid": [
+      "KNEE",
+      "CALF",
+      "SHOULDER",
+      "LUMBAR"
+    ]
   },
   {
     "id": 2,
@@ -156,7 +77,15 @@ const WORKOUTS = [
     "rx": "Push Press 40 kg.",
     "scaled": "Push Press 25-30 kg. Burpees sin salto.",
     "sea": "Mantener igual. En mala mar sustituir burpees por Push Ups.",
-    "seaCategory": "ROUGH"
+    "seaCategory": "ROUGH",
+    "goals": [
+      "FUERZA",
+      "CARDIO"
+    ],
+    "avoid": [
+      "KNEE",
+      "SHOULDER"
+    ]
   },
   {
     "id": 3,
@@ -179,7 +108,16 @@ const WORKOUTS = [
     "rx": "Goblet 30 kg. Med Ball 9 kg.",
     "scaled": "Goblet 15-22,5 kg. Sin comba: 20 Jumping Jacks.",
     "sea": "Quitar comba y hacer 20 Sit Ups.",
-    "seaCategory": "ROUGH"
+    "seaCategory": "ROUGH",
+    "goals": [
+      "FUERZA",
+      "CARDIO"
+    ],
+    "avoid": [
+      "KNEE",
+      "CALF",
+      "LUMBAR"
+    ]
   },
   {
     "id": 4,
@@ -201,7 +139,16 @@ const WORKOUTS = [
     "rx": "DB Push Press 2x22,5 kg.",
     "scaled": "Run 150 m. DB 2x15 kg. Burpees sin salto.",
     "sea": "Cambiar Run por 250 m Row y Lunges por Goblet Squats.",
-    "seaCategory": "CALM"
+    "seaCategory": "CALM",
+    "goals": [
+      "FUERZA",
+      "CARDIO"
+    ],
+    "avoid": [
+      "KNEE",
+      "CALF",
+      "SHOULDER"
+    ]
   },
   {
     "id": 5,
@@ -224,7 +171,16 @@ const WORKOUTS = [
     "rx": "Thruster 40 kg.",
     "scaled": "Thruster 25-30 kg. Burpees laterales o normales.",
     "sea": "Burpees normales, sin salto sobre barra.",
-    "seaCategory": "ROUGH"
+    "seaCategory": "ROUGH",
+    "goals": [
+      "POTENCIA",
+      "CARDIO"
+    ],
+    "avoid": [
+      "KNEE",
+      "SHOULDER",
+      "LUMBAR"
+    ]
   },
   {
     "id": 6,
@@ -247,7 +203,15 @@ const WORKOUTS = [
     "rx": "DB Shoulder Press 2x17,5 kg. Goblet 30 kg.",
     "scaled": "DB 2x10-12,5 kg. Goblet 20 kg.",
     "sea": "Mantener Bike/Row. Evitar cambios bruscos.",
-    "seaCategory": "ROUGH"
+    "seaCategory": "ROUGH",
+    "goals": [
+      "FUERZA",
+      "CARDIO"
+    ],
+    "avoid": [
+      "KNEE",
+      "SHOULDER"
+    ]
   },
   {
     "id": 7,
@@ -269,7 +233,17 @@ const WORKOUTS = [
     "rx": "DB 2x15-20 kg.",
     "scaled": "DB 2x10-12,5 kg. Mantener conversación durante zona 2.",
     "sea": "Ideal para mala mar. Sin carrera ni saltos.",
-    "seaCategory": "ROUGH"
+    "seaCategory": "ROUGH",
+    "goals": [
+      "POTENCIA",
+      "FUERZA",
+      "CARDIO",
+      "RECUPERACION"
+    ],
+    "avoid": [
+      "SHOULDER",
+      "LUMBAR"
+    ]
   },
   {
     "id": 8,
@@ -291,7 +265,16 @@ const WORKOUTS = [
     "rx": "Med Ball 9 kg. DB Thrusters 2x17,5 kg.",
     "scaled": "Run 200 m. DB 2x10-12,5 kg.",
     "sea": "Run por 300 m Row. Burpees por Push Ups.",
-    "seaCategory": "CALM"
+    "seaCategory": "CALM",
+    "goals": [
+      "FUERZA",
+      "CARDIO"
+    ],
+    "avoid": [
+      "KNEE",
+      "CALF",
+      "SHOULDER"
+    ]
   },
   {
     "id": 9,
@@ -314,7 +297,12 @@ const WORKOUTS = [
     "rx": "DB Snatch 22,5 kg.",
     "scaled": "DB Snatch 15 kg. Push Ups con rodillas si hace falta.",
     "sea": "Mantener. Evitar DB Snatch si el barco se mueve mucho y cambiar por DB Row.",
-    "seaCategory": "ROUGH"
+    "seaCategory": "ROUGH",
+    "goals": [
+      "FUERZA",
+      "CARDIO"
+    ],
+    "avoid": []
   },
   {
     "id": 10,
@@ -336,7 +324,17 @@ const WORKOUTS = [
     "rx": "Power Clean 60 kg. Farmer Carry 2x30 kg.",
     "scaled": "Power Clean 40 kg. Farmer Carry 60 m con 2x20 kg.",
     "sea": "Farmer Carry por 12 cal Bike. Burpees por Push Ups.",
-    "seaCategory": "MODERATE"
+    "seaCategory": "MODERATE",
+    "goals": [
+      "POTENCIA",
+      "FUERZA",
+      "CARDIO"
+    ],
+    "avoid": [
+      "KNEE",
+      "SHOULDER",
+      "LUMBAR"
+    ]
   },
   {
     "id": 11,
@@ -358,7 +356,16 @@ const WORKOUTS = [
     "rx": "HPC 60 kg. Push Press 50 kg. Farmer 2x30 kg.",
     "scaled": "HPC 40 kg. Push Press 30 kg. Farmer 2x20 kg.",
     "sea": "Farmer Carry por 12 cal Row.",
-    "seaCategory": "MODERATE"
+    "seaCategory": "MODERATE",
+    "goals": [
+      "POTENCIA",
+      "FUERZA",
+      "CARDIO"
+    ],
+    "avoid": [
+      "SHOULDER",
+      "LUMBAR"
+    ]
   },
   {
     "id": 12,
@@ -380,7 +387,16 @@ const WORKOUTS = [
     "rx": "Push Jerk 50 kg. Farmer Carry 2x30 kg.",
     "scaled": "Push Jerk 30-35 kg. Farmer 2x20 kg. Burpees sin salto.",
     "sea": "Farmer Carry por 12-14 cal Row. Burpees por Push Ups si hay balance.",
-    "seaCategory": "MODERATE"
+    "seaCategory": "MODERATE",
+    "goals": [
+      "POTENCIA",
+      "CARDIO"
+    ],
+    "avoid": [
+      "KNEE",
+      "SHOULDER",
+      "LUMBAR"
+    ]
   },
   {
     "id": 13,
@@ -402,7 +418,17 @@ const WORKOUTS = [
     "rx": "Complex subiendo hasta RPE 8. Thrusters 40 kg.",
     "scaled": "Complex técnico. Thrusters 25-30 kg. Burpees normales.",
     "sea": "No hacer Burpees Over Bar. Cambiar por 12 Push Ups.",
-    "seaCategory": "ROUGH"
+    "seaCategory": "ROUGH",
+    "goals": [
+      "POTENCIA",
+      "FUERZA",
+      "CARDIO"
+    ],
+    "avoid": [
+      "KNEE",
+      "SHOULDER",
+      "LUMBAR"
+    ]
   },
   {
     "id": 14,
@@ -423,7 +449,18 @@ const WORKOUTS = [
     "rx": "Power Clean 60 kg. Goblet 30 kg.",
     "scaled": "Power Clean 40 kg. Goblet 20 kg. Run 75 m.",
     "sea": "Run por 10 cal Bike. Evitar comba.",
-    "seaCategory": "MODERATE"
+    "seaCategory": "MODERATE",
+    "goals": [
+      "POTENCIA",
+      "FUERZA",
+      "CARDIO"
+    ],
+    "avoid": [
+      "KNEE",
+      "CALF",
+      "SHOULDER",
+      "LUMBAR"
+    ]
   },
   {
     "id": 15,
@@ -445,7 +482,18 @@ const WORKOUTS = [
     "rx": "HPC/Push Press 50 kg. Farmer 2x30 kg.",
     "scaled": "HPC/Push Press 35 kg. Run 150 m. Farmer 2x20 kg.",
     "sea": "Run por 250 m Row. Burpees normales. Farmer por 12 cal Bike.",
-    "seaCategory": "MODERATE"
+    "seaCategory": "MODERATE",
+    "goals": [
+      "POTENCIA",
+      "FUERZA",
+      "CARDIO"
+    ],
+    "avoid": [
+      "KNEE",
+      "CALF",
+      "SHOULDER",
+      "LUMBAR"
+    ]
   },
   {
     "id": 16,
@@ -467,7 +515,16 @@ const WORKOUTS = [
     "rx": "Push Press 40 kg. Front Squat 60 kg. Med Ball 9 kg.",
     "scaled": "Run 600/300 m. Push Press 30 kg. Front Squat 40 kg. Reducir reps a 40-30-20-15-10.",
     "sea": "Run por 1000 m Row y 500 m Row. Lunges por Goblet Squats.",
-    "seaCategory": "CALM"
+    "seaCategory": "CALM",
+    "goals": [
+      "FUERZA",
+      "CARDIO"
+    ],
+    "avoid": [
+      "KNEE",
+      "CALF",
+      "SHOULDER"
+    ]
   },
   {
     "id": 17,
@@ -489,7 +546,16 @@ const WORKOUTS = [
     "rx": "Goblet 30 kg. DB Push Press 2x17,5 kg.",
     "scaled": "Run 250 m. Goblet 20 kg. DB 2x10-12,5 kg.",
     "sea": "Run por 500 m Row. Lunges por Step Ups si hay banco estable.",
-    "seaCategory": "CALM"
+    "seaCategory": "CALM",
+    "goals": [
+      "FUERZA",
+      "CARDIO"
+    ],
+    "avoid": [
+      "KNEE",
+      "CALF",
+      "SHOULDER"
+    ]
   },
   {
     "id": 18,
@@ -511,7 +577,14 @@ const WORKOUTS = [
     "rx": "DB Shoulder Press 2x15-17,5 kg.",
     "scaled": "DB 2x10 kg. Bike 10-12 cal.",
     "sea": "Muy apto mala mar. Reducir transiciones y usar pesos moderados.",
-    "seaCategory": "ROUGH"
+    "seaCategory": "ROUGH",
+    "goals": [
+      "FUERZA",
+      "CARDIO"
+    ],
+    "avoid": [
+      "SHOULDER"
+    ]
   },
   {
     "id": 19,
@@ -533,7 +606,16 @@ const WORKOUTS = [
     "rx": "Deadlift 90 kg. Farmer 2x30 kg.",
     "scaled": "Deadlift 60 kg. Farmer 2x20 kg. Run 150 m.",
     "sea": "Run por 250 m Row. Farmer Carry por Farmer Hold 40\".",
-    "seaCategory": "CALM"
+    "seaCategory": "CALM",
+    "goals": [
+      "FUERZA",
+      "CARDIO"
+    ],
+    "avoid": [
+      "KNEE",
+      "CALF",
+      "LUMBAR"
+    ]
   },
   {
     "id": 20,
@@ -555,16 +637,25 @@ const WORKOUTS = [
     "rx": "Push Press 40 kg. Power Clean 50 kg. Med Ball 9 kg.",
     "scaled": "Run 250 m. Push Press 30 kg. Power Clean 35 kg. 20-15-10 reps.",
     "sea": "Run por 500 m Row. Burpees por Push Ups.",
-    "seaCategory": "MODERATE"
+    "seaCategory": "MODERATE",
+    "goals": [
+      "POTENCIA",
+      "FUERZA",
+      "CARDIO"
+    ],
+    "avoid": [
+      "KNEE",
+      "CALF",
+      "SHOULDER",
+      "LUMBAR"
+    ]
   }
 ];
-const LS_LOG='navyfit_logs_clean';
-const LS_PR='navyfit_pr_clean';
-const LS_FAV='navyfit_fav_clean';
-
-let blockFilter='ALL', seaFilter='ALL', currentWorkout=null;
+const LS_LOG='navyfit_v2_logs';
+const LS_PR='navyfit_v2_pr';
+const LS_FAV='navyfit_v2_fav';
+let blockFilter='ALL', seaFilter='ALL', currentWorkout=null, calendarDate=new Date();
 let timer=null, remaining=0, totalSeconds=0, timerKind='Timer', emomMinute=0;
-
 function $(id){return document.getElementById(id)}
 function getLogs(){return JSON.parse(localStorage.getItem(LS_LOG)||'[]')}
 function saveLogs(x){localStorage.setItem(LS_LOG,JSON.stringify(x))}
@@ -572,52 +663,37 @@ function getPR(){return JSON.parse(localStorage.getItem(LS_PR)||'{}')}
 function savePR(x){localStorage.setItem(LS_PR,JSON.stringify(x))}
 function getFav(){return JSON.parse(localStorage.getItem(LS_FAV)||'[]')}
 function saveFav(x){localStorage.setItem(LS_FAV,JSON.stringify(x))}
-
-function showView(id){
-  document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden'));
-  $(id).classList.remove('hidden');
-  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
-  const tab=$('tab_'+id); if(tab) tab.classList.add('active');
-  if(id==='libraryView') render();
-  if(id==='logView') renderLog();
-  if(id==='progressView') renderProgress();
-  if(id==='calculatorView') renderCalculator();
-}
-function setActive(prefix,id){document.querySelectorAll('button[id^="'+prefix+'"]').forEach(b=>b.classList.remove('active')); if($(id)) $(id).classList.add('active');}
-function setBlockFilter(f){blockFilter=f; const map={'ALL':'b_ALL','FAVORITOS':'b_FAV','GYM ONLY':'b_GYM','FLIGHT DECK OPS':'b_FD','OLYMPIC TACTICAL':'b_OT'}; setActive('b_',map[f]); render();}
-function setSeaFilter(f){seaFilter=f; const map={'ALL':'s_ALL','ROUGH':'s_ROUGH','MODERATE':'s_MOD','CALM':'s_CALM'}; setActive('s_',map[f]); render();}
-function seaOk(w){if(seaFilter==='ALL') return true; if(seaFilter==='ROUGH') return w.seaCategory==='ROUGH'; if(seaFilter==='MODERATE') return w.seaCategory==='ROUGH'||w.seaCategory==='MODERATE'; if(seaFilter==='CALM') return true; return true;}
-function seaLabel(w){if(w.seaCategory==='ROUGH') return '🔴 Apto mala mar'; if(w.seaCategory==='MODERATE') return '🟡 Mar moderada'; return '🟢 Mar calma / cubierta';}
-function render(){
-  const q=$('search').value.toLowerCase(), fav=getFav();
-  const arr=WORKOUTS.filter(w=>(blockFilter==='ALL'||w.block===blockFilter||(blockFilter==='FAVORITOS'&&fav.includes(w.id)))&&seaOk(w)&&(w.name.toLowerCase().includes(q)||w.focus.toLowerCase().includes(q)||w.block.toLowerCase().includes(q)||w.wod.toLowerCase().includes(q)));
-  const seaText={ALL:'cualquier estado de mar',ROUGH:'mala mar',MODERATE:'mar moderada',CALM:'mar calma'};
-  $('status').textContent=arr.length+' entrenamientos mostrados · filtro: '+seaText[seaFilter];
-  const box=$('workouts'); box.innerHTML='';
-  arr.forEach(w=>{const div=document.createElement('div'); div.className='card '+(w.intensity.includes('🔴')?'redBorder':(w.intensity.includes('🟢')?'greenBorder':'')); div.onclick=()=>openWorkout(w.id); div.innerHTML=`<h3>${String(w.id).padStart(2,'0')} – ${w.name} ${fav.includes(w.id)?'⭐':''}</h3><p><b>${w.block}</b> · ${w.focus}</p><p>${w.intensity} · ${w.duration} · <span class="pill sea">${seaLabel(w)}</span></p>`; box.appendChild(div);});
-}
-function toggleFav(id){let fav=getFav(); if(fav.includes(id))fav=fav.filter(x=>x!==id); else fav.push(id); saveFav(fav); renderDetail();}
-function openWorkout(id){currentWorkout=WORKOUTS.find(x=>x.id===id); showView('detailView'); renderDetail();}
-function renderDetail(){
- const w=currentWorkout,fav=getFav();
- $('detail').innerHTML=`<button class="gray" onclick="showView('libraryView')">← Volver</button><button class="gold" onclick="toggleFav(${w.id})">${fav.includes(w.id)?'★ Favorito':'☆ Añadir favorito'}</button><h1>${String(w.id).padStart(2,'0')} – ${w.name}</h1><p><span class="pill">${w.block}</span><span class="pill">${w.duration}</span><span class="pill">${w.intensity}</span><span class="pill sea">${seaLabel(w)}</span></p><p><b>Foco:</b> ${w.focus}</p><p><b>Material:</b> ${w.material}</p><p><b>Objetivo:</b> ${w.objective}</p><h2>Calentamiento</h2><ul>${w.warmup.map(x=>`<li>${x}</li>`).join('')}</ul><h2>Fuerza / Técnica</h2><p>${w.strength}</p><h2>Accesorio</h2><p>${w.accessory}</p><h2>WOD</h2><p>${w.wod}</p><div class="grid2"><div class="panel"><h2>RX</h2><p>${w.rx}</p></div><div class="panel"><h2>Scaled</h2><p>${w.scaled}</p></div></div><h2>Sea State &gt; 3</h2><p>${w.sea}</p><h2>Registrar entrenamiento</h2><div class="grid2"><input id="resultTime" placeholder="Tiempo/Rondas"><input id="resultWeight" placeholder="Pesos usados"></div><br><textarea id="resultNotes" placeholder="Observaciones: sueño, guardia, gemelo, estado de mar..."></textarea><br><button class="green" onclick="completeWorkout(${w.id})">Guardar entrenamiento</button><h2>Cronómetros</h2><button onclick="startCountdown(12*60,'Warm Up')">Warm Up 12'</button><button onclick="startCountdown(18*60,'AMRAP 18')">AMRAP 18'</button><button onclick="startCountdown(20*60,'AMRAP 20')">AMRAP 20'</button><button onclick="startEmom(20)">EMOM 20'</button><button onclick="startCountdown(25*60,'Chipper 25')">Chipper 25'</button>`;
-}
-function completeWorkout(id){const w=WORKOUTS.find(x=>x.id===id),logs=getLogs(); logs.unshift({date:new Date().toISOString(),workoutId:id,name:w.name,block:w.block,time:$('resultTime').value,weight:$('resultWeight').value,notes:$('resultNotes').value}); saveLogs(logs); alert('Entrenamiento registrado.');}
-function renderLog(){const logs=getLogs(),box=$('logList'); box.innerHTML=''; if(!logs.length){box.innerHTML='<p>No hay entrenamientos registrados todavía.</p>';return;} logs.forEach((l,i)=>{const d=new Date(l.date),div=document.createElement('div'); div.className='logItem'; div.innerHTML=`<b>${d.toLocaleDateString()} – ${l.name}</b><br><span class="small">${l.block}</span><p><b>Resultado:</b> ${l.time||'-'} · <b>Pesos:</b> ${l.weight||'-'}</p><p>${l.notes||''}</p><button class="red" onclick="deleteLog(${i})">Borrar</button>`; box.appendChild(div);});}
-function deleteLog(i){let logs=getLogs(); logs.splice(i,1); saveLogs(logs); renderLog();}
-function exportData(){const data={logs:getLogs(),prs:getPR(),fav:getFav(),exportedAt:new Date().toISOString()},blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='navyfit_backup.json'; a.click();}
-function importData(ev){const f=ev.target.files[0]; if(!f)return; const r=new FileReader(); r.onload=()=>{try{const d=JSON.parse(r.result); if(d.logs)saveLogs(d.logs); if(d.prs)savePR(d.prs); if(d.fav)saveFav(d.fav); alert('Datos importados'); renderLog();}catch(e){alert('Archivo no válido')}}; r.readAsText(f);}
-function renderProgress(){const logs=getLogs(),last30=logs.filter(l=>Date.now()-new Date(l.date).getTime()<30*24*3600*1000); $('kpiTotal').textContent=logs.length; $('kpi30').textContent=last30.length; const pr=getPR(); ['backSquat','frontSquat','deadlift','strictPress','pushPress','powerClean','cleanJerk'].forEach(k=>$(k).value=pr[k]||'');}
-function savePRForm(){const pr={}; ['backSquat','frontSquat','deadlift','strictPress','pushPress','powerClean','cleanJerk'].forEach(k=>pr[k]=$(k).value); savePR(pr); alert('PRs guardados'); renderCalculator();}
-function renderCalculator(){const pr=getPR(),ex=$('calcExercise').value,pct=parseFloat($('calcPct').value||'70'),base=parseFloat(pr[ex]||0); $('calcResult').textContent=base?Math.round(base*pct/100)+' kg':'Introduce PRs';}
-function quickPercentTable(){const pr=getPR(),ex=$('calcExercise').value,base=parseFloat(pr[ex]||0),box=$('pctTable'); if(!base){box.innerHTML='<p>Introduce primero tus PRs.</p>';return;} let html='<table><tr><th>%</th><th>kg</th></tr>'; [50,55,60,65,70,75,80,85,90].forEach(p=>html+=`<tr><td>${p}%</td><td>${Math.round(base*p/100)} kg</td></tr>`); html+='</table>'; box.innerHTML=html;}
-function startCountdown(sec,title){totalSeconds=sec;remaining=sec;timerKind=title;emomMinute=0;$('timerTitle').textContent=title;$('timerBox').classList.remove('hidden');updateTimer();if(timer)clearInterval(timer);timer=setInterval(tick,1000);}
-function startEmom(mins){startCountdown(mins*60,'EMOM '+mins+'\'');}
-function tick(){remaining--; if(timerKind.startsWith('EMOM')){const elapsed=totalSeconds-remaining,m=Math.floor(elapsed/60)+1;if(m!==emomMinute){emomMinute=m;try{navigator.vibrate&&navigator.vibrate(150)}catch(e){}}} updateTimer(); if(remaining<=0){clearInterval(timer);timer=null;try{navigator.vibrate&&navigator.vibrate([300,200,300])}catch(e){}}}
-function pauseTimer(){if(timer){clearInterval(timer);timer=null;} else timer=setInterval(tick,1000);}
-function stopTimer(){if(timer)clearInterval(timer);timer=null;$('timerBox').classList.add('hidden');}
-function updateTimer(){let m=Math.floor(remaining/60),s=remaining%60;$('timer').textContent=m+':'+String(s).padStart(2,'0'); const pct=totalSeconds?100*(totalSeconds-remaining)/totalSeconds:0;$('timerProgress').style.width=Math.max(0,Math.min(100,pct))+'%';}
-function suggestToday(){const fatigue=$('fatigue').value,calf=$('calf').checked; let pool=WORKOUTS.filter(seaOk); if(fatigue==='red')pool=pool.filter(w=>!w.intensity.includes('🔴')&&(w.seaCategory==='ROUGH'||w.name==='MIDWATCH')); if(fatigue==='yellow')pool=pool.filter(w=>!w.intensity.includes('🔴')); if(calf)pool=pool.filter(w=>!w.wod.toLowerCase().includes('run')&&!w.wod.toLowerCase().includes('lunges')); if(!pool.length)pool=WORKOUTS.filter(w=>w.name==='MIDWATCH'); const w=pool[Math.floor(Math.random()*pool.length)]; openWorkout(w.id);}
-document.addEventListener('DOMContentLoaded',()=>{render();renderProgress();renderCalculator();});
-</script><script>if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}</script>
-</body></html>
+function isoDate(d){const z=new Date(d.getTime()-d.getTimezoneOffset()*60000);return z.toISOString().slice(0,10)}
+function localDateStr(d){return new Date(d).toLocaleDateString()}
+function monthKey(d){return isoDate(d).slice(0,7)}
+function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden'));$(id).classList.remove('hidden');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));const tab=$('tab_'+id); if(tab) tab.classList.add('active');if(id==='homeView')renderHome();if(id==='libraryView')render();if(id==='diaryView')renderCalendar();if(id==='progressView')renderProgress();if(id==='calculatorView')renderCalculator();}
+function setActive(prefix,id){document.querySelectorAll('button[id^="'+prefix+'"]').forEach(b=>b.classList.remove('active'));if($(id))$(id).classList.add('active')}
+function setBlockFilter(f){blockFilter=f;const map={'ALL':'b_ALL','FAVORITOS':'b_FAV','GYM ONLY':'b_GYM','FLIGHT DECK OPS':'b_FD','OLYMPIC TACTICAL':'b_OT'};setActive('b_',map[f]);render()}
+function setSeaFilter(f){seaFilter=f;const map={'ALL':'s_ALL','ROUGH':'s_ROUGH','MODERATE':'s_MOD','CALM':'s_CALM'};setActive('s_',map[f]);render()}
+function seaOk(w){if(seaFilter==='ALL')return true;if(seaFilter==='ROUGH')return w.seaCategory==='ROUGH';if(seaFilter==='MODERATE')return w.seaCategory==='ROUGH'||w.seaCategory==='MODERATE';if(seaFilter==='CALM')return true;return true}
+function seaLabel(w){if(w.seaCategory==='ROUGH')return '🔴 Apto mala mar';if(w.seaCategory==='MODERATE')return '🟡 Mar moderada';return '🟢 Mar calma / cubierta'}
+function stats(){const logs=getLogs(),now=new Date(),mkey=monthKey(now);const thisMonth=logs.filter(l=>l.date.slice(0,7)===mkey);const last30=logs.filter(l=>Date.now()-new Date(l.date).getTime()<30*24*3600*1000);const byBlock={'GYM ONLY':0,'FLIGHT DECK OPS':0,'OLYMPIC TACTICAL':0};logs.forEach(l=>{if(byBlock[l.block]!==undefined)byBlock[l.block]++});const dates=[...new Set(logs.map(l=>l.date.slice(0,10)))].sort().reverse();let streak=0;let cursor=new Date();cursor.setHours(0,0,0,0);const set=new Set(dates);while(set.has(isoDate(cursor))){streak++;cursor.setDate(cursor.getDate()-1)}return {logs,thisMonth,last30,byBlock,streak,last:logs[0]||null}}
+function renderHome(){const s=stats();$('homeContent').innerHTML=`<div class="grid3"><div class="panel"><div class="kpi">${s.thisMonth.length}</div><b>Entrenos este mes</b></div><div class="panel"><div class="kpi">${s.streak}</div><b>Racha actual</b></div><div class="panel"><div class="kpi">${s.last30.length}</div><b>Últimos 30 días</b></div></div><div class="panel"><h2>Último entrenamiento</h2>${s.last?`<p><b>${s.last.name}</b><br>${localDateStr(s.last.date)} · ${s.last.time||'-'} · ${s.last.weight||'-'}</p><p>${s.last.notes||''}</p>`:'<p>Todavía no hay entrenamientos registrados.</p>'}</div><div class="panel"><h2>Acción rápida</h2><button class="green" onclick="showView('recommendView')">¿QUÉ HAGO HOY?</button><button onclick="showView('libraryView')">Ir a biblioteca</button></div>`}
+function render(){const q=$('search').value.toLowerCase(),fav=getFav();const arr=WORKOUTS.filter(w=>(blockFilter==='ALL'||w.block===blockFilter||(blockFilter==='FAVORITOS'&&fav.includes(w.id)))&&seaOk(w)&&(w.name.toLowerCase().includes(q)||w.focus.toLowerCase().includes(q)||w.block.toLowerCase().includes(q)||w.wod.toLowerCase().includes(q)));const seaText={ALL:'cualquier estado de mar',ROUGH:'mala mar',MODERATE:'mar moderada',CALM:'mar calma'};$('status').textContent=arr.length+' entrenamientos mostrados · filtro: '+seaText[seaFilter];const box=$('workouts');box.innerHTML='';arr.forEach(w=>{const div=document.createElement('div');div.className='card '+(w.intensity.includes('🔴')?'redBorder':(w.intensity.includes('🟢')?'greenBorder':''));div.onclick=()=>openWorkout(w.id);div.innerHTML=`<h3>${String(w.id).padStart(2,'0')} – ${w.name} ${fav.includes(w.id)?'⭐':''}</h3><p><b>${w.block}</b> · ${w.focus}</p><p>${w.intensity} · ${w.duration} · <span class="pill sea">${seaLabel(w)}</span></p>`;box.appendChild(div)})}
+function toggleFav(id){let fav=getFav();if(fav.includes(id))fav=fav.filter(x=>x!==id);else fav.push(id);saveFav(fav);renderDetail()}
+function openWorkout(id){currentWorkout=WORKOUTS.find(x=>x.id===id);showView('detailView');renderDetail()}
+function renderDetail(){const w=currentWorkout,fav=getFav();$('detail').innerHTML=`<button class="gray" onclick="showView('libraryView')">← Volver</button><button class="gold" onclick="toggleFav(${w.id})">${fav.includes(w.id)?'★ Favorito':'☆ Añadir favorito'}</button><h1>${String(w.id).padStart(2,'0')} – ${w.name}</h1><p><span class="pill">${w.block}</span><span class="pill">${w.duration}</span><span class="pill">${w.intensity}</span><span class="pill sea">${seaLabel(w)}</span></p><p><b>Foco:</b> ${w.focus}</p><p><b>Material:</b> ${w.material}</p><p><b>Objetivo:</b> ${w.objective}</p><h2>Calentamiento</h2><ul>${w.warmup.map(x=>`<li>${x}</li>`).join('')}</ul><h2>Fuerza / Técnica</h2><p>${w.strength}</p><h2>Accesorio</h2><p>${w.accessory}</p><h2>WOD</h2><p>${w.wod}</p><div class="grid2"><div class="panel"><h2>RX</h2><p>${w.rx}</p></div><div class="panel"><h2>Scaled</h2><p>${w.scaled}</p></div></div><h2>Sea State &gt; 3</h2><p>${w.sea}</p><h2>Guardar en diario</h2><div class="grid2"><input id="resultDate" type="date" value="${isoDate(new Date())}"><input id="resultTime" placeholder="Tiempo/Rondas"></div><br><input id="resultWeight" placeholder="Pesos usados"><br><br><textarea id="resultNotes" placeholder="Observaciones: sueño, guardia, gemelo, estado de mar..."></textarea><br><button class="green" onclick="completeWorkout(${w.id})">Guardar entrenamiento</button><h2>Cronómetros</h2><button onclick="startCountdown(12*60,'Warm Up')">Warm Up 12'</button><button onclick="startCountdown(18*60,'AMRAP 18')">AMRAP 18'</button><button onclick="startCountdown(20*60,'AMRAP 20')">AMRAP 20'</button><button onclick="startEmom(20)">EMOM 20'</button><button onclick="startCountdown(25*60,'Chipper 25')">Chipper 25'</button>`}
+function completeWorkout(id){const w=WORKOUTS.find(x=>x.id===id),logs=getLogs();const date=$('resultDate').value||isoDate(new Date());logs.unshift({date:date+'T12:00:00',workoutId:id,name:w.name,block:w.block,time:$('resultTime').value,weight:$('resultWeight').value,notes:$('resultNotes').value});logs.sort((a,b)=>new Date(b.date)-new Date(a.date));saveLogs(logs);alert('Entrenamiento guardado en Diario.');renderHome();renderProgress();renderCalendar()}
+function renderCalendar(){const d=new Date(calendarDate.getFullYear(),calendarDate.getMonth(),1);const year=d.getFullYear(),month=d.getMonth(),logs=getLogs();const byDate={};logs.forEach(l=>{const k=l.date.slice(0,10);if(!byDate[k])byDate[k]=[];byDate[k].push(l)});$('calendarTitle').textContent=d.toLocaleString('es-ES',{month:'long',year:'numeric'}).toUpperCase();const grid=$('calendarGrid');grid.innerHTML='';['L','M','X','J','V','S','D'].forEach(n=>{const el=document.createElement('div');el.className='dayName';el.textContent=n;grid.appendChild(el)});let first=(d.getDay()+6)%7;for(let i=0;i<first;i++)grid.appendChild(document.createElement('div'));const days=new Date(year,month+1,0).getDate(),today=isoDate(new Date());for(let day=1;day<=days;day++){const date=new Date(year,month,day),k=isoDate(date),dayLogs=byDate[k]||[],cell=document.createElement('div');cell.className='dayCell '+(dayLogs.length?'hasLog ':'')+(k===today?'today':'');cell.onclick=()=>showDay(k);cell.innerHTML=`<div class="dayNum">${day}</div>${dayLogs.slice(0,2).map(l=>`<div class="dayWorkout">⚓ ${l.name}</div>`).join('')}${dayLogs.length>2?'<div class="dayWorkout">+'+(dayLogs.length-2)+' más</div>':''}`;grid.appendChild(cell)}$('dayDetail').innerHTML='<p class="small">Pulsa un día para ver el diario.</p>'}
+function changeMonth(delta){calendarDate.setMonth(calendarDate.getMonth()+delta);renderCalendar()}
+function showDay(k){const logs=getLogs().filter(l=>l.date.slice(0,10)===k),box=$('dayDetail');if(!logs.length){box.innerHTML=`<h2>${k}</h2><p>Sin entrenamiento registrado.</p>`;return}box.innerHTML=`<h2>${k}</h2>`+logs.map(l=>`<div class="logItem"><b>${l.name}</b><br><span class="small">${l.block}</span><p><b>Resultado:</b> ${l.time||'-'} · <b>Pesos:</b> ${l.weight||'-'}</p><p>${l.notes||''}</p><button class="red" onclick="deleteLogById('${l.date}',${l.workoutId})">Borrar</button></div>`).join('')}
+function deleteLogById(date,id){let logs=getLogs();const idx=logs.findIndex(l=>l.date===date&&l.workoutId===id);if(idx>=0)logs.splice(idx,1);saveLogs(logs);renderCalendar();renderProgress();renderHome()}
+function renderProgress(){const s=stats();$('kpiTotal').textContent=s.logs.length;$('kpiMonth').textContent=s.thisMonth.length;$('kpi30').textContent=s.last30.length;$('kpiStreak').textContent=s.streak;$('lastWorkout').innerHTML=s.last?`<b>${s.last.name}</b><br>${localDateStr(s.last.date)} · ${s.last.time||'-'} · ${s.last.weight||'-'}<p>${s.last.notes||''}</p>`:'Sin entrenamientos registrados.';$('distBlocks').innerHTML=`<table><tr><th>Bloque</th><th>Total</th></tr><tr><td>Gym Only</td><td>${s.byBlock['GYM ONLY']}</td></tr><tr><td>Flight Deck Ops</td><td>${s.byBlock['FLIGHT DECK OPS']}</td></tr><tr><td>Olympic Tactical</td><td>${s.byBlock['OLYMPIC TACTICAL']}</td></tr></table>`;const pr=getPR();['backSquat','frontSquat','deadlift','strictPress','pushPress','powerClean','cleanJerk'].forEach(k=>{if($(k))$(k).value=pr[k]||''})}
+function savePRForm(){const pr={};['backSquat','frontSquat','deadlift','strictPress','pushPress','powerClean','cleanJerk'].forEach(k=>pr[k]=$(k).value);savePR(pr);alert('PRs guardados');renderCalculator()}
+function renderCalculator(){const pr=getPR(),ex=$('calcExercise').value,pct=parseFloat($('calcPct').value||'70'),base=parseFloat(pr[ex]||0);$('calcResult').textContent=base?Math.round(base*pct/100)+' kg':'Introduce PRs'}
+function quickPercentTable(){const pr=getPR(),ex=$('calcExercise').value,base=parseFloat(pr[ex]||0),box=$('pctTable');if(!base){box.innerHTML='<p>Introduce primero tus PRs.</p>';return}let html='<table><tr><th>%</th><th>kg</th></tr>';[50,55,60,65,70,75,80,85,90].forEach(p=>html+=`<tr><td>${p}%</td><td>${Math.round(base*p/100)} kg</td></tr>`);html+='</table>';box.innerHTML=html}
+function recommendSeaOk(w,sea){if(sea==='ROUGH')return w.seaCategory==='ROUGH';if(sea==='MODERATE')return w.seaCategory==='ROUGH'||w.seaCategory==='MODERATE';return true}
+function suggestToday(){const fatigue=$('fatigue').value,sea=$('recSea').value,goal=$('goal').value;const flags=[$('calf').checked?'CALF':null,$('knee').checked?'KNEE':null,$('shoulder').checked?'SHOULDER':null,$('lumbar').checked?'LUMBAR':null].filter(Boolean);let pool=WORKOUTS.filter(w=>recommendSeaOk(w,sea));if(goal!=='INDIFERENTE')pool=pool.filter(w=>w.goals.includes(goal)||w.goals.includes('INDIFERENTE'));flags.forEach(f=>{pool=pool.filter(w=>!w.avoid.includes(f))});if(fatigue==='red')pool=pool.filter(w=>!w.intensity.includes('🔴')&&(w.seaCategory==='ROUGH'||w.name==='MIDWATCH'));if(fatigue==='yellow')pool=pool.filter(w=>!w.intensity.includes('🔴'));if(!pool.length)pool=WORKOUTS.filter(w=>w.name==='MIDWATCH');const w=pool[Math.floor(Math.random()*pool.length)];openWorkout(w.id)}
+function startCountdown(sec,title){totalSeconds=sec;remaining=sec;timerKind=title;emomMinute=0;$('timerTitle').textContent=title;$('timerBox').classList.remove('hidden');updateTimer();if(timer)clearInterval(timer);timer=setInterval(tick,1000)}
+function startEmom(mins){startCountdown(mins*60,'EMOM '+mins+'\'')}
+function tick(){remaining--;if(timerKind.startsWith('EMOM')){const elapsed=totalSeconds-remaining,m=Math.floor(elapsed/60)+1;if(m!==emomMinute){emomMinute=m;try{navigator.vibrate&&navigator.vibrate(150)}catch(e){}}}updateTimer();if(remaining<=0){clearInterval(timer);timer=null;try{navigator.vibrate&&navigator.vibrate([300,200,300])}catch(e){}}}
+function pauseTimer(){if(timer){clearInterval(timer);timer=null}else timer=setInterval(tick,1000)}
+function stopTimer(){if(timer)clearInterval(timer);timer=null;$('timerBox').classList.add('hidden')}
+function updateTimer(){let m=Math.floor(remaining/60),s=remaining%60;$('timer').textContent=m+':'+String(s).padStart(2,'0');const pct=totalSeconds?100*(totalSeconds-remaining)/totalSeconds:0;$('timerProgress').style.width=Math.max(0,Math.min(100,pct))+'%'}
+document.addEventListener('DOMContentLoaded',()=>{renderHome();render();renderProgress();renderCalculator();renderCalendar()})
+</script><script>if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js')}</script></body></html>
