@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="es">
 <head>
@@ -6,8 +5,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>NAVYFIT Embarcado Pro</title>
   <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="style.css">
   <meta name="theme-color" content="#071a2f">
+  <style>
+
+:root{
+  --navy:#071a2f; --blue:#0f3b66; --gold:#d4a017; --red:#9d1b1e;
+  --bg:#f3f6fa; --card:#fff; --text:#111; --muted:#5f6b7a; --green:#1f7a4d;
+}
+*{box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;margin:0;background:var(--bg);color:var(--text)}
+header{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;padding:18px 16px 16px;position:sticky;top:0;z-index:5;box-shadow:0 3px 15px rgba(0,0,0,.25)}
+.headerRow{display:flex;align-items:center;gap:12px}
+.logo{width:52px;height:52px;border-radius:14px;background:#fff;object-fit:cover}
+header h1{margin:0;font-size:24px;letter-spacing:.8px}
+header p{margin:3px 0 0;color:#dce7f5;font-size:13px}
+nav{display:flex;gap:8px;overflow-x:auto;margin-top:12px;padding-bottom:2px}
+nav button{white-space:nowrap}
+main{padding:14px;max-width:920px;margin:auto}
+button{border:0;background:var(--blue);color:white;border-radius:12px;padding:11px 13px;font-weight:800;font-size:14px}
+button.secondary{background:#334}
+button.gold{background:var(--gold);color:#111}
+button.red{background:var(--red)}
+button.green{background:var(--green)}
+button.light{background:#e8eef7;color:var(--blue)}
+input,select,textarea{width:100%;padding:13px;border-radius:12px;border:1px solid #ccd;font-size:16px;background:#fff}
+textarea{min-height:90px}
+.controls{display:grid;gap:10px;margin:12px 0}
+.filters{display:flex;gap:8px;overflow:auto}
+.filter.active,.tab.active{background:var(--gold);color:#111}
+.card{background:var(--card);padding:14px;border-radius:18px;margin:10px 0;box-shadow:0 4px 14px rgba(0,0,0,.08);border-left:6px solid var(--blue)}
+.card.redBorder{border-left-color:var(--red)}
+.card.greenBorder{border-left-color:var(--green)}
+.card h3{margin:0;font-size:18px}
+.card p{margin:6px 0;color:#444}
+.row{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.hidden{display:none!important}
+.view{display:block}
+.detail{background:var(--card);border-radius:18px;padding:18px;box-shadow:0 4px 14px rgba(0,0,0,.08)}
+.detail h1{margin-top:0;color:var(--navy)}
+.detail h2{font-size:17px;border-bottom:1px solid #e2e2e2;padding-bottom:5px;color:var(--blue)}
+.detail li{margin:7px 0}
+.pill{display:inline-block;background:#e8eef7;color:var(--blue);padding:6px 10px;border-radius:999px;font-weight:800;margin:2px 4px 2px 0}
+.pill.redPill{background:#fde8e8;color:var(--red)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.grid2 div,.panel{background:#fff;border-radius:16px;padding:12px;box-shadow:0 3px 12px rgba(0,0,0,.07)}
+.kpi{font-size:28px;font-weight:900;color:var(--blue)}
+.small{font-size:12px;color:var(--muted)}
+.timerBox{position:fixed;left:14px;right:14px;bottom:14px;background:var(--navy);color:white;border-radius:20px;padding:16px;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.35);z-index:9}
+.timer{font-size:48px;font-weight:900;letter-spacing:2px}
+.timerControls{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.logItem{border-bottom:1px solid #eee;padding:10px 0}
+.badge{font-size:12px;background:#eef;padding:4px 8px;border-radius:999px;color:var(--blue);font-weight:800}
+@media(max-width:650px){.grid2,.grid3{grid-template-columns:1fr}.timer{font-size:42px}header h1{font-size:21px}}
+@media print{header,nav,.controls,button,.timerBox{display:none!important}main{max-width:none}.detail,.card{box-shadow:none;border:1px solid #ddd;page-break-inside:avoid}}
+
+  </style>
 </head>
 <body>
 <header>
@@ -86,9 +139,646 @@
   </div>
 </div>
 
-<script src="app.js"></script>
 <script>
-if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
+
+const WORKOUTS = [
+  {
+    "id": 1,
+    "name": "MAIN ENGINE",
+    "block": "GYM ONLY",
+    "intensity": "🟡🟡⚪⚪⚪",
+    "duration": "55-60 min",
+    "focus": "Pierna + motor",
+    "material": "Barra, discos, Assault Bike o remo, esterilla.",
+    "objective": "Reactivar tren inferior y motor sin castigar articulaciones.",
+    "warmup": [
+      "3 min Row suave",
+      "2 rondas: 10 Air Squats, 10 Glute Bridges, 8 Push Ups, 10 Lunges alternos",
+      "Movilidad: tobillo, cadera y squat hold 30\"",
+      "Barra vacía: 10 Back Squats + 10 Good Mornings"
+    ],
+    "strength": "Back Squat 5x5 progresivo. RPE 7-8.",
+    "accessory": "Walking Lunges DB 3x12 + Plancha 3x40\".",
+    "wod": "AMRAP 18: 200 m Run o 250 m Row, 10 Thrusters, 30 m Farmer Carry, 12 Sit Ups.",
+    "rx": "Thruster 40 kg. Farmer Carry 2x30 kg.",
+    "scaled": "Thruster 25-30 kg. Farmer Carry 2x20 kg. Run 150 m o Row 200 m.",
+    "sea": "Sustituir carrera y Farmer Carry por 250 m Row y 12 cal Bike."
+  },
+  {
+    "id": 2,
+    "name": "FLIGHT DECK",
+    "block": "GYM ONLY",
+    "intensity": "🟡🟡🟡⚪⚪",
+    "duration": "55-60 min",
+    "focus": "Hombro + upper body",
+    "material": "Barra, mancuernas, remo.",
+    "objective": "Fuerza de hombro y estabilidad escapular.",
+    "warmup": [
+      "3 min Assault Bike suave",
+      "2 rondas: 10 Scap Push Ups, 10 Shoulder Taps, 10 PVC Pass Through, 10 DB Press ligeros",
+      "Barra vacía: 8 Strict Press + 8 Push Press",
+      "Movilidad torácica y hombro"
+    ],
+    "strength": "Strict Press 5x5. RPE 7-8.",
+    "accessory": "DB Row 4x10 + Lateral Raises 4x12.",
+    "wod": "EMOM 18: Min 1 10 Push Press, Min 2 12 cal Row, Min 3 10 Burpees.",
+    "rx": "Push Press 40 kg.",
+    "scaled": "Push Press 25-30 kg. Burpees sin salto.",
+    "sea": "Mantener igual. En mala mar sustituir burpees por Push Ups."
+  },
+  {
+    "id": 3,
+    "name": "ENGINE ROOM",
+    "block": "GYM ONLY",
+    "intensity": "🟡🟡⚪⚪⚪",
+    "duration": "55 min",
+    "focus": "Full body + cardio",
+    "material": "Barra, remo, balón medicinal, mancuerna.",
+    "objective": "Trabajo general controlado para días de fatiga media.",
+    "warmup": [
+      "5 min Bike progresiva",
+      "2 rondas: 10 Squats, 10 Push Ups, 10 Sit Ups, 10 Hip Hinges",
+      "Barra vacía: 10 Deadlifts + 10 RDL",
+      "Activación glúteo/isquio"
+    ],
+    "strength": "Deadlift técnico 5x5. RPE 6-7.",
+    "accessory": "Sin accesorio obligatorio.",
+    "wod": "AMRAP 20: 300 m Row, 15 Goblet Squats, 12 Push Ups, 15 Med Ball Slams, 20 Saltos Comba.",
+    "rx": "Goblet 30 kg. Med Ball 9 kg.",
+    "scaled": "Goblet 15-22,5 kg. Sin comba: 20 Jumping Jacks.",
+    "sea": "Quitar comba y hacer 20 Sit Ups."
+  },
+  {
+    "id": 4,
+    "name": "BOARDING PARTY",
+    "block": "FLIGHT DECK OPS",
+    "intensity": "🟡🟡🟡⚪⚪",
+    "duration": "55-60 min",
+    "focus": "Pecho + hombro + cubierta",
+    "material": "Banco, barra, mancuernas, cubierta de vuelo.",
+    "objective": "Empuje superior con componente operacional.",
+    "warmup": [
+      "2 rondas: 200 m Run suave, 10 Push Ups, 10 Shoulder Taps, 10 Air Squats",
+      "Barra vacía: 10 Bench Press + 10 Empty Bar Row",
+      "Movilidad hombro y pectoral"
+    ],
+    "strength": "Bench Press 5x5. RPE 7-8.",
+    "accessory": "Incline DB Press 3x10 + DB Row 3x10.",
+    "wod": "FOR TIME 4 rondas: 200 m Run, 10 DB Push Press, 20 Walking Lunges, 12 Burpees.",
+    "rx": "DB Push Press 2x22,5 kg.",
+    "scaled": "Run 150 m. DB 2x15 kg. Burpees sin salto.",
+    "sea": "Cambiar Run por 250 m Row y Lunges por Goblet Squats."
+  },
+  {
+    "id": 5,
+    "name": "SEA WARRIOR",
+    "block": "GYM ONLY",
+    "intensity": "🟡🟡🟡🟡⚪",
+    "duration": "60 min",
+    "focus": "Full body + barra",
+    "material": "Barra, discos, remo.",
+    "objective": "Potencia básica y WOD corto intenso.",
+    "warmup": [
+      "3 min Row",
+      "2 rondas: 10 Air Squats, 10 Push Ups, 10 Sit Ups",
+      "Barra vacía: 5 Deadlift, 5 Hang Clean, 5 Front Squat, 5 Push Press",
+      "3 rondas técnicas: 3 Power Clean + 3 Front Squat"
+    ],
+    "strength": "Power Clean 10x2 técnico, cada 75-90\".",
+    "accessory": "Sin accesorio obligatorio.",
+    "wod": "21-15-9: Thrusters + Burpees Over Bar. Tras cada ronda: 250 m Row.",
+    "rx": "Thruster 40 kg.",
+    "scaled": "Thruster 25-30 kg. Burpees laterales o normales.",
+    "sea": "Burpees normales, sin salto sobre barra."
+  },
+  {
+    "id": 6,
+    "name": "HELO OPS",
+    "block": "GYM ONLY",
+    "intensity": "🟡🟡🟡⚪⚪",
+    "duration": "55-60 min",
+    "focus": "Hombro + pierna",
+    "material": "Barra, mancuernas, bike/row.",
+    "objective": "Empuje vertical con pierna unilateral.",
+    "warmup": [
+      "3 min Bike",
+      "2 rondas: 10 Air Squats, 10 Shoulder Taps, 10 DB Press ligeros, 10 Reverse Lunges",
+      "Barra vacía: 8 Strict Press + 8 Push Press",
+      "Movilidad hombro y cadera"
+    ],
+    "strength": "Push Press 5x5. RPE 7-8.",
+    "accessory": "Bulgarian Split Squat DB 3x10 por pierna + Plancha 3x45\".",
+    "wod": "AMRAP 16: 12 cal Bike, 10 DB Shoulder Press, 15 Goblet Squats, 250 m Row.",
+    "rx": "DB Shoulder Press 2x17,5 kg. Goblet 30 kg.",
+    "scaled": "DB 2x10-12,5 kg. Goblet 20 kg.",
+    "sea": "Mantener Bike/Row. Evitar cambios bruscos."
+  },
+  {
+    "id": 7,
+    "name": "MIDWATCH",
+    "block": "GYM ONLY",
+    "intensity": "🟢⚪⚪⚪⚪",
+    "duration": "45-55 min",
+    "focus": "Recovery / engine",
+    "material": "Mancuernas, remo, bike, esterilla.",
+    "objective": "Día de guardia, mala noche o recuperación activa.",
+    "warmup": [
+      "5 min Row suave",
+      "Movilidad completa: cuello, hombro, T-spine, cadera, tobillo",
+      "2 rondas: 10 Squats, 10 Push Ups, 10 Sit Ups"
+    ],
+    "strength": "DB Complex suave x4: 6 Deadlift, 6 Hang Clean, 6 Front Squat, 6 Push Press. Descanso 90\".",
+    "accessory": "Core: 3 rondas, 20 Sit Ups, 30\" Side Plank por lado, 15 Russian Twists.",
+    "wod": "20 min Zona 2 alternando 2 min Row + 2 min Bike.",
+    "rx": "DB 2x15-20 kg.",
+    "scaled": "DB 2x10-12,5 kg. Mantener conversación durante zona 2.",
+    "sea": "Ideal para mala mar. Sin carrera ni saltos."
+  },
+  {
+    "id": 8,
+    "name": "GUN LINE",
+    "block": "FLIGHT DECK OPS",
+    "intensity": "🟡🟡🟡⚪⚪",
+    "duration": "60 min",
+    "focus": "Pierna potente",
+    "material": "Barra, mancuernas, balón medicinal, cubierta.",
+    "objective": "Front squat y WOD de pierna con componente anaeróbico.",
+    "warmup": [
+      "2 rondas: 200 m Run, 10 Air Squats, 8 Lunges, 10 Glute Bridges",
+      "Movilidad tobillo/rack position",
+      "Barra vacía: 8 Front Squat + 8 Elbow Rotations + 8 Good Mornings"
+    ],
+    "strength": "Front Squat 5x5. RPE 7-8.",
+    "accessory": "DB Romanian Deadlift 3x10 + Farmer Carry 3 vueltas.",
+    "wod": "FOR TIME 4 rondas: 300 m Run, 15 Med Ball Slams, 12 DB Thrusters, 10 Burpees.",
+    "rx": "Med Ball 9 kg. DB Thrusters 2x17,5 kg.",
+    "scaled": "Run 200 m. DB 2x10-12,5 kg.",
+    "sea": "Run por 300 m Row. Burpees por Push Ups."
+  },
+  {
+    "id": 9,
+    "name": "BRIDGE TEAM",
+    "block": "GYM ONLY",
+    "intensity": "🟡🟡🟡⚪⚪",
+    "duration": "55-60 min",
+    "focus": "Upper body + pump",
+    "material": "Banco, barra, mancuernas, bike.",
+    "objective": "Pecho, hombro y tirón equilibrado.",
+    "warmup": [
+      "3 min Bike",
+      "2 rondas: 10 Push Ups, 10 Shoulder Mobility Reps, 10 Scap Push Ups",
+      "Barra vacía: 10 Bench Press",
+      "Mancuernas ligeras: 10 Shoulder Press + 10 Rows"
+    ],
+    "strength": "Bench Press 5x5. RPE 7-8.",
+    "accessory": "DB Shoulder Press 4x10 + Chest Supported Row 4x10.",
+    "wod": "EMOM 15: Min 1 12 cal Bike, Min 2 12 Push Ups, Min 3 12 DB Snatch alternos.",
+    "rx": "DB Snatch 22,5 kg.",
+    "scaled": "DB Snatch 15 kg. Push Ups con rodillas si hace falta.",
+    "sea": "Mantener. Evitar DB Snatch si el barco se mueve mucho y cambiar por DB Row."
+  },
+  {
+    "id": 10,
+    "name": "GENERAL QUARTERS",
+    "block": "OLYMPIC TACTICAL",
+    "intensity": "🟡🟡🟡🟡⚪",
+    "duration": "60 min",
+    "focus": "Clean pull + toughness",
+    "material": "Barra, mancuernas, cubierta.",
+    "objective": "Potencia de tirón y resistencia mental.",
+    "warmup": [
+      "2 rondas: 200 m Run, 10 Squats, 10 Push Ups",
+      "Barra vacía: 5 Deadlift, 5 RDL, 5 High Pull, 5 Muscle Clean",
+      "Movilidad cadera/rack"
+    ],
+    "strength": "Clean Pull 5x3 + Front Squat 3x5.",
+    "accessory": "Sin accesorio obligatorio.",
+    "wod": "AMRAP 18: 8 Power Cleans, 12 Burpees, 100 m Farmer Carry.",
+    "rx": "Power Clean 60 kg. Farmer Carry 2x30 kg.",
+    "scaled": "Power Clean 40 kg. Farmer Carry 60 m con 2x20 kg.",
+    "sea": "Farmer Carry por 12 cal Bike. Burpees por Push Ups."
+  },
+  {
+    "id": 11,
+    "name": "STEEL BEACH",
+    "block": "OLYMPIC TACTICAL",
+    "intensity": "🟡🟡🟡⚪⚪",
+    "duration": "60 min",
+    "focus": "Clean day",
+    "material": "Barra, discos, mancuernas/cubierta.",
+    "objective": "Técnica y potencia en hang power clean.",
+    "warmup": [
+      "2 rondas: 200 m Run, 10 Air Squats, 10 Jump Squats suaves, 10 PVC Pass Through",
+      "Barra vacía: 5 Muscle Clean, 5 Front Squat, 5 Tall Clean, 5 Hang Power Clean",
+      "Movilidad muñeca, rack y tobillo"
+    ],
+    "strength": "Hang Power Clean 5x3 progresivo + Front Squat 4x5.",
+    "accessory": "Sin accesorio obligatorio.",
+    "wod": "AMRAP 18: 5 Hang Power Cleans, 10 Push Press, 40 m Farmer Carry.",
+    "rx": "HPC 60 kg. Push Press 50 kg. Farmer 2x30 kg.",
+    "scaled": "HPC 40 kg. Push Press 30 kg. Farmer 2x20 kg.",
+    "sea": "Farmer Carry por 12 cal Row."
+  },
+  {
+    "id": 12,
+    "name": "CATAPULT",
+    "block": "OLYMPIC TACTICAL",
+    "intensity": "🟡🟡🟡⚪⚪",
+    "duration": "60 min",
+    "focus": "Jerk day",
+    "material": "Barra, discos, cubierta/remo.",
+    "objective": "Explosividad overhead y recepción estable.",
+    "warmup": [
+      "2 rondas: 200 m Run suave, 10 Shoulder Taps, 10 PVC Pass Through",
+      "Barra vacía: 5 Strict Press, 5 Push Press, 5 Push Jerk, 5 Split Jerk Footwork",
+      "Movilidad T-spine, hombro y tobillo"
+    ],
+    "strength": "Push Jerk / Split Jerk 6x2 progresivo. Técnica limpia.",
+    "accessory": "3 rondas: 12 Lateral Raises, 10 DB Shoulder Press, 12 Rear Delt Raises.",
+    "wod": "EMOM 20: Min 1 10 Push Jerks, Min 2 100 m Farmer Carry, Min 3 10 Burpees, Min 4 descanso.",
+    "rx": "Push Jerk 50 kg. Farmer Carry 2x30 kg.",
+    "scaled": "Push Jerk 30-35 kg. Farmer 2x20 kg. Burpees sin salto.",
+    "sea": "Farmer Carry por 12-14 cal Row. Burpees por Push Ups si hay balance."
+  },
+  {
+    "id": 13,
+    "name": "DAMAGE CONTROL",
+    "block": "GYM ONLY",
+    "intensity": "🟡🟡🟡🟡⚪",
+    "duration": "60 min",
+    "focus": "Olympic complex",
+    "material": "Barra, discos, remo.",
+    "objective": "Complex técnico y WOD duro pero controlado.",
+    "warmup": [
+      "3 min Bike",
+      "2 rondas: 5 Deadlift, 5 Hang Clean, 5 Front Squat, 5 Push Press, 5 Reverse Lunges con barra vacía",
+      "Movilidad cadera, muñeca, hombro"
+    ],
+    "strength": "Cada 2 min x8: 1 Deadlift + 1 Hang Clean + 1 Front Squat + 1 Push Press + 1 Split Jerk.",
+    "accessory": "Front Squat 3x5 moderado.",
+    "wod": "FOR TIME 4 rondas: 12 Thrusters, 12 Burpees Over Bar, 250 m Row.",
+    "rx": "Complex subiendo hasta RPE 8. Thrusters 40 kg.",
+    "scaled": "Complex técnico. Thrusters 25-30 kg. Burpees normales.",
+    "sea": "No hacer Burpees Over Bar. Cambiar por 12 Push Ups."
+  },
+  {
+    "id": 14,
+    "name": "VERTREP",
+    "block": "OLYMPIC TACTICAL",
+    "intensity": "🟡🟡🟡⚪⚪",
+    "duration": "60 min",
+    "focus": "Potencia + hombro",
+    "material": "Barra, mancuernas, cubierta/bike.",
+    "objective": "Power clean y press estricto con WOD atlético.",
+    "warmup": [
+      "3 rondas: 20 Saltos Comba o 100 m Run, 10 Air Squats, 5 Muscle Cleans, 5 Front Squats, 5 Push Press",
+      "Movilidad hombro, cadera y tobillo"
+    ],
+    "strength": "Power Clean 6x2 progresivo + Strict Press 4x6.",
+    "accessory": "Bulgarian Split Squat 3x10 + Plancha 45\".",
+    "wod": "AMRAP 18: 6 Power Cleans, 10 Push Ups, 12 Goblet Squats, 100 m Run.",
+    "rx": "Power Clean 60 kg. Goblet 30 kg.",
+    "scaled": "Power Clean 40 kg. Goblet 20 kg. Run 75 m.",
+    "sea": "Run por 10 cal Bike. Evitar comba."
+  },
+  {
+    "id": 15,
+    "name": "FLEETEX",
+    "block": "OLYMPIC TACTICAL",
+    "intensity": "🔴🔴🔴🔴🔴",
+    "duration": "60-65 min",
+    "focus": "Barra + sufrimiento",
+    "material": "Barra, discos, cubierta, mancuernas.",
+    "objective": "Sesión roja de potencia, resistencia y mental toughness.",
+    "warmup": [
+      "2 rondas: 200 m Run, 5 Clean, 5 Front Squat, 5 Push Press, 5 Burpees",
+      "Barra vacía: 5 Deadlift, 5 RDL, 5 Hang Clean, 5 Front Squat, 5 Push Jerk",
+      "Subir peso con 3 rondas de 2 Clean & Jerk técnicos"
+    ],
+    "strength": "Clean & Jerk EMOM 14: 2 reps por minuto al 70-80% técnico.",
+    "accessory": "Farmer Carry 4 vueltas largas.",
+    "wod": "FOR TIME 21-15-9: Hang Power Clean, Push Press, Burpees Over Bar. Tras cada bloque: 200 m Run. Final: 100 m Farmer Carry.",
+    "rx": "HPC/Push Press 50 kg. Farmer 2x30 kg.",
+    "scaled": "HPC/Push Press 35 kg. Run 150 m. Farmer 2x20 kg.",
+    "sea": "Run por 250 m Row. Burpees normales. Farmer por 12 cal Bike."
+  },
+  {
+    "id": 16,
+    "name": "BLUE FORCE",
+    "block": "FLIGHT DECK OPS",
+    "intensity": "🔴🔴🔴🔴⚪",
+    "duration": "60 min",
+    "focus": "Hero WOD / chipping",
+    "material": "Barra, mancuernas, cubierta, balón.",
+    "objective": "Chipper largo para días con energía.",
+    "warmup": [
+      "400 m Run suave",
+      "2 rondas: 10 Lunges, 10 Push Ups, 10 Sit Ups, 10 Med Ball Slams suaves",
+      "Barra vacía: 8 Front Squat, 8 Push Press, 8 RDL"
+    ],
+    "strength": "Front Squat 5x3 pesado controlado. RPE 8.",
+    "accessory": "DB Farmer Hold 3x45\".",
+    "wod": "FOR TIME: 800 m Run, 50 Med Ball Slams, 40 Walking Lunges, 30 Push Press, 20 Burpees, 10 Front Squats, 400 m Run.",
+    "rx": "Push Press 40 kg. Front Squat 60 kg. Med Ball 9 kg.",
+    "scaled": "Run 600/300 m. Push Press 30 kg. Front Squat 40 kg. Reducir reps a 40-30-20-15-10.",
+    "sea": "Run por 1000 m Row y 500 m Row. Lunges por Goblet Squats."
+  },
+  {
+    "id": 17,
+    "name": "MAN OVERBOARD",
+    "block": "FLIGHT DECK OPS",
+    "intensity": "🟡🟡🟡⚪⚪",
+    "duration": "55-60 min",
+    "focus": "Run + core",
+    "material": "Cubierta, mancuernas, esterilla.",
+    "objective": "Motor aeróbico con core y carga moderada.",
+    "warmup": [
+      "600 m Run suave",
+      "Movilidad de tobillo/cadera",
+      "2 rondas: 10 Air Squats, 10 Mountain Climbers, 10 Sit Ups, 20 m Farmer Carry ligero"
+    ],
+    "strength": "DB Front Rack Walking Lunges 4x20 m.",
+    "accessory": "Hollow Hold 4x30\".",
+    "wod": "AMRAP 20: 400 m Run, 20 Sit Ups, 15 Goblet Squats, 10 DB Push Press.",
+    "rx": "Goblet 30 kg. DB Push Press 2x17,5 kg.",
+    "scaled": "Run 250 m. Goblet 20 kg. DB 2x10-12,5 kg.",
+    "sea": "Run por 500 m Row. Lunges por Step Ups si hay banco estable."
+  },
+  {
+    "id": 18,
+    "name": "SEA KING",
+    "block": "GYM ONLY",
+    "intensity": "🟡🟡🟡⚪⚪",
+    "duration": "60 min",
+    "focus": "Hombro + engine largo",
+    "material": "Barra, mancuernas, bike/row.",
+    "objective": "Volumen de hombro con cardio sostenible.",
+    "warmup": [
+      "4 min Bike",
+      "2 rondas: 10 Scap Push Ups, 10 PVC Pass Through, 10 DB Press ligeros, 10 Band Pull Apart si hay goma",
+      "Barra vacía: 8 Strict Press + 8 Push Press"
+    ],
+    "strength": "Strict Press 6x4. RPE 7-8.",
+    "accessory": "Superset 4 rondas: 12 Lateral Raises + 12 Rear Delt Raises + 10 DB Row por lado.",
+    "wod": "Every 4 min x5: 15 cal Bike, 12 DB Shoulder Press, 15 Sit Ups. Descansar lo que sobre.",
+    "rx": "DB Shoulder Press 2x15-17,5 kg.",
+    "scaled": "DB 2x10 kg. Bike 10-12 cal.",
+    "sea": "Muy apto mala mar. Reducir transiciones y usar pesos moderados."
+  },
+  {
+    "id": 19,
+    "name": "ANCHOR CHAIN",
+    "block": "FLIGHT DECK OPS",
+    "intensity": "🟡🟡🟡🟡⚪",
+    "duration": "60 min",
+    "focus": "Deadlift + carry",
+    "material": "Barra, mancuernas pesadas, cubierta.",
+    "objective": "Cadena posterior, agarre y core bajo carga.",
+    "warmup": [
+      "400 m Run suave",
+      "2 rondas: 10 Hip Hinges, 10 Glute Bridges, 10 Air Squats, 20 m Farmer Carry ligero",
+      "Barra vacía: 10 Deadlift + 10 RDL"
+    ],
+    "strength": "Deadlift 5x3 pesado. RPE 8.",
+    "accessory": "Farmer Carry pesado 5x40 m.",
+    "wod": "FOR TIME 5 rondas: 200 m Run, 10 Deadlifts, 40 m Farmer Carry, 12 Push Ups.",
+    "rx": "Deadlift 90 kg. Farmer 2x30 kg.",
+    "scaled": "Deadlift 60 kg. Farmer 2x20 kg. Run 150 m.",
+    "sea": "Run por 250 m Row. Farmer Carry por Farmer Hold 40\"."
+  },
+  {
+    "id": 20,
+    "name": "TASK FORCE",
+    "block": "OLYMPIC TACTICAL",
+    "intensity": "🔴🔴🔴🔴⚪",
+    "duration": "60-65 min",
+    "focus": "Complex + endurance",
+    "material": "Barra, cubierta, remo/bike.",
+    "objective": "Sesión completa de barra, carrera y resistencia.",
+    "warmup": [
+      "2 rondas: 200 m Run, 10 Air Squats, 10 Push Ups, 10 PVC Pass Through",
+      "Barra vacía: 5 Deadlift, 5 Hang Clean, 5 Front Squat, 5 Push Press, 5 Push Jerk",
+      "3 rondas técnicas: 2 Power Clean + 2 Push Jerk"
+    ],
+    "strength": "Every 90\" x10: 1 Power Clean + 1 Front Squat + 1 Push Jerk.",
+    "accessory": "Plank 3x60\".",
+    "wod": "Chipper 25: 400 m Run, 30 Wall Ball/Med Ball Slams, 25 Push Press, 20 Power Clean, 15 Burpees, 400 m Run.",
+    "rx": "Push Press 40 kg. Power Clean 50 kg. Med Ball 9 kg.",
+    "scaled": "Run 250 m. Push Press 30 kg. Power Clean 35 kg. 20-15-10 reps.",
+    "sea": "Run por 500 m Row. Burpees por Push Ups."
+  }
+];
+const LS_LOG = "navyfit_logs_v2";
+const LS_FAV = "navyfit_favs_v2";
+const LS_PRS = "navyfit_prs_v2";
+
+let activeFilter = "ALL";
+let currentWorkout = null;
+let timer=null, remaining=0, timerMode="";
+
+function $(id){return document.getElementById(id)}
+function getLogs(){return JSON.parse(localStorage.getItem(LS_LOG)||"[]")}
+function saveLogs(x){localStorage.setItem(LS_LOG, JSON.stringify(x))}
+function getFavs(){return JSON.parse(localStorage.getItem(LS_FAV)||"[]")}
+function saveFavs(x){localStorage.setItem(LS_FAV, JSON.stringify(x))}
+function getPRs(){return JSON.parse(localStorage.getItem(LS_PRS)||"{}")}
+function savePRs(x){localStorage.setItem(LS_PRS, JSON.stringify(x))}
+
+function showView(id){
+  document.querySelectorAll(".view").forEach(v=>v.classList.add("hidden"));
+  $(id).classList.remove("hidden");
+  document.querySelectorAll("nav .tab").forEach(b=>b.classList.remove("active"));
+  const tab = $("tab-"+id);
+  if(tab) tab.classList.add("active");
+  if(id==="libraryView") renderWorkouts();
+  if(id==="logView") renderLog();
+  if(id==="statsView") renderStats();
+}
+
+function renderWorkouts(){
+  const q = $("search").value.toLowerCase();
+  const favs = getFavs();
+  const list = $("workoutList");
+  list.innerHTML = "";
+  const filtered = WORKOUTS.filter(w => 
+    (activeFilter === "ALL" || w.block === activeFilter || (activeFilter==="FAVORITOS" && favs.includes(w.id))) &&
+    (w.name.toLowerCase().includes(q) || w.focus.toLowerCase().includes(q) || w.block.toLowerCase().includes(q) || w.wod.toLowerCase().includes(q))
+  );
+  filtered.forEach(w => {
+    const isRed = w.intensity.includes("🔴");
+    const isGreen = w.intensity.includes("🟢");
+    const card = document.createElement("div");
+    card.className = "card " + (isRed?"redBorder":isGreen?"greenBorder":"");
+    card.onclick = () => openWorkout(w.id);
+    card.innerHTML = `<div class="row"><h3>${String(w.id).padStart(2,"0")} – ${w.name}</h3><span>${favs.includes(w.id)?"⭐ ":""}${w.intensity}</span></div>
+      <p><b>${w.block}</b> · ${w.focus}</p><p>${w.duration} · ${w.material}</p>`;
+    list.appendChild(card);
+  });
+}
+
+function setFilter(f){
+  activeFilter = f;
+  document.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
+  const id = "f-"+f.replaceAll(" ","_");
+  if($(id)) $(id).classList.add("active");
+  renderWorkouts();
+}
+
+function openWorkout(id){
+  currentWorkout = WORKOUTS.find(x => x.id === id);
+  showView("detailView");
+  renderDetail();
+}
+
+function toggleFav(id){
+  let favs = getFavs();
+  if(favs.includes(id)) favs = favs.filter(x=>x!==id); else favs.push(id);
+  saveFavs(favs);
+  renderDetail();
+}
+
+function renderDetail(){
+  const w = currentWorkout;
+  const favs = getFavs();
+  $("detail").innerHTML = `
+    <button class="secondary" onclick="showView('libraryView')">← Volver</button>
+    <button class="gold" onclick="toggleFav(${w.id})">${favs.includes(w.id)?"★ Favorito":"☆ Añadir favorito"}</button>
+    <h1>${String(w.id).padStart(2,"0")} – ${w.name}</h1>
+    <p><span class="pill">${w.block}</span><span class="pill">${w.duration}</span><span class="pill ${w.intensity.includes("🔴")?"redPill":""}">${w.intensity}</span></p>
+    <p><b>Foco:</b> ${w.focus}</p>
+    <p><b>Material:</b> ${w.material}</p>
+    <p><b>Objetivo:</b> ${w.objective}</p>
+    <h2>Calentamiento</h2>
+    <ul>${w.warmup.map(x=>`<li>${x}</li>`).join("")}</ul>
+    <h2>Fuerza / Técnica</h2><p>${w.strength}</p>
+    <h2>Accesorio</h2><p>${w.accessory}</p>
+    <h2>WOD</h2><p>${w.wod}</p>
+    <div class="grid2"><div><h2>RX</h2><p>${w.rx}</p></div><div><h2>Scaled</h2><p>${w.scaled}</p></div></div>
+    <h2>Sea State &gt; 3</h2><p>${w.sea}</p>
+    <h2>Acciones</h2>
+    <div class="grid3">
+      <button onclick="startTimer(12*60,'Warm Up')">Warm Up 12'</button>
+      <button onclick="startTimer(18*60,'WOD')">WOD 18'</button>
+      <button onclick="startTimer(20*60,'WOD')">WOD 20'</button>
+      <button class="green" onclick="completeWorkout(${w.id})">Marcar completado</button>
+      <button class="light" onclick="print()">Imprimir ficha</button>
+      <button class="red" onclick="startEmom()">EMOM rápido</button>
+    </div>
+    <h2>Notas de hoy</h2>
+    <textarea id="workoutNotes" placeholder="Pesos, sensaciones, tiempo, modificaciones..."></textarea>
+  `;
+}
+
+function completeWorkout(id){
+  const w = WORKOUTS.find(x=>x.id===id);
+  const notes = $("workoutNotes") ? $("workoutNotes").value : "";
+  const logs = getLogs();
+  logs.unshift({date:new Date().toISOString(), workoutId:id, name:w.name, block:w.block, notes});
+  saveLogs(logs);
+  alert("Entrenamiento registrado.");
+  renderStats();
+}
+
+function recommend(state){
+  let pool;
+  if(state==="calm") pool = WORKOUTS.filter(w => w.block !== "GYM ONLY" || !w.intensity.includes("🔴"));
+  if(state==="moderate") pool = WORKOUTS.filter(w => w.block !== "FLIGHT DECK OPS");
+  if(state==="rough") pool = WORKOUTS.filter(w => w.block === "GYM ONLY" || w.sea.length>0);
+  const w = pool[Math.floor(Math.random()*pool.length)];
+  openWorkout(w.id);
+}
+
+function renderLog(){
+  const logs = getLogs();
+  const box = $("logList");
+  box.innerHTML = logs.length ? "" : "<p>No hay entrenamientos registrados todavía.</p>";
+  logs.forEach(l=>{
+    const d = new Date(l.date);
+    const div = document.createElement("div");
+    div.className="logItem";
+    div.innerHTML = `<b>${d.toLocaleDateString()} – ${l.name}</b><br><span class="small">${l.block}</span><p>${l.notes||""}</p>`;
+    box.appendChild(div);
+  });
+}
+
+function renderStats(){
+  const logs = getLogs();
+  const last30 = logs.filter(l => Date.now() - new Date(l.date).getTime() < 30*24*3600*1000);
+  $("kpiTotal").textContent = logs.length;
+  $("kpi30").textContent = last30.length;
+  const prs = getPRs();
+  $("prBackSquat").value = prs.backSquat || "";
+  $("prFrontSquat").value = prs.frontSquat || "";
+  $("prDeadlift").value = prs.deadlift || "";
+  $("prStrictPress").value = prs.strictPress || "";
+  $("prPowerClean").value = prs.powerClean || "";
+  $("prCleanJerk").value = prs.cleanJerk || "";
+}
+
+function savePRForm(){
+  savePRs({
+    backSquat:$("prBackSquat").value, frontSquat:$("prFrontSquat").value, deadlift:$("prDeadlift").value,
+    strictPress:$("prStrictPress").value, powerClean:$("prPowerClean").value, cleanJerk:$("prCleanJerk").value
+  });
+  alert("PRs guardados.");
+}
+
+function exportData(){
+  const data = {logs:getLogs(), favs:getFavs(), prs:getPRs(), exportedAt:new Date().toISOString()};
+  const blob = new Blob([JSON.stringify(data,null,2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href=url; a.download="navyfit_backup.json"; a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importData(ev){
+  const file = ev.target.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const data = JSON.parse(reader.result);
+      if(data.logs) saveLogs(data.logs);
+      if(data.favs) saveFavs(data.favs);
+      if(data.prs) savePRs(data.prs);
+      alert("Datos importados.");
+      renderStats(); renderLog(); renderWorkouts();
+    } catch(e) { alert("Archivo no válido."); }
+  };
+  reader.readAsText(file);
+}
+
+function startTimer(sec, mode){
+  remaining = sec; timerMode=mode||"Timer";
+  $("timerTitle").textContent = timerMode;
+  $("timerBox").classList.remove("hidden");
+  updateTimer();
+  if(timer) clearInterval(timer);
+  timer = setInterval(()=>{
+    remaining--;
+    updateTimer();
+    if(remaining <= 0){ clearInterval(timer); timer=null; navigator.vibrate?.([300,200,300]); }
+  },1000);
+}
+function startEmom(){
+  const minutes = prompt("Minutos de EMOM", "20");
+  const m = parseInt(minutes||"20",10);
+  startTimer(m*60, "EMOM " + m + "'");
+}
+function pauseTimer(){ if(timer){clearInterval(timer); timer=null;} else {timer=setInterval(()=>{remaining--;updateTimer();if(remaining<=0){clearInterval(timer);timer=null;}},1000)}}
+function stopTimer(){ if(timer) clearInterval(timer); timer=null; $("timerBox").classList.add("hidden"); }
+function updateTimer(){
+  const m = Math.floor(remaining/60), s = remaining%60;
+  $("timer").textContent = `${m}:${String(s).padStart(2,"0")}`;
+}
+
+document.addEventListener("DOMContentLoaded", ()=>{ renderWorkouts(); renderStats(); });
+
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()));
+}
 </script>
 </body>
 </html>
