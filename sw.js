@@ -1,4 +1,4 @@
-const CACHE_NAME = 'navyfit-pro-v3';
+const CACHE_NAME = 'navyfit-final-v1';
 const ASSETS = ['index.html','manifest.json','icon-192.png','icon-512.png'];
 self.addEventListener('install', e => {
   self.skipWaiting();
@@ -6,6 +6,7 @@ self.addEventListener('install', e => {
 });
 self.addEventListener('activate', e => {
   e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))));
+  self.clients.claim();
 });
 self.addEventListener('fetch', e => {
   e.respondWith(caches.match(e.request).then(resp => resp || fetch(e.request)));

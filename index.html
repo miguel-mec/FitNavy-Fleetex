@@ -4,59 +4,155 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NAVYFIT Embarcado</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#071a2f">
 <style>
-body{font-family:Arial,sans-serif;margin:0;background:#f3f6fa;color:#111}
-header{background:#071a2f;color:white;padding:20px}
-h1{margin:0;font-size:28px}
-main{max-width:950px;margin:auto;padding:18px}
-button{background:#0f3b66;color:white;border:0;border-radius:10px;padding:10px 14px;font-weight:bold;margin:4px;cursor:pointer}
-button.active{background:#d4a017;color:#111}
-input{width:100%;padding:13px;border-radius:10px;border:1px solid #bbb;font-size:16px;margin:12px 0}
-.card{background:white;border-radius:14px;padding:14px;margin:10px 0;box-shadow:0 3px 12px #0002;border-left:6px solid #0f3b66;cursor:pointer}
-.card h3{margin:0}
-.hidden{display:none}
-.detail{background:white;border-radius:14px;padding:18px;box-shadow:0 3px 12px #0002}
-.pill{background:#e8eef7;color:#0f3b66;padding:5px 9px;border-radius:999px;font-weight:bold;display:inline-block;margin:3px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.panel{background:#f7f7f7;border-radius:12px;padding:12px}
-.timerBox{position:fixed;left:16px;right:16px;bottom:16px;background:#071a2f;color:white;border-radius:18px;padding:16px;text-align:center;box-shadow:0 5px 24px #0007}
-.timer{font-size:48px;font-weight:bold}
-@media(max-width:650px){.grid{grid-template-columns:1fr}}
+:root{
+  --navy:#071a2f;--blue:#0f3b66;--gold:#d4a017;--red:#9d1b1e;--green:#1f7a4d;
+  --bg:#f3f6fa;--card:#fff;--text:#111;--muted:#607080;--line:#d9e0ea;
+}
+*{box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;margin:0;background:var(--bg);color:var(--text)}
+header{background:linear-gradient(135deg,var(--navy),var(--blue));color:white;padding:16px 18px;position:sticky;top:0;z-index:10;box-shadow:0 4px 18px #0003}
+.headerTop{display:flex;align-items:center;gap:14px}
+.logo{width:58px;height:58px;border-radius:12px;background:white;object-fit:contain}
+h1{margin:0;font-size:28px;letter-spacing:.4px}
+header p{margin:4px 0 0;color:#dce7f5}
+nav{display:flex;gap:8px;overflow:auto;margin-top:13px;padding-bottom:2px}
+main{max-width:980px;margin:auto;padding:18px}
+button{background:var(--blue);color:white;border:0;border-radius:11px;padding:10px 14px;font-weight:800;margin:4px;cursor:pointer}
+button.active,button.gold{background:var(--gold);color:#111}
+button.red{background:var(--red)} button.green{background:var(--green)} button.gray{background:#3c4654}
+input,select,textarea{width:100%;padding:12px;border-radius:11px;border:1px solid #bfc8d4;font-size:16px;background:white}
+textarea{min-height:90px}
+.controls{display:grid;gap:10px;margin-bottom:12px}
+.buttonRow{display:flex;flex-wrap:wrap;gap:4px}
+.card{background:white;border-radius:16px;padding:15px;margin:10px 0;box-shadow:0 3px 14px #0002;border-left:6px solid var(--blue);cursor:pointer}
+.card.redBorder{border-left-color:var(--red)}.card.greenBorder{border-left-color:var(--green)}
+.card h3{margin:0 0 8px}.card p{margin:6px 0}
+.hidden{display:none!important}
+.detail,.panel{background:white;border-radius:16px;padding:18px;box-shadow:0 3px 14px #0002;margin-bottom:14px}
+.detail h2,.panel h2{color:var(--blue);border-bottom:1px solid var(--line);padding-bottom:6px}
+.pill{background:#e8eef7;color:var(--blue);padding:5px 9px;border-radius:999px;font-weight:bold;display:inline-block;margin:3px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.kpi{font-size:32px;font-weight:900;color:var(--blue)}
+.small{font-size:13px;color:var(--muted)}
+.logItem{border-bottom:1px solid #e5e9ef;padding:12px 0}
+.status{font-size:14px;color:#4d5a66}
+.timerBox{position:fixed;left:14px;right:14px;bottom:14px;background:var(--navy);color:white;border-radius:18px;padding:16px;text-align:center;box-shadow:0 8px 30px #0008;z-index:20}
+.timer{font-size:50px;font-weight:900;letter-spacing:2px}
+.progressBar{height:10px;background:#d9e0ea;border-radius:999px;overflow:hidden;margin:10px 0}
+.progressBar div{height:100%;background:var(--gold);width:0%}
+table{width:100%;border-collapse:collapse;background:white}td,th{border-bottom:1px solid #e5e9ef;padding:9px;text-align:left}
+@media(max-width:700px){.grid2,.grid3{grid-template-columns:1fr}h1{font-size:22px}.logo{width:48px;height:48px}.timer{font-size:42px}}
 </style>
 </head>
 <body>
 <header>
-<h1>NAVYFIT EMBARCADO</h1>
-<p>FLEETEX Edition · versión simple sin caché</p>
+  <div class="headerTop">
+    <img src="icon-512.png" class="logo" alt="NAVYFIT">
+    <div><h1>NAVYFIT EMBARCADO</h1><p>FLEETEX Edition · Final build</p></div>
+  </div>
+  <nav>
+    <button id="tab_libraryView" class="active" onclick="showView('libraryView')">Biblioteca</button>
+    <button id="tab_logView" onclick="showView('logView')">Registro</button>
+    <button id="tab_progressView" onclick="showView('progressView')">Progreso</button>
+    <button id="tab_calculatorView" onclick="showView('calculatorView')">Calculadora</button>
+    <button id="tab_recommendView" onclick="showView('recommendView')">Qué hago hoy</button>
+  </nav>
 </header>
-
 <main>
-<section id="list">
-<input id="search" placeholder="Buscar entrenamiento..." oninput="render()">
-<div>
-<button id="bALL" class="active" onclick="setFilter('ALL')">Todos</button>
-<button id="bGYMONLY" onclick="setFilter('GYM ONLY')">Gym Only</button>
-<button id="bFLIGHTDECKOPS" onclick="setFilter('FLIGHT DECK OPS')">Flight Deck Ops</button>
-<button id="bOLYMPIC" onclick="setFilter('OLYMPIC TACTICAL')">Olympic Tactical</button>
-</div>
-<div>
-<button onclick="recommend('rough')">🔴 Mala mar</button>
-<button onclick="recommend('moderate')">🟡 Mar moderada</button>
-<button onclick="recommend('calm')">🟢 Mar calma</button>
-</div>
-<div id="workouts"></div>
+<section id="libraryView" class="view">
+  <div class="controls">
+    <input id="search" placeholder="Buscar: clean, hombro, carry..." oninput="render()">
+    <div class="buttonRow">
+      <button id="b_ALL" class="active" onclick="setBlockFilter('ALL')">Todos</button>
+      <button id="b_FAV" onclick="setBlockFilter('FAVORITOS')">Favoritos</button>
+      <button id="b_GYM" onclick="setBlockFilter('GYM ONLY')">Gym Only</button>
+      <button id="b_FD" onclick="setBlockFilter('FLIGHT DECK OPS')">Flight Deck Ops</button>
+      <button id="b_OT" onclick="setBlockFilter('OLYMPIC TACTICAL')">Olympic Tactical</button>
+    </div>
+    <div class="buttonRow">
+      <button id="s_ALL" class="active" onclick="setSeaFilter('ALL')">🌊 Cualquier mar</button>
+      <button id="s_ROUGH" onclick="setSeaFilter('ROUGH')">🔴 Mala mar</button>
+      <button id="s_MOD" onclick="setSeaFilter('MODERATE')">🟡 Mar moderada</button>
+      <button id="s_CALM" onclick="setSeaFilter('CALM')">🟢 Mar calma</button>
+    </div>
+    <p id="status" class="status"></p>
+  </div>
+  <div id="workouts"></div>
 </section>
 
-<section id="detail" class="hidden">
-<div id="detailContent" class="detail"></div>
+<section id="detailView" class="view hidden"><div id="detail" class="detail"></div></section>
+
+<section id="logView" class="view hidden">
+  <div class="panel">
+    <h2>Registro de entrenamientos</h2>
+    <button onclick="exportData()">Exportar backup</button>
+    <label><input type="file" onchange="importData(event)" style="display:none"><span class="pill">Importar backup</span></label>
+    <div id="logList"></div>
+  </div>
+</section>
+
+<section id="progressView" class="view hidden">
+  <div class="grid2">
+    <div class="panel"><div id="kpiTotal" class="kpi">0</div><b>Total entrenamientos</b></div>
+    <div class="panel"><div id="kpi30" class="kpi">0</div><b>Últimos 30 días</b></div>
+  </div>
+  <div class="panel">
+    <h2>PRs / Pesos de referencia</h2>
+    <div class="grid2">
+      <label>Back Squat<input id="backSquat" placeholder="kg"></label>
+      <label>Front Squat<input id="frontSquat" placeholder="kg"></label>
+      <label>Deadlift<input id="deadlift" placeholder="kg"></label>
+      <label>Strict Press<input id="strictPress" placeholder="kg"></label>
+      <label>Push Press<input id="pushPress" placeholder="kg"></label>
+      <label>Power Clean<input id="powerClean" placeholder="kg"></label>
+      <label>Clean & Jerk<input id="cleanJerk" placeholder="kg"></label>
+    </div><br>
+    <button class="green" onclick="savePRForm()">Guardar PRs</button>
+  </div>
+</section>
+
+<section id="calculatorView" class="view hidden">
+  <div class="panel">
+    <h2>Calculadora de porcentajes</h2>
+    <div class="grid3">
+      <label>Ejercicio<select id="calcExercise" onchange="renderCalculator();quickPercentTable()">
+        <option value="backSquat">Back Squat</option><option value="frontSquat">Front Squat</option>
+        <option value="deadlift">Deadlift</option><option value="strictPress">Strict Press</option>
+        <option value="pushPress">Push Press</option><option value="powerClean">Power Clean</option>
+        <option value="cleanJerk">Clean & Jerk</option>
+      </select></label>
+      <label>Porcentaje<input id="calcPct" value="70" oninput="renderCalculator()"></label>
+      <div><p class="small">Resultado</p><div id="calcResult" class="kpi">-</div></div>
+    </div>
+    <button onclick="quickPercentTable()">Tabla 50-90%</button>
+    <div id="pctTable"></div>
+  </div>
+</section>
+
+<section id="recommendView" class="view hidden">
+  <div class="panel">
+    <h2>¿Qué hago hoy?</h2>
+    <label>Fatiga operativa<select id="fatigue">
+      <option value="green">🟢 Descansado</option>
+      <option value="yellow">🟡 Guardia / sueño regular</option>
+      <option value="red">🔴 Guardia + sueño malo</option>
+    </select></label><br><br>
+    <label><input id="calf" type="checkbox" style="width:auto"> Gemelo tocado / evitar carrera y lunges</label><br><br>
+    <button class="green" onclick="suggestToday()">Recomendar entrenamiento</button>
+  </div>
 </section>
 </main>
 
 <div id="timerBox" class="timerBox hidden">
-<div id="timerTitle">Timer</div>
-<div id="timer" class="timer">0:00</div>
-<button onclick="pauseTimer()">Pausa/seguir</button>
-<button onclick="stopTimer()">Cerrar</button>
+  <div id="timerTitle">Timer</div>
+  <div class="progressBar"><div id="timerProgress"></div></div>
+  <div id="timer" class="timer">0:00</div>
+  <button class="gold" onclick="pauseTimer()">Pausa/seguir</button>
+  <button class="red" onclick="stopTimer()">Cerrar</button>
 </div>
 
 <script>
@@ -487,94 +583,214 @@ const WORKOUTS = [
     "sea": "Run por 500 m Row. Burpees por Push Ups."
   }
 ];
-let filter = 'ALL';
-let timer = null;
-let remaining = 0;
+const LS_LOG='navyfit_logs_final';
+const LS_PR='navyfit_pr_final';
+const LS_FAV='navyfit_fav_final';
 
-function setFilter(f){
-  filter = f;
-  document.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
-  const map = {'ALL':'bALL','GYM ONLY':'bGYMONLY','FLIGHT DECK OPS':'bFLIGHTDECKOPS','OLYMPIC TACTICAL':'bOLYMPIC'};
-  if(document.getElementById(map[f])) document.getElementById(map[f]).classList.add('active');
-  render();
+let blockFilter='ALL', seaFilter='ALL', currentWorkout=null;
+let timer=null, remaining=0, totalSeconds=0, timerKind='Timer';
+let emomMinute=0;
+
+function $(id){return document.getElementById(id)}
+function getLogs(){return JSON.parse(localStorage.getItem(LS_LOG)||'[]')}
+function saveLogs(x){localStorage.setItem(LS_LOG,JSON.stringify(x))}
+function getPR(){return JSON.parse(localStorage.getItem(LS_PR)||'{}')}
+function savePR(x){localStorage.setItem(LS_PR,JSON.stringify(x))}
+function getFav(){return JSON.parse(localStorage.getItem(LS_FAV)||'[]')}
+function saveFav(x){localStorage.setItem(LS_FAV,JSON.stringify(x))}
+
+function showView(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.add('hidden'));
+  $(id).classList.remove('hidden');
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  const tab=$('tab_'+id); if(tab) tab.classList.add('active');
+  if(id==='libraryView') render();
+  if(id==='logView') renderLog();
+  if(id==='progressView') renderProgress();
+  if(id==='calculatorView') renderCalculator();
 }
 
+function setActive(prefix,id){
+  document.querySelectorAll('button[id^="'+prefix+'"]').forEach(b=>b.classList.remove('active'));
+  if($(id)) $(id).classList.add('active');
+}
+function setBlockFilter(f){
+  blockFilter=f;
+  const map={'ALL':'b_ALL','FAVORITOS':'b_FAV','GYM ONLY':'b_GYM','FLIGHT DECK OPS':'b_FD','OLYMPIC TACTICAL':'b_OT'};
+  setActive('b_',map[f]);
+  render();
+}
+function setSeaFilter(f){
+  seaFilter=f;
+  const map={'ALL':'s_ALL','ROUGH':'s_ROUGH','MODERATE':'s_MOD','CALM':'s_CALM'};
+  setActive('s_',map[f]);
+  render();
+}
+function seaOk(w){
+  if(seaFilter==='ALL') return true;
+  if(seaFilter==='CALM') return true;
+  if(seaFilter==='MODERATE') return w.block !== 'FLIGHT DECK OPS' || w.sea.includes('Run por') || w.sea.includes('Row');
+  if(seaFilter==='ROUGH') return w.block === 'GYM ONLY' || (w.sea && w.sea.length>0);
+  return true;
+}
 function render(){
-  const box = document.getElementById('workouts');
-  const q = document.getElementById('search').value.toLowerCase();
-  box.innerHTML = '';
-  const arr = WORKOUTS.filter(w => (filter==='ALL' || w.block===filter) && 
-    (w.name.toLowerCase().includes(q) || w.focus.toLowerCase().includes(q) || w.block.toLowerCase().includes(q)));
-  if(arr.length===0) box.innerHTML = '<p>No hay resultados.</p>';
+  const q=$('search').value.toLowerCase();
+  const fav=getFav();
+  const arr=WORKOUTS.filter(w=>
+    (blockFilter==='ALL'||w.block===blockFilter||(blockFilter==='FAVORITOS'&&fav.includes(w.id))) &&
+    seaOk(w) &&
+    (w.name.toLowerCase().includes(q)||w.focus.toLowerCase().includes(q)||w.block.toLowerCase().includes(q)||w.wod.toLowerCase().includes(q))
+  );
+  $('status').textContent=arr.length+' entrenamientos mostrados';
+  const box=$('workouts'); box.innerHTML='';
   arr.forEach(w=>{
     const div=document.createElement('div');
-    div.className='card';
-    div.innerHTML=`<h3>${String(w.id).padStart(2,'0')} – ${w.name}</h3><p><b>${w.block}</b> · ${w.focus}</p><p>${w.intensity} · ${w.duration}</p>`;
+    div.className='card '+(w.intensity.includes('🔴')?'redBorder':(w.intensity.includes('🟢')?'greenBorder':''));
     div.onclick=()=>openWorkout(w.id);
+    div.innerHTML=`<h3>${String(w.id).padStart(2,'0')} – ${w.name} ${fav.includes(w.id)?'⭐':''}</h3>
+      <p><b>${w.block}</b> · ${w.focus}</p><p>${w.intensity} · ${w.duration}</p>`;
     box.appendChild(div);
   });
 }
 
+function toggleFav(id){
+  let fav=getFav();
+  if(fav.includes(id)) fav=fav.filter(x=>x!==id); else fav.push(id);
+  saveFav(fav); renderDetail();
+}
 function openWorkout(id){
-  const w = WORKOUTS.find(x=>x.id===id);
-  document.getElementById('list').classList.add('hidden');
-  document.getElementById('detail').classList.remove('hidden');
-  document.getElementById('detailContent').innerHTML = `
-    <button onclick="back()">← Volver</button>
+  currentWorkout=WORKOUTS.find(x=>x.id===id);
+  showView('detailView'); renderDetail();
+}
+function renderDetail(){
+  const w=currentWorkout, fav=getFav();
+  $('detail').innerHTML=`
+    <button class="gray" onclick="showView('libraryView')">← Volver</button>
+    <button class="gold" onclick="toggleFav(${w.id})">${fav.includes(w.id)?'★ Favorito':'☆ Añadir favorito'}</button>
     <h1>${String(w.id).padStart(2,'0')} – ${w.name}</h1>
     <p><span class="pill">${w.block}</span><span class="pill">${w.duration}</span><span class="pill">${w.intensity}</span></p>
-    <p><b>Foco:</b> ${w.focus}</p>
-    <p><b>Material:</b> ${w.material}</p>
-    <p><b>Objetivo:</b> ${w.objective}</p>
+    <p><b>Foco:</b> ${w.focus}</p><p><b>Material:</b> ${w.material}</p><p><b>Objetivo:</b> ${w.objective}</p>
     <h2>Calentamiento</h2><ul>${w.warmup.map(x=>`<li>${x}</li>`).join('')}</ul>
     <h2>Fuerza / Técnica</h2><p>${w.strength}</p>
     <h2>Accesorio</h2><p>${w.accessory}</p>
     <h2>WOD</h2><p>${w.wod}</p>
-    <div class="grid"><div class="panel"><h2>RX</h2><p>${w.rx}</p></div><div class="panel"><h2>Scaled</h2><p>${w.scaled}</p></div></div>
+    <div class="grid2"><div class="panel"><h2>RX</h2><p>${w.rx}</p></div><div class="panel"><h2>Scaled</h2><p>${w.scaled}</p></div></div>
     <h2>Sea State &gt; 3</h2><p>${w.sea}</p>
-    <button onclick="startTimer(12*60,'Warm Up')">Warm Up 12'</button>
-    <button onclick="startTimer(18*60,'WOD 18')">WOD 18'</button>
-    <button onclick="startTimer(20*60,'WOD 20')">WOD 20'</button>
+    <h2>Registrar entrenamiento</h2>
+    <div class="grid2">
+      <input id="resultTime" placeholder="Tiempo/Rondas. Ej: 16:34 o 7+12">
+      <input id="resultWeight" placeholder="Pesos usados. Ej: HPC 50 kg">
+    </div><br>
+    <textarea id="resultNotes" placeholder="Observaciones: sueño, guardia, gemelo, estado de mar..."></textarea><br>
+    <button class="green" onclick="completeWorkout(${w.id})">Guardar entrenamiento</button>
+    <h2>Cronómetros</h2>
+    <button onclick="startCountdown(12*60,'Warm Up')">Warm Up 12'</button>
+    <button onclick="startCountdown(18*60,'AMRAP 18')">AMRAP 18'</button>
+    <button onclick="startCountdown(20*60,'AMRAP 20')">AMRAP 20'</button>
+    <button onclick="startEmom(20)">EMOM 20'</button>
+    <button onclick="startCountdown(25*60,'Chipper 25')">Chipper 25'</button>
   `;
 }
-
-function back(){
-  document.getElementById('detail').classList.add('hidden');
-  document.getElementById('list').classList.remove('hidden');
+function completeWorkout(id){
+  const w=WORKOUTS.find(x=>x.id===id);
+  const logs=getLogs();
+  logs.unshift({
+    date:new Date().toISOString(), workoutId:id, name:w.name, block:w.block, 
+    time:$('resultTime').value, weight:$('resultWeight').value, notes:$('resultNotes').value
+  });
+  saveLogs(logs);
+  alert('Entrenamiento registrado.');
 }
 
-function recommend(state){
-  let pool = WORKOUTS;
-  if(state==='rough') pool = WORKOUTS.filter(w=>w.block==='GYM ONLY');
-  if(state==='moderate') pool = WORKOUTS.filter(w=>w.block!=='FLIGHT DECK OPS');
-  if(state==='calm') pool = WORKOUTS;
-  const w = pool[Math.floor(Math.random()*pool.length)];
+function renderLog(){
+  const logs=getLogs(), box=$('logList'); box.innerHTML='';
+  if(!logs.length){box.innerHTML='<p>No hay entrenamientos registrados todavía.</p>';return;}
+  logs.forEach((l,i)=>{
+    const d=new Date(l.date);
+    const div=document.createElement('div'); div.className='logItem';
+    div.innerHTML=`<b>${d.toLocaleDateString()} – ${l.name}</b><br><span class="small">${l.block}</span>
+      <p><b>Resultado:</b> ${l.time||'-'} · <b>Pesos:</b> ${l.weight||'-'}</p><p>${l.notes||''}</p>
+      <button class="red" onclick="deleteLog(${i})">Borrar</button>`;
+    box.appendChild(div);
+  });
+}
+function deleteLog(i){let logs=getLogs(); logs.splice(i,1); saveLogs(logs); renderLog();}
+function exportData(){
+  const data={logs:getLogs(), prs:getPR(), fav:getFav(), exportedAt:new Date().toISOString()};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='navyfit_backup.json'; a.click();
+}
+function importData(ev){
+  const f=ev.target.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=()=>{try{const d=JSON.parse(r.result); if(d.logs)saveLogs(d.logs); if(d.prs)savePR(d.prs); if(d.fav)saveFav(d.fav); alert('Datos importados'); renderLog();}catch(e){alert('Archivo no válido')}};
+  r.readAsText(f);
+}
+
+function renderProgress(){
+  const logs=getLogs(), last30=logs.filter(l=>Date.now()-new Date(l.date).getTime()<30*24*3600*1000);
+  $('kpiTotal').textContent=logs.length; $('kpi30').textContent=last30.length;
+  const pr=getPR();
+  ['backSquat','frontSquat','deadlift','strictPress','pushPress','powerClean','cleanJerk'].forEach(k=>{$(k).value=pr[k]||''});
+}
+function savePRForm(){
+  const pr={};
+  ['backSquat','frontSquat','deadlift','strictPress','pushPress','powerClean','cleanJerk'].forEach(k=>pr[k]=$(k).value);
+  savePR(pr); alert('PRs guardados'); renderCalculator();
+}
+function renderCalculator(){
+  const pr=getPR(), ex=$('calcExercise').value, pct=parseFloat($('calcPct').value||'70');
+  const base=parseFloat(pr[ex]||0);
+  $('calcResult').textContent=base ? Math.round(base*pct/100)+' kg' : 'Introduce primero tus PRs en Progreso';
+}
+function quickPercentTable(){
+  const pr=getPR(), ex=$('calcExercise').value, base=parseFloat(pr[ex]||0), box=$('pctTable'); 
+  if(!base){box.innerHTML='<p>Introduce primero tus PRs.</p>';return;}
+  let html='<table><tr><th>%</th><th>kg</th></tr>';
+  [50,55,60,65,70,75,80,85,90].forEach(p=>html+=`<tr><td>${p}%</td><td>${Math.round(base*p/100)} kg</td></tr>`);
+  html+='</table>'; box.innerHTML=html;
+}
+
+function startCountdown(sec,title){
+  totalSeconds=sec; remaining=sec; timerKind=title; emomMinute=0;
+  $('timerTitle').textContent=title; $('timerBox').classList.remove('hidden'); updateTimer();
+  if(timer)clearInterval(timer);
+  timer=setInterval(tick,1000);
+}
+function startEmom(mins){startCountdown(mins*60,'EMOM '+mins+'\'');}
+function tick(){
+  remaining--; 
+  if(timerKind.startsWith('EMOM')) {
+    const elapsed=totalSeconds-remaining;
+    const m=Math.floor(elapsed/60)+1;
+    if(m!==emomMinute){emomMinute=m; try{navigator.vibrate && navigator.vibrate(150)}catch(e){}}
+  }
+  updateTimer();
+  if(remaining<=0){clearInterval(timer);timer=null;try{navigator.vibrate && navigator.vibrate([300,200,300])}catch(e){}}
+}
+function pauseTimer(){if(timer){clearInterval(timer);timer=null;} else timer=setInterval(tick,1000);}
+function stopTimer(){if(timer)clearInterval(timer);timer=null;$('timerBox').classList.add('hidden');}
+function updateTimer(){
+  let m=Math.floor(remaining/60), s=remaining%60;
+  $('timer').textContent=m+':'+String(s).padStart(2,'0');
+  const pct=totalSeconds?100*(totalSeconds-remaining)/totalSeconds:0; $('timerProgress').style.width=Math.max(0,Math.min(100,pct))+'%';
+}
+
+function suggestToday(){
+  const fatigue=$('fatigue').value, calf=$('calf').checked;
+  let pool=WORKOUTS.filter(seaOk);
+  if(fatigue==='red') pool=pool.filter(w=>!w.intensity.includes('🔴') && (w.block==='GYM ONLY'||w.name==='MIDWATCH'));
+  if(fatigue==='yellow') pool=pool.filter(w=>!w.intensity.includes('🔴'));
+  if(calf) pool=pool.filter(w=>!w.wod.toLowerCase().includes('run') && !w.wod.toLowerCase().includes('lunges'));
+  if(!pool.length) pool=WORKOUTS.filter(w=>w.name==='MIDWATCH');
+  const w=pool[Math.floor(Math.random()*pool.length)];
   openWorkout(w.id);
 }
 
-function startTimer(sec,title){
-  remaining=sec;
-  document.getElementById('timerTitle').textContent=title;
-  document.getElementById('timerBox').classList.remove('hidden');
-  updateTimer();
-  if(timer) clearInterval(timer);
-  timer=setInterval(()=>{remaining--; updateTimer(); if(remaining<=0){clearInterval(timer); timer=null;}},1000);
-}
-function pauseTimer(){
-  if(timer){clearInterval(timer); timer=null;}
-  else timer=setInterval(()=>{remaining--; updateTimer(); if(remaining<=0){clearInterval(timer); timer=null;}},1000);
-}
-function stopTimer(){
-  if(timer) clearInterval(timer);
-  timer=null;
-  document.getElementById('timerBox').classList.add('hidden');
-}
-function updateTimer(){
-  let m=Math.floor(remaining/60), s=remaining%60;
-  document.getElementById('timer').textContent=m+':'+String(s).padStart(2,'0');
-}
-
-render();
+document.addEventListener('DOMContentLoaded',()=>{render(); renderProgress(); renderCalculator();});
+</script>
+<script>
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}
 </script>
 </body>
 </html>
