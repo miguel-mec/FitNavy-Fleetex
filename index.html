@@ -1,66 +1,72 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NAVYFIT Embarcado</title>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#071a2f">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NAVYFIT Embarcado</title><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#071a2f">
 <style>
 :root{
-  --navy:#061a2f;--blue:#0b3a66;--blue2:#124d83;--gold:#d4a017;--red:#aa151b;--yellow:#f1bf00;
-  --green:#1f7a4d;--bg:#edf2f7;--card:#fff;--text:#111;--muted:#607080;--line:#d9e0ea;
+  --navy:#06192d;--navy2:#0a2a49;--blue:#0f4777;--blue2:#155b94;
+  --gold:#d6a51d;--sand:#f4e6b0;--red:#aa151b;--yellow:#f1bf00;
+  --green:#1f7a4d;--bg:#eef3f8;--card:#ffffff;--text:#101820;--muted:#607080;--line:#d9e2ec;
 }
 *{box-sizing:border-box}
 body{
-  font-family:Arial,Helvetica,sans-serif;margin:0;background:
-  linear-gradient(180deg,#e9f0f7 0,#f5f7fa 180px,#edf2f7 100%);
-  color:var(--text)
+  font-family:Arial,Helvetica,sans-serif;margin:0;color:var(--text);
+  background:linear-gradient(180deg,#e9eff6 0,#f6f8fb 230px,#eef3f8 100%);
 }
 header{
   background:
-    linear-gradient(90deg,rgba(170,21,27,.95) 0 8%,rgba(241,191,0,.95) 8% 16%,rgba(170,21,27,.95) 16% 24%,transparent 24%),
-    linear-gradient(135deg,#041426,#0b3a66 60%,#09243f);
-  color:white;padding:15px 18px 0;position:sticky;top:0;z-index:10;box-shadow:0 6px 22px #0004
+    radial-gradient(circle at 85% 10%,rgba(214,165,29,.12),transparent 22%),
+    linear-gradient(135deg,#041426 0%,#08223d 42%,#0c3d68 100%);
+  color:white;position:sticky;top:0;z-index:10;
+  box-shadow:0 7px 26px rgba(0,0,0,.32);
 }
-.headerTop{display:flex;align-items:center;gap:14px;padding-bottom:12px}
-.logo{width:62px;height:62px;border-radius:14px;background:white;object-fit:contain;border:2px solid rgba(255,255,255,.9)}
-.titleBlock h1{margin:0;font-size:29px;letter-spacing:1px}
-.titleBlock p{margin:4px 0 0;color:#dce7f5}
-.navSub{font-size:12px;letter-spacing:2px;color:#f1bf00;font-weight:900;margin-top:3px}
-.flags{margin-left:auto;text-align:right;font-weight:900;font-size:13px;line-height:1.4}
-.flagES{display:inline-block;background:linear-gradient(#aa151b 0 25%,#f1bf00 25% 75%,#aa151b 75%);color:#111;padding:5px 10px;border-radius:999px;margin-bottom:5px}
-.flagUS{display:inline-block;background:linear-gradient(90deg,#1b3764 0 34%,#fff 34% 40%,#b22234 40% 50%,#fff 50% 60%,#b22234 60% 70%,#fff 70% 80%,#b22234 80%);color:#fff;padding:5px 10px;border-radius:999px;text-shadow:0 1px 2px #000}
-nav{display:flex;gap:8px;overflow:auto;padding:0 0 12px}
-main{max-width:1040px;margin:auto;padding:20px}
+.accentBar{
+  height:7px;
+  background:linear-gradient(90deg,#aa151b 0 13%,#f1bf00 13% 26%,#aa151b 26% 39%,#ffffff 39% 42%,#b22234 42% 52%,#ffffff 52% 58%,#b22234 58% 68%,#ffffff 68% 74%,#b22234 74% 84%,#1b3764 84% 100%);
+}
+.headerContent{max-width:1160px;margin:auto;padding:16px 20px 12px}
+.headerTop{display:flex;align-items:center;gap:15px}
+.logo{width:64px;height:64px;border-radius:16px;background:white;object-fit:contain;border:2px solid rgba(255,255,255,.92);box-shadow:0 4px 14px rgba(0,0,0,.28)}
+.titleBlock h1{margin:0;font-size:31px;letter-spacing:1.2px}
+.titleBlock p{margin:5px 0 0;color:#dce7f5;font-size:14px}
+.navSub{font-size:12px;letter-spacing:2.5px;color:var(--gold);font-weight:900;margin-top:5px}
+.headerMeta{margin-left:auto;text-align:right;color:#dce7f5;font-size:12px;letter-spacing:1.4px;text-transform:uppercase}
+.headerMeta strong{color:var(--gold)}
+nav{display:flex;gap:8px;overflow:auto;margin-top:14px;padding-bottom:2px}
+main{max-width:1040px;margin:auto;padding:22px 18px}
 button{
-  background:linear-gradient(180deg,var(--blue2),var(--blue));color:white;border:0;border-radius:11px;
-  padding:10px 14px;font-weight:900;margin:4px;cursor:pointer;box-shadow:0 2px 0 #03101e
+  background:linear-gradient(180deg,var(--blue2),var(--blue));color:white;border:1px solid rgba(255,255,255,.12);
+  border-radius:11px;padding:10px 15px;font-weight:900;margin:4px;cursor:pointer;
+  box-shadow:0 2px 0 #03101e,0 4px 10px rgba(0,0,0,.12);
 }
-button.active,button.gold{background:linear-gradient(180deg,#f1bf00,#c99500);color:#101010}
+button.active,button.gold{background:linear-gradient(180deg,#f4c43b,#d4a017);color:#101820;border-color:#c99712}
 button.red{background:linear-gradient(180deg,#bd1e24,#7d1217)}
 button.green{background:linear-gradient(180deg,#25945c,#176a41)}
 button.gray{background:#3c4654}
 input,select,textarea{width:100%;padding:12px;border-radius:11px;border:1px solid #bfc8d4;font-size:16px;background:white}
 textarea{min-height:90px}
-.controls{background:rgba(255,255,255,.78);border:1px solid #d9e0ea;border-radius:18px;padding:14px;box-shadow:0 4px 16px #0001;margin-bottom:14px}
-.buttonRow{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.controls{
+  background:rgba(255,255,255,.9);border:1px solid #dbe4ef;border-radius:18px;padding:15px;
+  box-shadow:0 8px 24px rgba(17,42,70,.10);margin-bottom:16px;
+}
+.buttonRow{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
 .card{
-  position:relative;background:white;border-radius:16px;padding:16px 16px 16px 18px;margin:12px 0;
-  box-shadow:0 4px 18px #0002;border-left:7px solid var(--blue);cursor:pointer;overflow:hidden
+  position:relative;background:white;border-radius:17px;padding:17px 18px;margin:12px 0;
+  box-shadow:0 8px 22px rgba(17,42,70,.11);border-left:7px solid var(--blue);cursor:pointer;overflow:hidden;
 }
-.card:after{
-  content:"⚓";position:absolute;right:18px;bottom:-4px;font-size:48px;color:rgba(6,26,47,.07);font-weight:bold
-}
-.card.redBorder{border-left-color:var(--red)}.card.greenBorder{border-left-color:var(--green)}
-.card h3{margin:0 0 8px;letter-spacing:.3px}.card p{margin:6px 0}
+.card:before{content:"";position:absolute;left:0;top:0;right:0;height:1px;background:linear-gradient(90deg,rgba(214,165,29,.7),transparent)}
+.card:after{content:"⚓";position:absolute;right:18px;bottom:-6px;font-size:50px;color:rgba(6,25,45,.055);font-weight:bold}
+.card.redBorder{border-left-color:#9d1b1e}.card.greenBorder{border-left-color:#1f7a4d}
+.card h3{margin:0 0 8px;letter-spacing:.4px}.card p{margin:6px 0}
 .hidden{display:none!important}
 .detail,.panel{
-  background:white;border-radius:16px;padding:18px;box-shadow:0 4px 18px #0002;margin-bottom:14px;border-top:4px solid var(--blue)
+  background:white;border-radius:17px;padding:18px;box-shadow:0 8px 22px rgba(17,42,70,.11);
+  margin-bottom:14px;border-top:4px solid var(--blue);
 }
-.detail h1{letter-spacing:.4px}.detail h2,.panel h2{color:var(--blue);border-bottom:1px solid var(--line);padding-bottom:6px}
-.pill{background:#e8eef7;color:var(--blue);padding:5px 9px;border-radius:999px;font-weight:bold;display:inline-block;margin:3px}
-.pill.sea{background:#fff4d0;color:#6d4c00}
+.detail h1{letter-spacing:.5px}.detail h2,.panel h2{color:var(--blue);border-bottom:1px solid var(--line);padding-bottom:6px}
+.pill{background:#e8eef7;color:var(--blue);padding:5px 10px;border-radius:999px;font-weight:bold;display:inline-block;margin:3px}
+.pill.sea{background:#fff3cd;color:#6b4a00}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
 .kpi{font-size:32px;font-weight:900;color:var(--blue)}
@@ -69,58 +75,34 @@ textarea{min-height:90px}
 .status{font-size:14px;color:#33495c;font-weight:700;margin:10px 0 0}
 .timerBox{position:fixed;left:14px;right:14px;bottom:14px;background:var(--navy);color:white;border-radius:18px;padding:16px;text-align:center;box-shadow:0 8px 30px #0008;z-index:20}
 .timer{font-size:50px;font-weight:900;letter-spacing:2px}
-.progressBar{height:10px;background:#d9e0ea;border-radius:999px;overflow:hidden;margin:10px 0}
-.progressBar div{height:100%;background:var(--gold);width:0%}
+.progressBar{height:10px;background:#d9e0ea;border-radius:999px;overflow:hidden;margin:10px 0}.progressBar div{height:100%;background:var(--gold);width:0%}
 table{width:100%;border-collapse:collapse;background:white}td,th{border-bottom:1px solid #e5e9ef;padding:9px;text-align:left}
 @media(max-width:760px){
-  .grid2,.grid3{grid-template-columns:1fr}.flags{display:none}.titleBlock h1{font-size:22px}.logo{width:50px;height:50px}main{padding:12px}.timer{font-size:42px}
+  .grid2,.grid3{grid-template-columns:1fr}.headerMeta{display:none}.titleBlock h1{font-size:22px}.logo{width:52px;height:52px}main{padding:12px}.timer{font-size:42px}
+  .navSub{font-size:10px;letter-spacing:1.5px}
 }
 </style>
 </head>
 <body>
 <header>
-  <div class="headerTop">
-    <img src="icon-512.png" class="logo" alt="NAVYFIT">
-    <div class="titleBlock">
-      <h1>NAVYFIT EMBARCADO</h1>
-      <p>FLEETEX Edition · Spanish Navy / US Navy style</p>
-      <div class="navSub">FORCE · DISCIPLINE · ENDURANCE</div>
+  <div class="accentBar"></div>
+  <div class="headerContent">
+    <div class="headerTop">
+      <img src="icon-512.png" class="logo" alt="NAVYFIT">
+      <div class="titleBlock"><h1>NAVYFIT EMBARCADO</h1><p>FLEETEX Edition · Spanish Navy / US Navy training board</p><div class="navSub">FORCE · DISCIPLINE · ENDURANCE</div></div>
+      <div class="headerMeta"><strong>ES / USA</strong><br>Operational Fitness</div>
     </div>
-    <div class="flags">
-      <div class="flagES">ESPAÑA</div><br>
-      <div class="flagUS">USA</div>
-    </div>
+    <nav>
+      <button id="tab_libraryView" class="active" onclick="showView('libraryView')">Biblioteca</button>
+      <button id="tab_logView" onclick="showView('logView')">Registro</button>
+      <button id="tab_progressView" onclick="showView('progressView')">Progreso</button>
+      <button id="tab_calculatorView" onclick="showView('calculatorView')">Calculadora</button>
+      <button id="tab_recommendView" onclick="showView('recommendView')">Qué hago hoy</button>
+    </nav>
   </div>
-  <nav>
-    <button id="tab_libraryView" class="active" onclick="showView('libraryView')">Biblioteca</button>
-    <button id="tab_logView" onclick="showView('logView')">Registro</button>
-    <button id="tab_progressView" onclick="showView('progressView')">Progreso</button>
-    <button id="tab_calculatorView" onclick="showView('calculatorView')">Calculadora</button>
-    <button id="tab_recommendView" onclick="showView('recommendView')">Qué hago hoy</button>
-  </nav>
 </header>
 <main>
-<section id="libraryView" class="view">
-  <div class="controls">
-    <input id="search" placeholder="Buscar: clean, hombro, carry..." oninput="render()">
-    <div class="buttonRow">
-      <button id="b_ALL" class="active" onclick="setBlockFilter('ALL')">Todos</button>
-      <button id="b_FAV" onclick="setBlockFilter('FAVORITOS')">Favoritos</button>
-      <button id="b_GYM" onclick="setBlockFilter('GYM ONLY')">Gym Only</button>
-      <button id="b_FD" onclick="setBlockFilter('FLIGHT DECK OPS')">Flight Deck Ops</button>
-      <button id="b_OT" onclick="setBlockFilter('OLYMPIC TACTICAL')">Olympic Tactical</button>
-    </div>
-    <div class="buttonRow">
-      <button id="s_ALL" class="active" onclick="setSeaFilter('ALL')">🌊 Cualquier mar</button>
-      <button id="s_ROUGH" onclick="setSeaFilter('ROUGH')">🔴 Mala mar</button>
-      <button id="s_MOD" onclick="setSeaFilter('MODERATE')">🟡 Mar moderada</button>
-      <button id="s_CALM" onclick="setSeaFilter('CALM')">🟢 Mar calma</button>
-    </div>
-    <p id="status" class="status"></p>
-  </div>
-  <div id="workouts"></div>
-</section>
-
+<section id="libraryView" class="view"><div class="controls"><input id="search" placeholder="Buscar: clean, hombro, carry..." oninput="render()"><div class="buttonRow"><button id="b_ALL" class="active" onclick="setBlockFilter('ALL')">Todos</button><button id="b_FAV" onclick="setBlockFilter('FAVORITOS')">Favoritos</button><button id="b_GYM" onclick="setBlockFilter('GYM ONLY')">Gym Only</button><button id="b_FD" onclick="setBlockFilter('FLIGHT DECK OPS')">Flight Deck Ops</button><button id="b_OT" onclick="setBlockFilter('OLYMPIC TACTICAL')">Olympic Tactical</button></div><div class="buttonRow"><button id="s_ALL" class="active" onclick="setSeaFilter('ALL')">🌊 Cualquier mar</button><button id="s_ROUGH" onclick="setSeaFilter('ROUGH')">🔴 Mala mar</button><button id="s_MOD" onclick="setSeaFilter('MODERATE')">🟡 Mar moderada</button><button id="s_CALM" onclick="setSeaFilter('CALM')">🟢 Mar calma</button></div><p id="status" class="status"></p></div><div id="workouts"></div></section>
 <section id="detailView" class="view hidden"><div id="detail" class="detail"></div></section>
 <section id="logView" class="view hidden"><div class="panel"><h2>Registro de entrenamientos</h2><button onclick="exportData()">Exportar backup</button><label><input type="file" onchange="importData(event)" style="display:none"><span class="pill">Importar backup</span></label><div id="logList"></div></div></section>
 <section id="progressView" class="view hidden"><div class="grid2"><div class="panel"><div id="kpiTotal" class="kpi">0</div><b>Total entrenamientos</b></div><div class="panel"><div id="kpi30" class="kpi">0</div><b>Últimos 30 días</b></div></div><div class="panel"><h2>PRs / Pesos de referencia</h2><div class="grid2"><label>Back Squat<input id="backSquat" placeholder="kg"></label><label>Front Squat<input id="frontSquat" placeholder="kg"></label><label>Deadlift<input id="deadlift" placeholder="kg"></label><label>Strict Press<input id="strictPress" placeholder="kg"></label><label>Push Press<input id="pushPress" placeholder="kg"></label><label>Power Clean<input id="powerClean" placeholder="kg"></label><label>Clean & Jerk<input id="cleanJerk" placeholder="kg"></label></div><br><button class="green" onclick="savePRForm()">Guardar PRs</button></div></section>
@@ -576,9 +558,9 @@ const WORKOUTS = [
     "seaCategory": "MODERATE"
   }
 ];
-const LS_LOG='navyfit_logs_naval';
-const LS_PR='navyfit_pr_naval';
-const LS_FAV='navyfit_fav_naval';
+const LS_LOG='navyfit_logs_clean';
+const LS_PR='navyfit_pr_clean';
+const LS_FAV='navyfit_fav_clean';
 
 let blockFilter='ALL', seaFilter='ALL', currentWorkout=null;
 let timer=null, remaining=0, totalSeconds=0, timerKind='Timer', emomMinute=0;
@@ -601,98 +583,41 @@ function showView(id){
   if(id==='progressView') renderProgress();
   if(id==='calculatorView') renderCalculator();
 }
-function setActive(prefix,id){
-  document.querySelectorAll('button[id^="'+prefix+'"]').forEach(b=>b.classList.remove('active'));
-  if($(id)) $(id).classList.add('active');
-}
-function setBlockFilter(f){
-  blockFilter=f;
-  const map={'ALL':'b_ALL','FAVORITOS':'b_FAV','GYM ONLY':'b_GYM','FLIGHT DECK OPS':'b_FD','OLYMPIC TACTICAL':'b_OT'};
-  setActive('b_',map[f]); render();
-}
-function setSeaFilter(f){
-  seaFilter=f;
-  const map={'ALL':'s_ALL','ROUGH':'s_ROUGH','MODERATE':'s_MOD','CALM':'s_CALM'};
-  setActive('s_',map[f]); render();
-}
-function seaOk(w){
-  if(seaFilter==='ALL') return true;
-  if(seaFilter==='ROUGH') return w.seaCategory==='ROUGH';
-  if(seaFilter==='MODERATE') return w.seaCategory==='ROUGH' || w.seaCategory==='MODERATE';
-  if(seaFilter==='CALM') return true;
-  return true;
-}
-function seaLabel(w){
-  if(w.seaCategory==='ROUGH') return '🔴 Apto mala mar';
-  if(w.seaCategory==='MODERATE') return '🟡 Mar moderada';
-  return '🟢 Mar calma / cubierta';
-}
+function setActive(prefix,id){document.querySelectorAll('button[id^="'+prefix+'"]').forEach(b=>b.classList.remove('active')); if($(id)) $(id).classList.add('active');}
+function setBlockFilter(f){blockFilter=f; const map={'ALL':'b_ALL','FAVORITOS':'b_FAV','GYM ONLY':'b_GYM','FLIGHT DECK OPS':'b_FD','OLYMPIC TACTICAL':'b_OT'}; setActive('b_',map[f]); render();}
+function setSeaFilter(f){seaFilter=f; const map={'ALL':'s_ALL','ROUGH':'s_ROUGH','MODERATE':'s_MOD','CALM':'s_CALM'}; setActive('s_',map[f]); render();}
+function seaOk(w){if(seaFilter==='ALL') return true; if(seaFilter==='ROUGH') return w.seaCategory==='ROUGH'; if(seaFilter==='MODERATE') return w.seaCategory==='ROUGH'||w.seaCategory==='MODERATE'; if(seaFilter==='CALM') return true; return true;}
+function seaLabel(w){if(w.seaCategory==='ROUGH') return '🔴 Apto mala mar'; if(w.seaCategory==='MODERATE') return '🟡 Mar moderada'; return '🟢 Mar calma / cubierta';}
 function render(){
-  const q=$('search').value.toLowerCase();
-  const fav=getFav();
-  const arr=WORKOUTS.filter(w=>
-    (blockFilter==='ALL'||w.block===blockFilter||(blockFilter==='FAVORITOS'&&fav.includes(w.id))) &&
-    seaOk(w) &&
-    (w.name.toLowerCase().includes(q)||w.focus.toLowerCase().includes(q)||w.block.toLowerCase().includes(q)||w.wod.toLowerCase().includes(q))
-  );
+  const q=$('search').value.toLowerCase(), fav=getFav();
+  const arr=WORKOUTS.filter(w=>(blockFilter==='ALL'||w.block===blockFilter||(blockFilter==='FAVORITOS'&&fav.includes(w.id)))&&seaOk(w)&&(w.name.toLowerCase().includes(q)||w.focus.toLowerCase().includes(q)||w.block.toLowerCase().includes(q)||w.wod.toLowerCase().includes(q)));
   const seaText={ALL:'cualquier estado de mar',ROUGH:'mala mar',MODERATE:'mar moderada',CALM:'mar calma'};
   $('status').textContent=arr.length+' entrenamientos mostrados · filtro: '+seaText[seaFilter];
   const box=$('workouts'); box.innerHTML='';
-  arr.forEach(w=>{
-    const div=document.createElement('div');
-    div.className='card '+(w.intensity.includes('🔴')?'redBorder':(w.intensity.includes('🟢')?'greenBorder':''));
-    div.onclick=()=>openWorkout(w.id);
-    div.innerHTML=`<h3>${String(w.id).padStart(2,'0')} – ${w.name} ${fav.includes(w.id)?'⭐':''}</h3>
-      <p><b>${w.block}</b> · ${w.focus}</p>
-      <p>${w.intensity} · ${w.duration} · <span class="pill sea">${seaLabel(w)}</span></p>`;
-    box.appendChild(div);
-  });
+  arr.forEach(w=>{const div=document.createElement('div'); div.className='card '+(w.intensity.includes('🔴')?'redBorder':(w.intensity.includes('🟢')?'greenBorder':'')); div.onclick=()=>openWorkout(w.id); div.innerHTML=`<h3>${String(w.id).padStart(2,'0')} – ${w.name} ${fav.includes(w.id)?'⭐':''}</h3><p><b>${w.block}</b> · ${w.focus}</p><p>${w.intensity} · ${w.duration} · <span class="pill sea">${seaLabel(w)}</span></p>`; box.appendChild(div);});
 }
 function toggleFav(id){let fav=getFav(); if(fav.includes(id))fav=fav.filter(x=>x!==id); else fav.push(id); saveFav(fav); renderDetail();}
 function openWorkout(id){currentWorkout=WORKOUTS.find(x=>x.id===id); showView('detailView'); renderDetail();}
 function renderDetail(){
-  const w=currentWorkout, fav=getFav();
-  $('detail').innerHTML=`
-    <button class="gray" onclick="showView('libraryView')">← Volver</button>
-    <button class="gold" onclick="toggleFav(${w.id})">${fav.includes(w.id)?'★ Favorito':'☆ Añadir favorito'}</button>
-    <h1>${String(w.id).padStart(2,'0')} – ${w.name}</h1>
-    <p><span class="pill">${w.block}</span><span class="pill">${w.duration}</span><span class="pill">${w.intensity}</span><span class="pill sea">${seaLabel(w)}</span></p>
-    <p><b>Foco:</b> ${w.focus}</p><p><b>Material:</b> ${w.material}</p><p><b>Objetivo:</b> ${w.objective}</p>
-    <h2>Calentamiento</h2><ul>${w.warmup.map(x=>`<li>${x}</li>`).join('')}</ul>
-    <h2>Fuerza / Técnica</h2><p>${w.strength}</p>
-    <h2>Accesorio</h2><p>${w.accessory}</p>
-    <h2>WOD</h2><p>${w.wod}</p>
-    <div class="grid2"><div class="panel"><h2>RX</h2><p>${w.rx}</p></div><div class="panel"><h2>Scaled</h2><p>${w.scaled}</p></div></div>
-    <h2>Sea State &gt; 3</h2><p>${w.sea}</p>
-    <h2>Registrar entrenamiento</h2>
-    <div class="grid2"><input id="resultTime" placeholder="Tiempo/Rondas"><input id="resultWeight" placeholder="Pesos usados"></div><br>
-    <textarea id="resultNotes" placeholder="Observaciones: sueño, guardia, gemelo, estado de mar..."></textarea><br>
-    <button class="green" onclick="completeWorkout(${w.id})">Guardar entrenamiento</button>
-    <h2>Cronómetros</h2>
-    <button onclick="startCountdown(12*60,'Warm Up')">Warm Up 12'</button>
-    <button onclick="startCountdown(18*60,'AMRAP 18')">AMRAP 18'</button>
-    <button onclick="startCountdown(20*60,'AMRAP 20')">AMRAP 20'</button>
-    <button onclick="startEmom(20)">EMOM 20'</button>
-    <button onclick="startCountdown(25*60,'Chipper 25')">Chipper 25'</button>`;
+ const w=currentWorkout,fav=getFav();
+ $('detail').innerHTML=`<button class="gray" onclick="showView('libraryView')">← Volver</button><button class="gold" onclick="toggleFav(${w.id})">${fav.includes(w.id)?'★ Favorito':'☆ Añadir favorito'}</button><h1>${String(w.id).padStart(2,'0')} – ${w.name}</h1><p><span class="pill">${w.block}</span><span class="pill">${w.duration}</span><span class="pill">${w.intensity}</span><span class="pill sea">${seaLabel(w)}</span></p><p><b>Foco:</b> ${w.focus}</p><p><b>Material:</b> ${w.material}</p><p><b>Objetivo:</b> ${w.objective}</p><h2>Calentamiento</h2><ul>${w.warmup.map(x=>`<li>${x}</li>`).join('')}</ul><h2>Fuerza / Técnica</h2><p>${w.strength}</p><h2>Accesorio</h2><p>${w.accessory}</p><h2>WOD</h2><p>${w.wod}</p><div class="grid2"><div class="panel"><h2>RX</h2><p>${w.rx}</p></div><div class="panel"><h2>Scaled</h2><p>${w.scaled}</p></div></div><h2>Sea State &gt; 3</h2><p>${w.sea}</p><h2>Registrar entrenamiento</h2><div class="grid2"><input id="resultTime" placeholder="Tiempo/Rondas"><input id="resultWeight" placeholder="Pesos usados"></div><br><textarea id="resultNotes" placeholder="Observaciones: sueño, guardia, gemelo, estado de mar..."></textarea><br><button class="green" onclick="completeWorkout(${w.id})">Guardar entrenamiento</button><h2>Cronómetros</h2><button onclick="startCountdown(12*60,'Warm Up')">Warm Up 12'</button><button onclick="startCountdown(18*60,'AMRAP 18')">AMRAP 18'</button><button onclick="startCountdown(20*60,'AMRAP 20')">AMRAP 20'</button><button onclick="startEmom(20)">EMOM 20'</button><button onclick="startCountdown(25*60,'Chipper 25')">Chipper 25'</button>`;
 }
-function completeWorkout(id){const w=WORKOUTS.find(x=>x.id===id); const logs=getLogs(); logs.unshift({date:new Date().toISOString(),workoutId:id,name:w.name,block:w.block,time:$('resultTime').value,weight:$('resultWeight').value,notes:$('resultNotes').value}); saveLogs(logs); alert('Entrenamiento registrado.');}
-function renderLog(){const logs=getLogs(), box=$('logList'); box.innerHTML=''; if(!logs.length){box.innerHTML='<p>No hay entrenamientos registrados todavía.</p>';return;} logs.forEach((l,i)=>{const d=new Date(l.date); const div=document.createElement('div'); div.className='logItem'; div.innerHTML=`<b>${d.toLocaleDateString()} – ${l.name}</b><br><span class="small">${l.block}</span><p><b>Resultado:</b> ${l.time||'-'} · <b>Pesos:</b> ${l.weight||'-'}</p><p>${l.notes||''}</p><button class="red" onclick="deleteLog(${i})">Borrar</button>`; box.appendChild(div);});}
+function completeWorkout(id){const w=WORKOUTS.find(x=>x.id===id),logs=getLogs(); logs.unshift({date:new Date().toISOString(),workoutId:id,name:w.name,block:w.block,time:$('resultTime').value,weight:$('resultWeight').value,notes:$('resultNotes').value}); saveLogs(logs); alert('Entrenamiento registrado.');}
+function renderLog(){const logs=getLogs(),box=$('logList'); box.innerHTML=''; if(!logs.length){box.innerHTML='<p>No hay entrenamientos registrados todavía.</p>';return;} logs.forEach((l,i)=>{const d=new Date(l.date),div=document.createElement('div'); div.className='logItem'; div.innerHTML=`<b>${d.toLocaleDateString()} – ${l.name}</b><br><span class="small">${l.block}</span><p><b>Resultado:</b> ${l.time||'-'} · <b>Pesos:</b> ${l.weight||'-'}</p><p>${l.notes||''}</p><button class="red" onclick="deleteLog(${i})">Borrar</button>`; box.appendChild(div);});}
 function deleteLog(i){let logs=getLogs(); logs.splice(i,1); saveLogs(logs); renderLog();}
-function exportData(){const data={logs:getLogs(),prs:getPR(),fav:getFav(),exportedAt:new Date().toISOString()}; const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='navyfit_backup.json'; a.click();}
+function exportData(){const data={logs:getLogs(),prs:getPR(),fav:getFav(),exportedAt:new Date().toISOString()},blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='navyfit_backup.json'; a.click();}
 function importData(ev){const f=ev.target.files[0]; if(!f)return; const r=new FileReader(); r.onload=()=>{try{const d=JSON.parse(r.result); if(d.logs)saveLogs(d.logs); if(d.prs)savePR(d.prs); if(d.fav)saveFav(d.fav); alert('Datos importados'); renderLog();}catch(e){alert('Archivo no válido')}}; r.readAsText(f);}
-function renderProgress(){const logs=getLogs(), last30=logs.filter(l=>Date.now()-new Date(l.date).getTime()<30*24*3600*1000); $('kpiTotal').textContent=logs.length; $('kpi30').textContent=last30.length; const pr=getPR(); ['backSquat','frontSquat','deadlift','strictPress','pushPress','powerClean','cleanJerk'].forEach(k=>$(k).value=pr[k]||'');}
+function renderProgress(){const logs=getLogs(),last30=logs.filter(l=>Date.now()-new Date(l.date).getTime()<30*24*3600*1000); $('kpiTotal').textContent=logs.length; $('kpi30').textContent=last30.length; const pr=getPR(); ['backSquat','frontSquat','deadlift','strictPress','pushPress','powerClean','cleanJerk'].forEach(k=>$(k).value=pr[k]||'');}
 function savePRForm(){const pr={}; ['backSquat','frontSquat','deadlift','strictPress','pushPress','powerClean','cleanJerk'].forEach(k=>pr[k]=$(k).value); savePR(pr); alert('PRs guardados'); renderCalculator();}
-function renderCalculator(){const pr=getPR(), ex=$('calcExercise').value, pct=parseFloat($('calcPct').value||'70'), base=parseFloat(pr[ex]||0); $('calcResult').textContent=base?Math.round(base*pct/100)+' kg':'Introduce PRs';}
-function quickPercentTable(){const pr=getPR(), ex=$('calcExercise').value, base=parseFloat(pr[ex]||0), box=$('pctTable'); if(!base){box.innerHTML='<p>Introduce primero tus PRs.</p>';return;} let html='<table><tr><th>%</th><th>kg</th></tr>'; [50,55,60,65,70,75,80,85,90].forEach(p=>html+=`<tr><td>${p}%</td><td>${Math.round(base*p/100)} kg</td></tr>`); html+='</table>'; box.innerHTML=html;}
-function startCountdown(sec,title){totalSeconds=sec; remaining=sec; timerKind=title; emomMinute=0; $('timerTitle').textContent=title; $('timerBox').classList.remove('hidden'); updateTimer(); if(timer)clearInterval(timer); timer=setInterval(tick,1000);}
+function renderCalculator(){const pr=getPR(),ex=$('calcExercise').value,pct=parseFloat($('calcPct').value||'70'),base=parseFloat(pr[ex]||0); $('calcResult').textContent=base?Math.round(base*pct/100)+' kg':'Introduce PRs';}
+function quickPercentTable(){const pr=getPR(),ex=$('calcExercise').value,base=parseFloat(pr[ex]||0),box=$('pctTable'); if(!base){box.innerHTML='<p>Introduce primero tus PRs.</p>';return;} let html='<table><tr><th>%</th><th>kg</th></tr>'; [50,55,60,65,70,75,80,85,90].forEach(p=>html+=`<tr><td>${p}%</td><td>${Math.round(base*p/100)} kg</td></tr>`); html+='</table>'; box.innerHTML=html;}
+function startCountdown(sec,title){totalSeconds=sec;remaining=sec;timerKind=title;emomMinute=0;$('timerTitle').textContent=title;$('timerBox').classList.remove('hidden');updateTimer();if(timer)clearInterval(timer);timer=setInterval(tick,1000);}
 function startEmom(mins){startCountdown(mins*60,'EMOM '+mins+'\'');}
-function tick(){remaining--; if(timerKind.startsWith('EMOM')){const elapsed=totalSeconds-remaining; const m=Math.floor(elapsed/60)+1; if(m!==emomMinute){emomMinute=m; try{navigator.vibrate&&navigator.vibrate(150)}catch(e){}}} updateTimer(); if(remaining<=0){clearInterval(timer);timer=null;try{navigator.vibrate&&navigator.vibrate([300,200,300])}catch(e){}}}
+function tick(){remaining--; if(timerKind.startsWith('EMOM')){const elapsed=totalSeconds-remaining,m=Math.floor(elapsed/60)+1;if(m!==emomMinute){emomMinute=m;try{navigator.vibrate&&navigator.vibrate(150)}catch(e){}}} updateTimer(); if(remaining<=0){clearInterval(timer);timer=null;try{navigator.vibrate&&navigator.vibrate([300,200,300])}catch(e){}}}
 function pauseTimer(){if(timer){clearInterval(timer);timer=null;} else timer=setInterval(tick,1000);}
 function stopTimer(){if(timer)clearInterval(timer);timer=null;$('timerBox').classList.add('hidden');}
-function updateTimer(){let m=Math.floor(remaining/60), s=remaining%60; $('timer').textContent=m+':'+String(s).padStart(2,'0'); const pct=totalSeconds?100*(totalSeconds-remaining)/totalSeconds:0; $('timerProgress').style.width=Math.max(0,Math.min(100,pct))+'%';}
-function suggestToday(){const fatigue=$('fatigue').value, calf=$('calf').checked; let pool=WORKOUTS.filter(seaOk); if(fatigue==='red')pool=pool.filter(w=>!w.intensity.includes('🔴')&&(w.seaCategory==='ROUGH'||w.name==='MIDWATCH')); if(fatigue==='yellow')pool=pool.filter(w=>!w.intensity.includes('🔴')); if(calf)pool=pool.filter(w=>!w.wod.toLowerCase().includes('run')&&!w.wod.toLowerCase().includes('lunges')); if(!pool.length)pool=WORKOUTS.filter(w=>w.name==='MIDWATCH'); const w=pool[Math.floor(Math.random()*pool.length)]; openWorkout(w.id);}
-document.addEventListener('DOMContentLoaded',()=>{render(); renderProgress(); renderCalculator();});
-</script>
-<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}</script>
-</body>
-</html>
+function updateTimer(){let m=Math.floor(remaining/60),s=remaining%60;$('timer').textContent=m+':'+String(s).padStart(2,'0'); const pct=totalSeconds?100*(totalSeconds-remaining)/totalSeconds:0;$('timerProgress').style.width=Math.max(0,Math.min(100,pct))+'%';}
+function suggestToday(){const fatigue=$('fatigue').value,calf=$('calf').checked; let pool=WORKOUTS.filter(seaOk); if(fatigue==='red')pool=pool.filter(w=>!w.intensity.includes('🔴')&&(w.seaCategory==='ROUGH'||w.name==='MIDWATCH')); if(fatigue==='yellow')pool=pool.filter(w=>!w.intensity.includes('🔴')); if(calf)pool=pool.filter(w=>!w.wod.toLowerCase().includes('run')&&!w.wod.toLowerCase().includes('lunges')); if(!pool.length)pool=WORKOUTS.filter(w=>w.name==='MIDWATCH'); const w=pool[Math.floor(Math.random()*pool.length)]; openWorkout(w.id);}
+document.addEventListener('DOMContentLoaded',()=>{render();renderProgress();renderCalculator();});
+</script><script>if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}</script>
+</body></html>
