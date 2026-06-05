@@ -1,146 +1,65 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>NAVYFIT Embarcado Pro</title>
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#071a2f">
-  <style>
-
-:root{
-  --navy:#071a2f; --blue:#0f3b66; --gold:#d4a017; --red:#9d1b1e;
-  --bg:#f3f6fa; --card:#fff; --text:#111; --muted:#5f6b7a; --green:#1f7a4d;
-}
-*{box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;margin:0;background:var(--bg);color:var(--text)}
-header{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;padding:18px 16px 16px;position:sticky;top:0;z-index:5;box-shadow:0 3px 15px rgba(0,0,0,.25)}
-.headerRow{display:flex;align-items:center;gap:12px}
-.logo{width:52px;height:52px;border-radius:14px;background:#fff;object-fit:cover}
-header h1{margin:0;font-size:24px;letter-spacing:.8px}
-header p{margin:3px 0 0;color:#dce7f5;font-size:13px}
-nav{display:flex;gap:8px;overflow-x:auto;margin-top:12px;padding-bottom:2px}
-nav button{white-space:nowrap}
-main{padding:14px;max-width:920px;margin:auto}
-button{border:0;background:var(--blue);color:white;border-radius:12px;padding:11px 13px;font-weight:800;font-size:14px}
-button.secondary{background:#334}
-button.gold{background:var(--gold);color:#111}
-button.red{background:var(--red)}
-button.green{background:var(--green)}
-button.light{background:#e8eef7;color:var(--blue)}
-input,select,textarea{width:100%;padding:13px;border-radius:12px;border:1px solid #ccd;font-size:16px;background:#fff}
-textarea{min-height:90px}
-.controls{display:grid;gap:10px;margin:12px 0}
-.filters{display:flex;gap:8px;overflow:auto}
-.filter.active,.tab.active{background:var(--gold);color:#111}
-.card{background:var(--card);padding:14px;border-radius:18px;margin:10px 0;box-shadow:0 4px 14px rgba(0,0,0,.08);border-left:6px solid var(--blue)}
-.card.redBorder{border-left-color:var(--red)}
-.card.greenBorder{border-left-color:var(--green)}
-.card h3{margin:0;font-size:18px}
-.card p{margin:6px 0;color:#444}
-.row{display:flex;justify-content:space-between;gap:10px;align-items:center}
-.hidden{display:none!important}
-.view{display:block}
-.detail{background:var(--card);border-radius:18px;padding:18px;box-shadow:0 4px 14px rgba(0,0,0,.08)}
-.detail h1{margin-top:0;color:var(--navy)}
-.detail h2{font-size:17px;border-bottom:1px solid #e2e2e2;padding-bottom:5px;color:var(--blue)}
-.detail li{margin:7px 0}
-.pill{display:inline-block;background:#e8eef7;color:var(--blue);padding:6px 10px;border-radius:999px;font-weight:800;margin:2px 4px 2px 0}
-.pill.redPill{background:#fde8e8;color:var(--red)}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-.grid2 div,.panel{background:#fff;border-radius:16px;padding:12px;box-shadow:0 3px 12px rgba(0,0,0,.07)}
-.kpi{font-size:28px;font-weight:900;color:var(--blue)}
-.small{font-size:12px;color:var(--muted)}
-.timerBox{position:fixed;left:14px;right:14px;bottom:14px;background:var(--navy);color:white;border-radius:20px;padding:16px;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.35);z-index:9}
-.timer{font-size:48px;font-weight:900;letter-spacing:2px}
-.timerControls{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-.logItem{border-bottom:1px solid #eee;padding:10px 0}
-.badge{font-size:12px;background:#eef;padding:4px 8px;border-radius:999px;color:var(--blue);font-weight:800}
-@media(max-width:650px){.grid2,.grid3{grid-template-columns:1fr}.timer{font-size:42px}header h1{font-size:21px}}
-@media print{header,nav,.controls,button,.timerBox{display:none!important}main{max-width:none}.detail,.card{box-shadow:none;border:1px solid #ddd;page-break-inside:avoid}}
-
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NAVYFIT Embarcado</title>
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#f3f6fa;color:#111}
+header{background:#071a2f;color:white;padding:20px}
+h1{margin:0;font-size:28px}
+main{max-width:950px;margin:auto;padding:18px}
+button{background:#0f3b66;color:white;border:0;border-radius:10px;padding:10px 14px;font-weight:bold;margin:4px;cursor:pointer}
+button.active{background:#d4a017;color:#111}
+input{width:100%;padding:13px;border-radius:10px;border:1px solid #bbb;font-size:16px;margin:12px 0}
+.card{background:white;border-radius:14px;padding:14px;margin:10px 0;box-shadow:0 3px 12px #0002;border-left:6px solid #0f3b66;cursor:pointer}
+.card h3{margin:0}
+.hidden{display:none}
+.detail{background:white;border-radius:14px;padding:18px;box-shadow:0 3px 12px #0002}
+.pill{background:#e8eef7;color:#0f3b66;padding:5px 9px;border-radius:999px;font-weight:bold;display:inline-block;margin:3px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.panel{background:#f7f7f7;border-radius:12px;padding:12px}
+.timerBox{position:fixed;left:16px;right:16px;bottom:16px;background:#071a2f;color:white;border-radius:18px;padding:16px;text-align:center;box-shadow:0 5px 24px #0007}
+.timer{font-size:48px;font-weight:bold}
+@media(max-width:650px){.grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <header>
-  <div class="headerRow">
-    <img src="icon-512.png" class="logo" alt="NAVYFIT">
-    <div><h1>NAVYFIT EMBARCADO</h1><p>FLEETEX Edition · Offline · PWA</p></div>
-  </div>
-  <nav>
-    <button class="tab active" id="tab-libraryView" onclick="showView('libraryView')">Biblioteca</button>
-    <button class="tab" id="tab-logView" onclick="showView('logView')">Registro</button>
-    <button class="tab" id="tab-statsView" onclick="showView('statsView')">Progreso</button>
-  </nav>
+<h1>NAVYFIT EMBARCADO</h1>
+<p>FLEETEX Edition · versión simple sin caché</p>
 </header>
 
 <main>
-  <section id="libraryView" class="view">
-    <div class="controls">
-      <input id="search" oninput="renderWorkouts()" placeholder="Buscar: clean, hombro, gym, carry...">
-      <div class="filters">
-        <button class="filter active" id="f-ALL" onclick="setFilter('ALL')">Todos</button>
-        <button class="filter" id="f-FAVORITOS" onclick="setFilter('FAVORITOS')">Favoritos</button>
-        <button class="filter" id="f-GYM_ONLY" onclick="setFilter('GYM ONLY')">Gym Only</button>
-        <button class="filter" id="f-FLIGHT_DECK_OPS" onclick="setFilter('FLIGHT DECK OPS')">Flight Deck Ops</button>
-        <button class="filter" id="f-OLYMPIC_TACTICAL" onclick="setFilter('OLYMPIC TACTICAL')">Olympic Tactical</button>
-      </div>
-      <div class="grid3">
-        <button onclick="recommend('calm')">🟢 Mar calma</button>
-        <button onclick="recommend('moderate')">🟡 Mar moderada</button>
-        <button onclick="recommend('rough')">🔴 Mala mar</button>
-      </div>
-    </div>
-    <div id="workoutList"></div>
-  </section>
+<section id="list">
+<input id="search" placeholder="Buscar entrenamiento..." oninput="render()">
+<div>
+<button id="bALL" class="active" onclick="setFilter('ALL')">Todos</button>
+<button id="bGYMONLY" onclick="setFilter('GYM ONLY')">Gym Only</button>
+<button id="bFLIGHTDECKOPS" onclick="setFilter('FLIGHT DECK OPS')">Flight Deck Ops</button>
+<button id="bOLYMPIC" onclick="setFilter('OLYMPIC TACTICAL')">Olympic Tactical</button>
+</div>
+<div>
+<button onclick="recommend('rough')">🔴 Mala mar</button>
+<button onclick="recommend('moderate')">🟡 Mar moderada</button>
+<button onclick="recommend('calm')">🟢 Mar calma</button>
+</div>
+<div id="workouts"></div>
+</section>
 
-  <section id="detailView" class="view hidden">
-    <div id="detail" class="detail"></div>
-  </section>
-
-  <section id="logView" class="view hidden">
-    <div class="panel">
-      <h2>Registro de entrenamientos</h2>
-      <div class="grid2">
-        <button onclick="exportData()">Exportar backup</button>
-        <label><input type="file" onchange="importData(event)" style="display:none"> <span class="pill">Importar backup</span></label>
-      </div>
-      <div id="logList"></div>
-    </div>
-  </section>
-
-  <section id="statsView" class="view hidden">
-    <div class="grid2">
-      <div class="panel"><div class="kpi" id="kpiTotal">0</div><b>Total entrenamientos</b></div>
-      <div class="panel"><div class="kpi" id="kpi30">0</div><b>Últimos 30 días</b></div>
-    </div>
-    <div class="panel">
-      <h2>PRs / Pesos de referencia</h2>
-      <div class="grid2">
-        <label>Back Squat<input id="prBackSquat" placeholder="kg"></label>
-        <label>Front Squat<input id="prFrontSquat" placeholder="kg"></label>
-        <label>Deadlift<input id="prDeadlift" placeholder="kg"></label>
-        <label>Strict Press<input id="prStrictPress" placeholder="kg"></label>
-        <label>Power Clean<input id="prPowerClean" placeholder="kg"></label>
-        <label>Clean & Jerk<input id="prCleanJerk" placeholder="kg"></label>
-      </div>
-      <br><button class="green" onclick="savePRForm()">Guardar PRs</button>
-    </div>
-  </section>
+<section id="detail" class="hidden">
+<div id="detailContent" class="detail"></div>
+</section>
 </main>
 
 <div id="timerBox" class="timerBox hidden">
-  <div id="timerTitle">Timer</div>
-  <div id="timer" class="timer">0:00</div>
-  <div class="timerControls">
-    <button class="gold" onclick="pauseTimer()">Pausa/seguir</button>
-    <button class="red" onclick="stopTimer()">Cerrar</button>
-  </div>
+<div id="timerTitle">Timer</div>
+<div id="timer" class="timer">0:00</div>
+<button onclick="pauseTimer()">Pausa/seguir</button>
+<button onclick="stopTimer()">Cerrar</button>
 </div>
 
 <script>
-
 const WORKOUTS = [
   {
     "id": 1,
@@ -568,217 +487,94 @@ const WORKOUTS = [
     "sea": "Run por 500 m Row. Burpees por Push Ups."
   }
 ];
-const LS_LOG = "navyfit_logs_v2";
-const LS_FAV = "navyfit_favs_v2";
-const LS_PRS = "navyfit_prs_v2";
-
-let activeFilter = "ALL";
-let currentWorkout = null;
-let timer=null, remaining=0, timerMode="";
-
-function $(id){return document.getElementById(id)}
-function getLogs(){return JSON.parse(localStorage.getItem(LS_LOG)||"[]")}
-function saveLogs(x){localStorage.setItem(LS_LOG, JSON.stringify(x))}
-function getFavs(){return JSON.parse(localStorage.getItem(LS_FAV)||"[]")}
-function saveFavs(x){localStorage.setItem(LS_FAV, JSON.stringify(x))}
-function getPRs(){return JSON.parse(localStorage.getItem(LS_PRS)||"{}")}
-function savePRs(x){localStorage.setItem(LS_PRS, JSON.stringify(x))}
-
-function showView(id){
-  document.querySelectorAll(".view").forEach(v=>v.classList.add("hidden"));
-  $(id).classList.remove("hidden");
-  document.querySelectorAll("nav .tab").forEach(b=>b.classList.remove("active"));
-  const tab = $("tab-"+id);
-  if(tab) tab.classList.add("active");
-  if(id==="libraryView") renderWorkouts();
-  if(id==="logView") renderLog();
-  if(id==="statsView") renderStats();
-}
-
-function renderWorkouts(){
-  const q = $("search").value.toLowerCase();
-  const favs = getFavs();
-  const list = $("workoutList");
-  list.innerHTML = "";
-  const filtered = WORKOUTS.filter(w => 
-    (activeFilter === "ALL" || w.block === activeFilter || (activeFilter==="FAVORITOS" && favs.includes(w.id))) &&
-    (w.name.toLowerCase().includes(q) || w.focus.toLowerCase().includes(q) || w.block.toLowerCase().includes(q) || w.wod.toLowerCase().includes(q))
-  );
-  filtered.forEach(w => {
-    const isRed = w.intensity.includes("🔴");
-    const isGreen = w.intensity.includes("🟢");
-    const card = document.createElement("div");
-    card.className = "card " + (isRed?"redBorder":isGreen?"greenBorder":"");
-    card.onclick = () => openWorkout(w.id);
-    card.innerHTML = `<div class="row"><h3>${String(w.id).padStart(2,"0")} – ${w.name}</h3><span>${favs.includes(w.id)?"⭐ ":""}${w.intensity}</span></div>
-      <p><b>${w.block}</b> · ${w.focus}</p><p>${w.duration} · ${w.material}</p>`;
-    list.appendChild(card);
-  });
-}
+let filter = 'ALL';
+let timer = null;
+let remaining = 0;
 
 function setFilter(f){
-  activeFilter = f;
-  document.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
-  const id = "f-"+f.replaceAll(" ","_");
-  if($(id)) $(id).classList.add("active");
-  renderWorkouts();
+  filter = f;
+  document.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+  const map = {'ALL':'bALL','GYM ONLY':'bGYMONLY','FLIGHT DECK OPS':'bFLIGHTDECKOPS','OLYMPIC TACTICAL':'bOLYMPIC'};
+  if(document.getElementById(map[f])) document.getElementById(map[f]).classList.add('active');
+  render();
 }
 
-function openWorkout(id){
-  currentWorkout = WORKOUTS.find(x => x.id === id);
-  showView("detailView");
-  renderDetail();
-}
-
-function toggleFav(id){
-  let favs = getFavs();
-  if(favs.includes(id)) favs = favs.filter(x=>x!==id); else favs.push(id);
-  saveFavs(favs);
-  renderDetail();
-}
-
-function renderDetail(){
-  const w = currentWorkout;
-  const favs = getFavs();
-  $("detail").innerHTML = `
-    <button class="secondary" onclick="showView('libraryView')">← Volver</button>
-    <button class="gold" onclick="toggleFav(${w.id})">${favs.includes(w.id)?"★ Favorito":"☆ Añadir favorito"}</button>
-    <h1>${String(w.id).padStart(2,"0")} – ${w.name}</h1>
-    <p><span class="pill">${w.block}</span><span class="pill">${w.duration}</span><span class="pill ${w.intensity.includes("🔴")?"redPill":""}">${w.intensity}</span></p>
-    <p><b>Foco:</b> ${w.focus}</p>
-    <p><b>Material:</b> ${w.material}</p>
-    <p><b>Objetivo:</b> ${w.objective}</p>
-    <h2>Calentamiento</h2>
-    <ul>${w.warmup.map(x=>`<li>${x}</li>`).join("")}</ul>
-    <h2>Fuerza / Técnica</h2><p>${w.strength}</p>
-    <h2>Accesorio</h2><p>${w.accessory}</p>
-    <h2>WOD</h2><p>${w.wod}</p>
-    <div class="grid2"><div><h2>RX</h2><p>${w.rx}</p></div><div><h2>Scaled</h2><p>${w.scaled}</p></div></div>
-    <h2>Sea State &gt; 3</h2><p>${w.sea}</p>
-    <h2>Acciones</h2>
-    <div class="grid3">
-      <button onclick="startTimer(12*60,'Warm Up')">Warm Up 12'</button>
-      <button onclick="startTimer(18*60,'WOD')">WOD 18'</button>
-      <button onclick="startTimer(20*60,'WOD')">WOD 20'</button>
-      <button class="green" onclick="completeWorkout(${w.id})">Marcar completado</button>
-      <button class="light" onclick="print()">Imprimir ficha</button>
-      <button class="red" onclick="startEmom()">EMOM rápido</button>
-    </div>
-    <h2>Notas de hoy</h2>
-    <textarea id="workoutNotes" placeholder="Pesos, sensaciones, tiempo, modificaciones..."></textarea>
-  `;
-}
-
-function completeWorkout(id){
-  const w = WORKOUTS.find(x=>x.id===id);
-  const notes = $("workoutNotes") ? $("workoutNotes").value : "";
-  const logs = getLogs();
-  logs.unshift({date:new Date().toISOString(), workoutId:id, name:w.name, block:w.block, notes});
-  saveLogs(logs);
-  alert("Entrenamiento registrado.");
-  renderStats();
-}
-
-function recommend(state){
-  let pool;
-  if(state==="calm") pool = WORKOUTS.filter(w => w.block !== "GYM ONLY" || !w.intensity.includes("🔴"));
-  if(state==="moderate") pool = WORKOUTS.filter(w => w.block !== "FLIGHT DECK OPS");
-  if(state==="rough") pool = WORKOUTS.filter(w => w.block === "GYM ONLY" || w.sea.length>0);
-  const w = pool[Math.floor(Math.random()*pool.length)];
-  openWorkout(w.id);
-}
-
-function renderLog(){
-  const logs = getLogs();
-  const box = $("logList");
-  box.innerHTML = logs.length ? "" : "<p>No hay entrenamientos registrados todavía.</p>";
-  logs.forEach(l=>{
-    const d = new Date(l.date);
-    const div = document.createElement("div");
-    div.className="logItem";
-    div.innerHTML = `<b>${d.toLocaleDateString()} – ${l.name}</b><br><span class="small">${l.block}</span><p>${l.notes||""}</p>`;
+function render(){
+  const box = document.getElementById('workouts');
+  const q = document.getElementById('search').value.toLowerCase();
+  box.innerHTML = '';
+  const arr = WORKOUTS.filter(w => (filter==='ALL' || w.block===filter) && 
+    (w.name.toLowerCase().includes(q) || w.focus.toLowerCase().includes(q) || w.block.toLowerCase().includes(q)));
+  if(arr.length===0) box.innerHTML = '<p>No hay resultados.</p>';
+  arr.forEach(w=>{
+    const div=document.createElement('div');
+    div.className='card';
+    div.innerHTML=`<h3>${String(w.id).padStart(2,'0')} – ${w.name}</h3><p><b>${w.block}</b> · ${w.focus}</p><p>${w.intensity} · ${w.duration}</p>`;
+    div.onclick=()=>openWorkout(w.id);
     box.appendChild(div);
   });
 }
 
-function renderStats(){
-  const logs = getLogs();
-  const last30 = logs.filter(l => Date.now() - new Date(l.date).getTime() < 30*24*3600*1000);
-  $("kpiTotal").textContent = logs.length;
-  $("kpi30").textContent = last30.length;
-  const prs = getPRs();
-  $("prBackSquat").value = prs.backSquat || "";
-  $("prFrontSquat").value = prs.frontSquat || "";
-  $("prDeadlift").value = prs.deadlift || "";
-  $("prStrictPress").value = prs.strictPress || "";
-  $("prPowerClean").value = prs.powerClean || "";
-  $("prCleanJerk").value = prs.cleanJerk || "";
+function openWorkout(id){
+  const w = WORKOUTS.find(x=>x.id===id);
+  document.getElementById('list').classList.add('hidden');
+  document.getElementById('detail').classList.remove('hidden');
+  document.getElementById('detailContent').innerHTML = `
+    <button onclick="back()">← Volver</button>
+    <h1>${String(w.id).padStart(2,'0')} – ${w.name}</h1>
+    <p><span class="pill">${w.block}</span><span class="pill">${w.duration}</span><span class="pill">${w.intensity}</span></p>
+    <p><b>Foco:</b> ${w.focus}</p>
+    <p><b>Material:</b> ${w.material}</p>
+    <p><b>Objetivo:</b> ${w.objective}</p>
+    <h2>Calentamiento</h2><ul>${w.warmup.map(x=>`<li>${x}</li>`).join('')}</ul>
+    <h2>Fuerza / Técnica</h2><p>${w.strength}</p>
+    <h2>Accesorio</h2><p>${w.accessory}</p>
+    <h2>WOD</h2><p>${w.wod}</p>
+    <div class="grid"><div class="panel"><h2>RX</h2><p>${w.rx}</p></div><div class="panel"><h2>Scaled</h2><p>${w.scaled}</p></div></div>
+    <h2>Sea State &gt; 3</h2><p>${w.sea}</p>
+    <button onclick="startTimer(12*60,'Warm Up')">Warm Up 12'</button>
+    <button onclick="startTimer(18*60,'WOD 18')">WOD 18'</button>
+    <button onclick="startTimer(20*60,'WOD 20')">WOD 20'</button>
+  `;
 }
 
-function savePRForm(){
-  savePRs({
-    backSquat:$("prBackSquat").value, frontSquat:$("prFrontSquat").value, deadlift:$("prDeadlift").value,
-    strictPress:$("prStrictPress").value, powerClean:$("prPowerClean").value, cleanJerk:$("prCleanJerk").value
-  });
-  alert("PRs guardados.");
+function back(){
+  document.getElementById('detail').classList.add('hidden');
+  document.getElementById('list').classList.remove('hidden');
 }
 
-function exportData(){
-  const data = {logs:getLogs(), favs:getFavs(), prs:getPRs(), exportedAt:new Date().toISOString()};
-  const blob = new Blob([JSON.stringify(data,null,2)], {type:"application/json"});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href=url; a.download="navyfit_backup.json"; a.click();
-  URL.revokeObjectURL(url);
+function recommend(state){
+  let pool = WORKOUTS;
+  if(state==='rough') pool = WORKOUTS.filter(w=>w.block==='GYM ONLY');
+  if(state==='moderate') pool = WORKOUTS.filter(w=>w.block!=='FLIGHT DECK OPS');
+  if(state==='calm') pool = WORKOUTS;
+  const w = pool[Math.floor(Math.random()*pool.length)];
+  openWorkout(w.id);
 }
 
-function importData(ev){
-  const file = ev.target.files[0]; if(!file) return;
-  const reader = new FileReader();
-  reader.onload = () => {
-    try {
-      const data = JSON.parse(reader.result);
-      if(data.logs) saveLogs(data.logs);
-      if(data.favs) saveFavs(data.favs);
-      if(data.prs) savePRs(data.prs);
-      alert("Datos importados.");
-      renderStats(); renderLog(); renderWorkouts();
-    } catch(e) { alert("Archivo no válido."); }
-  };
-  reader.readAsText(file);
-}
-
-function startTimer(sec, mode){
-  remaining = sec; timerMode=mode||"Timer";
-  $("timerTitle").textContent = timerMode;
-  $("timerBox").classList.remove("hidden");
+function startTimer(sec,title){
+  remaining=sec;
+  document.getElementById('timerTitle').textContent=title;
+  document.getElementById('timerBox').classList.remove('hidden');
   updateTimer();
   if(timer) clearInterval(timer);
-  timer = setInterval(()=>{
-    remaining--;
-    updateTimer();
-    if(remaining <= 0){ clearInterval(timer); timer=null; navigator.vibrate?.([300,200,300]); }
-  },1000);
+  timer=setInterval(()=>{remaining--; updateTimer(); if(remaining<=0){clearInterval(timer); timer=null;}},1000);
 }
-function startEmom(){
-  const minutes = prompt("Minutos de EMOM", "20");
-  const m = parseInt(minutes||"20",10);
-  startTimer(m*60, "EMOM " + m + "'");
+function pauseTimer(){
+  if(timer){clearInterval(timer); timer=null;}
+  else timer=setInterval(()=>{remaining--; updateTimer(); if(remaining<=0){clearInterval(timer); timer=null;}},1000);
 }
-function pauseTimer(){ if(timer){clearInterval(timer); timer=null;} else {timer=setInterval(()=>{remaining--;updateTimer();if(remaining<=0){clearInterval(timer);timer=null;}},1000)}}
-function stopTimer(){ if(timer) clearInterval(timer); timer=null; $("timerBox").classList.add("hidden"); }
+function stopTimer(){
+  if(timer) clearInterval(timer);
+  timer=null;
+  document.getElementById('timerBox').classList.add('hidden');
+}
 function updateTimer(){
-  const m = Math.floor(remaining/60), s = remaining%60;
-  $("timer").textContent = `${m}:${String(s).padStart(2,"0")}`;
+  let m=Math.floor(remaining/60), s=remaining%60;
+  document.getElementById('timer').textContent=m+':'+String(s).padStart(2,'0');
 }
 
-document.addEventListener("DOMContentLoaded", ()=>{ renderWorkouts(); renderStats(); });
-
-</script>
-<script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()));
-}
+render();
 </script>
 </body>
 </html>
