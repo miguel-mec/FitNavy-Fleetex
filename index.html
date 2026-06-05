@@ -8,51 +8,88 @@
 <meta name="theme-color" content="#071a2f">
 <style>
 :root{
-  --navy:#071a2f;--blue:#0f3b66;--gold:#d4a017;--red:#9d1b1e;--green:#1f7a4d;
-  --bg:#f3f6fa;--card:#fff;--text:#111;--muted:#607080;--line:#d9e0ea;
+  --navy:#061a2f;--blue:#0b3a66;--blue2:#124d83;--gold:#d4a017;--red:#aa151b;--yellow:#f1bf00;
+  --green:#1f7a4d;--bg:#edf2f7;--card:#fff;--text:#111;--muted:#607080;--line:#d9e0ea;
 }
 *{box-sizing:border-box}
-body{font-family:Arial,Helvetica,sans-serif;margin:0;background:var(--bg);color:var(--text)}
-header{background:linear-gradient(135deg,var(--navy),var(--blue));color:white;padding:16px 18px;position:sticky;top:0;z-index:10;box-shadow:0 4px 18px #0003}
-.headerTop{display:flex;align-items:center;gap:14px}
-.logo{width:58px;height:58px;border-radius:12px;background:white;object-fit:contain}
-h1{margin:0;font-size:28px;letter-spacing:.4px}
-header p{margin:4px 0 0;color:#dce7f5}
-nav{display:flex;gap:8px;overflow:auto;margin-top:13px;padding-bottom:2px}
-main{max-width:980px;margin:auto;padding:18px}
-button{background:var(--blue);color:white;border:0;border-radius:11px;padding:10px 14px;font-weight:800;margin:4px;cursor:pointer}
-button.active,button.gold{background:var(--gold);color:#111}
-button.red{background:var(--red)} button.green{background:var(--green)} button.gray{background:#3c4654}
+body{
+  font-family:Arial,Helvetica,sans-serif;margin:0;background:
+  linear-gradient(180deg,#e9f0f7 0,#f5f7fa 180px,#edf2f7 100%);
+  color:var(--text)
+}
+header{
+  background:
+    linear-gradient(90deg,rgba(170,21,27,.95) 0 8%,rgba(241,191,0,.95) 8% 16%,rgba(170,21,27,.95) 16% 24%,transparent 24%),
+    linear-gradient(135deg,#041426,#0b3a66 60%,#09243f);
+  color:white;padding:15px 18px 0;position:sticky;top:0;z-index:10;box-shadow:0 6px 22px #0004
+}
+.headerTop{display:flex;align-items:center;gap:14px;padding-bottom:12px}
+.logo{width:62px;height:62px;border-radius:14px;background:white;object-fit:contain;border:2px solid rgba(255,255,255,.9)}
+.titleBlock h1{margin:0;font-size:29px;letter-spacing:1px}
+.titleBlock p{margin:4px 0 0;color:#dce7f5}
+.navSub{font-size:12px;letter-spacing:2px;color:#f1bf00;font-weight:900;margin-top:3px}
+.flags{margin-left:auto;text-align:right;font-weight:900;font-size:13px;line-height:1.4}
+.flagES{display:inline-block;background:linear-gradient(#aa151b 0 25%,#f1bf00 25% 75%,#aa151b 75%);color:#111;padding:5px 10px;border-radius:999px;margin-bottom:5px}
+.flagUS{display:inline-block;background:linear-gradient(90deg,#1b3764 0 34%,#fff 34% 40%,#b22234 40% 50%,#fff 50% 60%,#b22234 60% 70%,#fff 70% 80%,#b22234 80%);color:#fff;padding:5px 10px;border-radius:999px;text-shadow:0 1px 2px #000}
+nav{display:flex;gap:8px;overflow:auto;padding:0 0 12px}
+main{max-width:1040px;margin:auto;padding:20px}
+button{
+  background:linear-gradient(180deg,var(--blue2),var(--blue));color:white;border:0;border-radius:11px;
+  padding:10px 14px;font-weight:900;margin:4px;cursor:pointer;box-shadow:0 2px 0 #03101e
+}
+button.active,button.gold{background:linear-gradient(180deg,#f1bf00,#c99500);color:#101010}
+button.red{background:linear-gradient(180deg,#bd1e24,#7d1217)}
+button.green{background:linear-gradient(180deg,#25945c,#176a41)}
+button.gray{background:#3c4654}
 input,select,textarea{width:100%;padding:12px;border-radius:11px;border:1px solid #bfc8d4;font-size:16px;background:white}
 textarea{min-height:90px}
-.controls{display:grid;gap:10px;margin-bottom:12px}
-.buttonRow{display:flex;flex-wrap:wrap;gap:4px}
-.card{background:white;border-radius:16px;padding:15px;margin:10px 0;box-shadow:0 3px 14px #0002;border-left:6px solid var(--blue);cursor:pointer}
+.controls{background:rgba(255,255,255,.78);border:1px solid #d9e0ea;border-radius:18px;padding:14px;box-shadow:0 4px 16px #0001;margin-bottom:14px}
+.buttonRow{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.card{
+  position:relative;background:white;border-radius:16px;padding:16px 16px 16px 18px;margin:12px 0;
+  box-shadow:0 4px 18px #0002;border-left:7px solid var(--blue);cursor:pointer;overflow:hidden
+}
+.card:after{
+  content:"⚓";position:absolute;right:18px;bottom:-4px;font-size:48px;color:rgba(6,26,47,.07);font-weight:bold
+}
 .card.redBorder{border-left-color:var(--red)}.card.greenBorder{border-left-color:var(--green)}
-.card h3{margin:0 0 8px}.card p{margin:6px 0}
+.card h3{margin:0 0 8px;letter-spacing:.3px}.card p{margin:6px 0}
 .hidden{display:none!important}
-.detail,.panel{background:white;border-radius:16px;padding:18px;box-shadow:0 3px 14px #0002;margin-bottom:14px}
-.detail h2,.panel h2{color:var(--blue);border-bottom:1px solid var(--line);padding-bottom:6px}
+.detail,.panel{
+  background:white;border-radius:16px;padding:18px;box-shadow:0 4px 18px #0002;margin-bottom:14px;border-top:4px solid var(--blue)
+}
+.detail h1{letter-spacing:.4px}.detail h2,.panel h2{color:var(--blue);border-bottom:1px solid var(--line);padding-bottom:6px}
 .pill{background:#e8eef7;color:var(--blue);padding:5px 9px;border-radius:999px;font-weight:bold;display:inline-block;margin:3px}
+.pill.sea{background:#fff4d0;color:#6d4c00}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
 .kpi{font-size:32px;font-weight:900;color:var(--blue)}
 .small{font-size:13px;color:var(--muted)}
 .logItem{border-bottom:1px solid #e5e9ef;padding:12px 0}
-.status{font-size:14px;color:#4d5a66}
+.status{font-size:14px;color:#33495c;font-weight:700;margin:10px 0 0}
 .timerBox{position:fixed;left:14px;right:14px;bottom:14px;background:var(--navy);color:white;border-radius:18px;padding:16px;text-align:center;box-shadow:0 8px 30px #0008;z-index:20}
 .timer{font-size:50px;font-weight:900;letter-spacing:2px}
 .progressBar{height:10px;background:#d9e0ea;border-radius:999px;overflow:hidden;margin:10px 0}
 .progressBar div{height:100%;background:var(--gold);width:0%}
 table{width:100%;border-collapse:collapse;background:white}td,th{border-bottom:1px solid #e5e9ef;padding:9px;text-align:left}
-@media(max-width:700px){.grid2,.grid3{grid-template-columns:1fr}h1{font-size:22px}.logo{width:48px;height:48px}.timer{font-size:42px}}
+@media(max-width:760px){
+  .grid2,.grid3{grid-template-columns:1fr}.flags{display:none}.titleBlock h1{font-size:22px}.logo{width:50px;height:50px}main{padding:12px}.timer{font-size:42px}
+}
 </style>
 </head>
 <body>
 <header>
   <div class="headerTop">
     <img src="icon-512.png" class="logo" alt="NAVYFIT">
-    <div><h1>NAVYFIT EMBARCADO</h1><p>FLEETEX Edition · Final build</p></div>
+    <div class="titleBlock">
+      <h1>NAVYFIT EMBARCADO</h1>
+      <p>FLEETEX Edition · Spanish Navy / US Navy style</p>
+      <div class="navSub">FORCE · DISCIPLINE · ENDURANCE</div>
+    </div>
+    <div class="flags">
+      <div class="flagES">ESPAÑA</div><br>
+      <div class="flagUS">USA</div>
+    </div>
   </div>
   <nav>
     <button id="tab_libraryView" class="active" onclick="showView('libraryView')">Biblioteca</button>
@@ -85,76 +122,12 @@ table{width:100%;border-collapse:collapse;background:white}td,th{border-bottom:1
 </section>
 
 <section id="detailView" class="view hidden"><div id="detail" class="detail"></div></section>
-
-<section id="logView" class="view hidden">
-  <div class="panel">
-    <h2>Registro de entrenamientos</h2>
-    <button onclick="exportData()">Exportar backup</button>
-    <label><input type="file" onchange="importData(event)" style="display:none"><span class="pill">Importar backup</span></label>
-    <div id="logList"></div>
-  </div>
-</section>
-
-<section id="progressView" class="view hidden">
-  <div class="grid2">
-    <div class="panel"><div id="kpiTotal" class="kpi">0</div><b>Total entrenamientos</b></div>
-    <div class="panel"><div id="kpi30" class="kpi">0</div><b>Últimos 30 días</b></div>
-  </div>
-  <div class="panel">
-    <h2>PRs / Pesos de referencia</h2>
-    <div class="grid2">
-      <label>Back Squat<input id="backSquat" placeholder="kg"></label>
-      <label>Front Squat<input id="frontSquat" placeholder="kg"></label>
-      <label>Deadlift<input id="deadlift" placeholder="kg"></label>
-      <label>Strict Press<input id="strictPress" placeholder="kg"></label>
-      <label>Push Press<input id="pushPress" placeholder="kg"></label>
-      <label>Power Clean<input id="powerClean" placeholder="kg"></label>
-      <label>Clean & Jerk<input id="cleanJerk" placeholder="kg"></label>
-    </div><br>
-    <button class="green" onclick="savePRForm()">Guardar PRs</button>
-  </div>
-</section>
-
-<section id="calculatorView" class="view hidden">
-  <div class="panel">
-    <h2>Calculadora de porcentajes</h2>
-    <div class="grid3">
-      <label>Ejercicio<select id="calcExercise" onchange="renderCalculator();quickPercentTable()">
-        <option value="backSquat">Back Squat</option><option value="frontSquat">Front Squat</option>
-        <option value="deadlift">Deadlift</option><option value="strictPress">Strict Press</option>
-        <option value="pushPress">Push Press</option><option value="powerClean">Power Clean</option>
-        <option value="cleanJerk">Clean & Jerk</option>
-      </select></label>
-      <label>Porcentaje<input id="calcPct" value="70" oninput="renderCalculator()"></label>
-      <div><p class="small">Resultado</p><div id="calcResult" class="kpi">-</div></div>
-    </div>
-    <button onclick="quickPercentTable()">Tabla 50-90%</button>
-    <div id="pctTable"></div>
-  </div>
-</section>
-
-<section id="recommendView" class="view hidden">
-  <div class="panel">
-    <h2>¿Qué hago hoy?</h2>
-    <label>Fatiga operativa<select id="fatigue">
-      <option value="green">🟢 Descansado</option>
-      <option value="yellow">🟡 Guardia / sueño regular</option>
-      <option value="red">🔴 Guardia + sueño malo</option>
-    </select></label><br><br>
-    <label><input id="calf" type="checkbox" style="width:auto"> Gemelo tocado / evitar carrera y lunges</label><br><br>
-    <button class="green" onclick="suggestToday()">Recomendar entrenamiento</button>
-  </div>
-</section>
+<section id="logView" class="view hidden"><div class="panel"><h2>Registro de entrenamientos</h2><button onclick="exportData()">Exportar backup</button><label><input type="file" onchange="importData(event)" style="display:none"><span class="pill">Importar backup</span></label><div id="logList"></div></div></section>
+<section id="progressView" class="view hidden"><div class="grid2"><div class="panel"><div id="kpiTotal" class="kpi">0</div><b>Total entrenamientos</b></div><div class="panel"><div id="kpi30" class="kpi">0</div><b>Últimos 30 días</b></div></div><div class="panel"><h2>PRs / Pesos de referencia</h2><div class="grid2"><label>Back Squat<input id="backSquat" placeholder="kg"></label><label>Front Squat<input id="frontSquat" placeholder="kg"></label><label>Deadlift<input id="deadlift" placeholder="kg"></label><label>Strict Press<input id="strictPress" placeholder="kg"></label><label>Push Press<input id="pushPress" placeholder="kg"></label><label>Power Clean<input id="powerClean" placeholder="kg"></label><label>Clean & Jerk<input id="cleanJerk" placeholder="kg"></label></div><br><button class="green" onclick="savePRForm()">Guardar PRs</button></div></section>
+<section id="calculatorView" class="view hidden"><div class="panel"><h2>Calculadora de porcentajes</h2><div class="grid3"><label>Ejercicio<select id="calcExercise" onchange="renderCalculator();quickPercentTable()"><option value="backSquat">Back Squat</option><option value="frontSquat">Front Squat</option><option value="deadlift">Deadlift</option><option value="strictPress">Strict Press</option><option value="pushPress">Push Press</option><option value="powerClean">Power Clean</option><option value="cleanJerk">Clean & Jerk</option></select></label><label>Porcentaje<input id="calcPct" value="70" oninput="renderCalculator()"></label><div><p class="small">Resultado</p><div id="calcResult" class="kpi">-</div></div></div><button onclick="quickPercentTable()">Tabla 50-90%</button><div id="pctTable"></div></div></section>
+<section id="recommendView" class="view hidden"><div class="panel"><h2>¿Qué hago hoy?</h2><label>Fatiga operativa<select id="fatigue"><option value="green">🟢 Descansado</option><option value="yellow">🟡 Guardia / sueño regular</option><option value="red">🔴 Guardia + sueño malo</option></select></label><br><br><label><input id="calf" type="checkbox" style="width:auto"> Gemelo tocado / evitar carrera y lunges</label><br><br><button class="green" onclick="suggestToday()">Recomendar entrenamiento</button></div></section>
 </main>
-
-<div id="timerBox" class="timerBox hidden">
-  <div id="timerTitle">Timer</div>
-  <div class="progressBar"><div id="timerProgress"></div></div>
-  <div id="timer" class="timer">0:00</div>
-  <button class="gold" onclick="pauseTimer()">Pausa/seguir</button>
-  <button class="red" onclick="stopTimer()">Cerrar</button>
-</div>
-
+<div id="timerBox" class="timerBox hidden"><div id="timerTitle">Timer</div><div class="progressBar"><div id="timerProgress"></div></div><div id="timer" class="timer">0:00</div><button class="gold" onclick="pauseTimer()">Pausa/seguir</button><button class="red" onclick="stopTimer()">Cerrar</button></div>
 <script>
 const WORKOUTS = [
   {
@@ -177,7 +150,8 @@ const WORKOUTS = [
     "wod": "AMRAP 18: 200 m Run o 250 m Row, 10 Thrusters, 30 m Farmer Carry, 12 Sit Ups.",
     "rx": "Thruster 40 kg. Farmer Carry 2x30 kg.",
     "scaled": "Thruster 25-30 kg. Farmer Carry 2x20 kg. Run 150 m o Row 200 m.",
-    "sea": "Sustituir carrera y Farmer Carry por 250 m Row y 12 cal Bike."
+    "sea": "Sustituir carrera y Farmer Carry por 250 m Row y 12 cal Bike.",
+    "seaCategory": "ROUGH"
   },
   {
     "id": 2,
@@ -199,7 +173,8 @@ const WORKOUTS = [
     "wod": "EMOM 18: Min 1 10 Push Press, Min 2 12 cal Row, Min 3 10 Burpees.",
     "rx": "Push Press 40 kg.",
     "scaled": "Push Press 25-30 kg. Burpees sin salto.",
-    "sea": "Mantener igual. En mala mar sustituir burpees por Push Ups."
+    "sea": "Mantener igual. En mala mar sustituir burpees por Push Ups.",
+    "seaCategory": "ROUGH"
   },
   {
     "id": 3,
@@ -221,7 +196,8 @@ const WORKOUTS = [
     "wod": "AMRAP 20: 300 m Row, 15 Goblet Squats, 12 Push Ups, 15 Med Ball Slams, 20 Saltos Comba.",
     "rx": "Goblet 30 kg. Med Ball 9 kg.",
     "scaled": "Goblet 15-22,5 kg. Sin comba: 20 Jumping Jacks.",
-    "sea": "Quitar comba y hacer 20 Sit Ups."
+    "sea": "Quitar comba y hacer 20 Sit Ups.",
+    "seaCategory": "ROUGH"
   },
   {
     "id": 4,
@@ -242,7 +218,8 @@ const WORKOUTS = [
     "wod": "FOR TIME 4 rondas: 200 m Run, 10 DB Push Press, 20 Walking Lunges, 12 Burpees.",
     "rx": "DB Push Press 2x22,5 kg.",
     "scaled": "Run 150 m. DB 2x15 kg. Burpees sin salto.",
-    "sea": "Cambiar Run por 250 m Row y Lunges por Goblet Squats."
+    "sea": "Cambiar Run por 250 m Row y Lunges por Goblet Squats.",
+    "seaCategory": "CALM"
   },
   {
     "id": 5,
@@ -264,7 +241,8 @@ const WORKOUTS = [
     "wod": "21-15-9: Thrusters + Burpees Over Bar. Tras cada ronda: 250 m Row.",
     "rx": "Thruster 40 kg.",
     "scaled": "Thruster 25-30 kg. Burpees laterales o normales.",
-    "sea": "Burpees normales, sin salto sobre barra."
+    "sea": "Burpees normales, sin salto sobre barra.",
+    "seaCategory": "ROUGH"
   },
   {
     "id": 6,
@@ -286,7 +264,8 @@ const WORKOUTS = [
     "wod": "AMRAP 16: 12 cal Bike, 10 DB Shoulder Press, 15 Goblet Squats, 250 m Row.",
     "rx": "DB Shoulder Press 2x17,5 kg. Goblet 30 kg.",
     "scaled": "DB 2x10-12,5 kg. Goblet 20 kg.",
-    "sea": "Mantener Bike/Row. Evitar cambios bruscos."
+    "sea": "Mantener Bike/Row. Evitar cambios bruscos.",
+    "seaCategory": "ROUGH"
   },
   {
     "id": 7,
@@ -307,7 +286,8 @@ const WORKOUTS = [
     "wod": "20 min Zona 2 alternando 2 min Row + 2 min Bike.",
     "rx": "DB 2x15-20 kg.",
     "scaled": "DB 2x10-12,5 kg. Mantener conversación durante zona 2.",
-    "sea": "Ideal para mala mar. Sin carrera ni saltos."
+    "sea": "Ideal para mala mar. Sin carrera ni saltos.",
+    "seaCategory": "ROUGH"
   },
   {
     "id": 8,
@@ -328,7 +308,8 @@ const WORKOUTS = [
     "wod": "FOR TIME 4 rondas: 300 m Run, 15 Med Ball Slams, 12 DB Thrusters, 10 Burpees.",
     "rx": "Med Ball 9 kg. DB Thrusters 2x17,5 kg.",
     "scaled": "Run 200 m. DB 2x10-12,5 kg.",
-    "sea": "Run por 300 m Row. Burpees por Push Ups."
+    "sea": "Run por 300 m Row. Burpees por Push Ups.",
+    "seaCategory": "CALM"
   },
   {
     "id": 9,
@@ -350,7 +331,8 @@ const WORKOUTS = [
     "wod": "EMOM 15: Min 1 12 cal Bike, Min 2 12 Push Ups, Min 3 12 DB Snatch alternos.",
     "rx": "DB Snatch 22,5 kg.",
     "scaled": "DB Snatch 15 kg. Push Ups con rodillas si hace falta.",
-    "sea": "Mantener. Evitar DB Snatch si el barco se mueve mucho y cambiar por DB Row."
+    "sea": "Mantener. Evitar DB Snatch si el barco se mueve mucho y cambiar por DB Row.",
+    "seaCategory": "ROUGH"
   },
   {
     "id": 10,
@@ -371,7 +353,8 @@ const WORKOUTS = [
     "wod": "AMRAP 18: 8 Power Cleans, 12 Burpees, 100 m Farmer Carry.",
     "rx": "Power Clean 60 kg. Farmer Carry 2x30 kg.",
     "scaled": "Power Clean 40 kg. Farmer Carry 60 m con 2x20 kg.",
-    "sea": "Farmer Carry por 12 cal Bike. Burpees por Push Ups."
+    "sea": "Farmer Carry por 12 cal Bike. Burpees por Push Ups.",
+    "seaCategory": "MODERATE"
   },
   {
     "id": 11,
@@ -392,7 +375,8 @@ const WORKOUTS = [
     "wod": "AMRAP 18: 5 Hang Power Cleans, 10 Push Press, 40 m Farmer Carry.",
     "rx": "HPC 60 kg. Push Press 50 kg. Farmer 2x30 kg.",
     "scaled": "HPC 40 kg. Push Press 30 kg. Farmer 2x20 kg.",
-    "sea": "Farmer Carry por 12 cal Row."
+    "sea": "Farmer Carry por 12 cal Row.",
+    "seaCategory": "MODERATE"
   },
   {
     "id": 12,
@@ -413,7 +397,8 @@ const WORKOUTS = [
     "wod": "EMOM 20: Min 1 10 Push Jerks, Min 2 100 m Farmer Carry, Min 3 10 Burpees, Min 4 descanso.",
     "rx": "Push Jerk 50 kg. Farmer Carry 2x30 kg.",
     "scaled": "Push Jerk 30-35 kg. Farmer 2x20 kg. Burpees sin salto.",
-    "sea": "Farmer Carry por 12-14 cal Row. Burpees por Push Ups si hay balance."
+    "sea": "Farmer Carry por 12-14 cal Row. Burpees por Push Ups si hay balance.",
+    "seaCategory": "MODERATE"
   },
   {
     "id": 13,
@@ -434,7 +419,8 @@ const WORKOUTS = [
     "wod": "FOR TIME 4 rondas: 12 Thrusters, 12 Burpees Over Bar, 250 m Row.",
     "rx": "Complex subiendo hasta RPE 8. Thrusters 40 kg.",
     "scaled": "Complex técnico. Thrusters 25-30 kg. Burpees normales.",
-    "sea": "No hacer Burpees Over Bar. Cambiar por 12 Push Ups."
+    "sea": "No hacer Burpees Over Bar. Cambiar por 12 Push Ups.",
+    "seaCategory": "ROUGH"
   },
   {
     "id": 14,
@@ -454,7 +440,8 @@ const WORKOUTS = [
     "wod": "AMRAP 18: 6 Power Cleans, 10 Push Ups, 12 Goblet Squats, 100 m Run.",
     "rx": "Power Clean 60 kg. Goblet 30 kg.",
     "scaled": "Power Clean 40 kg. Goblet 20 kg. Run 75 m.",
-    "sea": "Run por 10 cal Bike. Evitar comba."
+    "sea": "Run por 10 cal Bike. Evitar comba.",
+    "seaCategory": "MODERATE"
   },
   {
     "id": 15,
@@ -475,7 +462,8 @@ const WORKOUTS = [
     "wod": "FOR TIME 21-15-9: Hang Power Clean, Push Press, Burpees Over Bar. Tras cada bloque: 200 m Run. Final: 100 m Farmer Carry.",
     "rx": "HPC/Push Press 50 kg. Farmer 2x30 kg.",
     "scaled": "HPC/Push Press 35 kg. Run 150 m. Farmer 2x20 kg.",
-    "sea": "Run por 250 m Row. Burpees normales. Farmer por 12 cal Bike."
+    "sea": "Run por 250 m Row. Burpees normales. Farmer por 12 cal Bike.",
+    "seaCategory": "MODERATE"
   },
   {
     "id": 16,
@@ -496,7 +484,8 @@ const WORKOUTS = [
     "wod": "FOR TIME: 800 m Run, 50 Med Ball Slams, 40 Walking Lunges, 30 Push Press, 20 Burpees, 10 Front Squats, 400 m Run.",
     "rx": "Push Press 40 kg. Front Squat 60 kg. Med Ball 9 kg.",
     "scaled": "Run 600/300 m. Push Press 30 kg. Front Squat 40 kg. Reducir reps a 40-30-20-15-10.",
-    "sea": "Run por 1000 m Row y 500 m Row. Lunges por Goblet Squats."
+    "sea": "Run por 1000 m Row y 500 m Row. Lunges por Goblet Squats.",
+    "seaCategory": "CALM"
   },
   {
     "id": 17,
@@ -517,7 +506,8 @@ const WORKOUTS = [
     "wod": "AMRAP 20: 400 m Run, 20 Sit Ups, 15 Goblet Squats, 10 DB Push Press.",
     "rx": "Goblet 30 kg. DB Push Press 2x17,5 kg.",
     "scaled": "Run 250 m. Goblet 20 kg. DB 2x10-12,5 kg.",
-    "sea": "Run por 500 m Row. Lunges por Step Ups si hay banco estable."
+    "sea": "Run por 500 m Row. Lunges por Step Ups si hay banco estable.",
+    "seaCategory": "CALM"
   },
   {
     "id": 18,
@@ -538,7 +528,8 @@ const WORKOUTS = [
     "wod": "Every 4 min x5: 15 cal Bike, 12 DB Shoulder Press, 15 Sit Ups. Descansar lo que sobre.",
     "rx": "DB Shoulder Press 2x15-17,5 kg.",
     "scaled": "DB 2x10 kg. Bike 10-12 cal.",
-    "sea": "Muy apto mala mar. Reducir transiciones y usar pesos moderados."
+    "sea": "Muy apto mala mar. Reducir transiciones y usar pesos moderados.",
+    "seaCategory": "ROUGH"
   },
   {
     "id": 19,
@@ -559,7 +550,8 @@ const WORKOUTS = [
     "wod": "FOR TIME 5 rondas: 200 m Run, 10 Deadlifts, 40 m Farmer Carry, 12 Push Ups.",
     "rx": "Deadlift 90 kg. Farmer 2x30 kg.",
     "scaled": "Deadlift 60 kg. Farmer 2x20 kg. Run 150 m.",
-    "sea": "Run por 250 m Row. Farmer Carry por Farmer Hold 40\"."
+    "sea": "Run por 250 m Row. Farmer Carry por Farmer Hold 40\".",
+    "seaCategory": "CALM"
   },
   {
     "id": 20,
@@ -580,16 +572,16 @@ const WORKOUTS = [
     "wod": "Chipper 25: 400 m Run, 30 Wall Ball/Med Ball Slams, 25 Push Press, 20 Power Clean, 15 Burpees, 400 m Run.",
     "rx": "Push Press 40 kg. Power Clean 50 kg. Med Ball 9 kg.",
     "scaled": "Run 250 m. Push Press 30 kg. Power Clean 35 kg. 20-15-10 reps.",
-    "sea": "Run por 500 m Row. Burpees por Push Ups."
+    "sea": "Run por 500 m Row. Burpees por Push Ups.",
+    "seaCategory": "MODERATE"
   }
 ];
-const LS_LOG='navyfit_logs_final';
-const LS_PR='navyfit_pr_final';
-const LS_FAV='navyfit_fav_final';
+const LS_LOG='navyfit_logs_naval';
+const LS_PR='navyfit_pr_naval';
+const LS_FAV='navyfit_fav_naval';
 
 let blockFilter='ALL', seaFilter='ALL', currentWorkout=null;
-let timer=null, remaining=0, totalSeconds=0, timerKind='Timer';
-let emomMinute=0;
+let timer=null, remaining=0, totalSeconds=0, timerKind='Timer', emomMinute=0;
 
 function $(id){return document.getElementById(id)}
 function getLogs(){return JSON.parse(localStorage.getItem(LS_LOG)||'[]')}
@@ -609,7 +601,6 @@ function showView(id){
   if(id==='progressView') renderProgress();
   if(id==='calculatorView') renderCalculator();
 }
-
 function setActive(prefix,id){
   document.querySelectorAll('button[id^="'+prefix+'"]').forEach(b=>b.classList.remove('active'));
   if($(id)) $(id).classList.add('active');
@@ -617,21 +608,24 @@ function setActive(prefix,id){
 function setBlockFilter(f){
   blockFilter=f;
   const map={'ALL':'b_ALL','FAVORITOS':'b_FAV','GYM ONLY':'b_GYM','FLIGHT DECK OPS':'b_FD','OLYMPIC TACTICAL':'b_OT'};
-  setActive('b_',map[f]);
-  render();
+  setActive('b_',map[f]); render();
 }
 function setSeaFilter(f){
   seaFilter=f;
   const map={'ALL':'s_ALL','ROUGH':'s_ROUGH','MODERATE':'s_MOD','CALM':'s_CALM'};
-  setActive('s_',map[f]);
-  render();
+  setActive('s_',map[f]); render();
 }
 function seaOk(w){
   if(seaFilter==='ALL') return true;
+  if(seaFilter==='ROUGH') return w.seaCategory==='ROUGH';
+  if(seaFilter==='MODERATE') return w.seaCategory==='ROUGH' || w.seaCategory==='MODERATE';
   if(seaFilter==='CALM') return true;
-  if(seaFilter==='MODERATE') return w.block !== 'FLIGHT DECK OPS' || w.sea.includes('Run por') || w.sea.includes('Row');
-  if(seaFilter==='ROUGH') return w.block === 'GYM ONLY' || (w.sea && w.sea.length>0);
   return true;
+}
+function seaLabel(w){
+  if(w.seaCategory==='ROUGH') return '🔴 Apto mala mar';
+  if(w.seaCategory==='MODERATE') return '🟡 Mar moderada';
+  return '🟢 Mar calma / cubierta';
 }
 function render(){
   const q=$('search').value.toLowerCase();
@@ -641,34 +635,28 @@ function render(){
     seaOk(w) &&
     (w.name.toLowerCase().includes(q)||w.focus.toLowerCase().includes(q)||w.block.toLowerCase().includes(q)||w.wod.toLowerCase().includes(q))
   );
-  $('status').textContent=arr.length+' entrenamientos mostrados';
+  const seaText={ALL:'cualquier estado de mar',ROUGH:'mala mar',MODERATE:'mar moderada',CALM:'mar calma'};
+  $('status').textContent=arr.length+' entrenamientos mostrados · filtro: '+seaText[seaFilter];
   const box=$('workouts'); box.innerHTML='';
   arr.forEach(w=>{
     const div=document.createElement('div');
     div.className='card '+(w.intensity.includes('🔴')?'redBorder':(w.intensity.includes('🟢')?'greenBorder':''));
     div.onclick=()=>openWorkout(w.id);
     div.innerHTML=`<h3>${String(w.id).padStart(2,'0')} – ${w.name} ${fav.includes(w.id)?'⭐':''}</h3>
-      <p><b>${w.block}</b> · ${w.focus}</p><p>${w.intensity} · ${w.duration}</p>`;
+      <p><b>${w.block}</b> · ${w.focus}</p>
+      <p>${w.intensity} · ${w.duration} · <span class="pill sea">${seaLabel(w)}</span></p>`;
     box.appendChild(div);
   });
 }
-
-function toggleFav(id){
-  let fav=getFav();
-  if(fav.includes(id)) fav=fav.filter(x=>x!==id); else fav.push(id);
-  saveFav(fav); renderDetail();
-}
-function openWorkout(id){
-  currentWorkout=WORKOUTS.find(x=>x.id===id);
-  showView('detailView'); renderDetail();
-}
+function toggleFav(id){let fav=getFav(); if(fav.includes(id))fav=fav.filter(x=>x!==id); else fav.push(id); saveFav(fav); renderDetail();}
+function openWorkout(id){currentWorkout=WORKOUTS.find(x=>x.id===id); showView('detailView'); renderDetail();}
 function renderDetail(){
   const w=currentWorkout, fav=getFav();
   $('detail').innerHTML=`
     <button class="gray" onclick="showView('libraryView')">← Volver</button>
     <button class="gold" onclick="toggleFav(${w.id})">${fav.includes(w.id)?'★ Favorito':'☆ Añadir favorito'}</button>
     <h1>${String(w.id).padStart(2,'0')} – ${w.name}</h1>
-    <p><span class="pill">${w.block}</span><span class="pill">${w.duration}</span><span class="pill">${w.intensity}</span></p>
+    <p><span class="pill">${w.block}</span><span class="pill">${w.duration}</span><span class="pill">${w.intensity}</span><span class="pill sea">${seaLabel(w)}</span></p>
     <p><b>Foco:</b> ${w.focus}</p><p><b>Material:</b> ${w.material}</p><p><b>Objetivo:</b> ${w.objective}</p>
     <h2>Calentamiento</h2><ul>${w.warmup.map(x=>`<li>${x}</li>`).join('')}</ul>
     <h2>Fuerza / Técnica</h2><p>${w.strength}</p>
@@ -677,10 +665,7 @@ function renderDetail(){
     <div class="grid2"><div class="panel"><h2>RX</h2><p>${w.rx}</p></div><div class="panel"><h2>Scaled</h2><p>${w.scaled}</p></div></div>
     <h2>Sea State &gt; 3</h2><p>${w.sea}</p>
     <h2>Registrar entrenamiento</h2>
-    <div class="grid2">
-      <input id="resultTime" placeholder="Tiempo/Rondas. Ej: 16:34 o 7+12">
-      <input id="resultWeight" placeholder="Pesos usados. Ej: HPC 50 kg">
-    </div><br>
+    <div class="grid2"><input id="resultTime" placeholder="Tiempo/Rondas"><input id="resultWeight" placeholder="Pesos usados"></div><br>
     <textarea id="resultNotes" placeholder="Observaciones: sueño, guardia, gemelo, estado de mar..."></textarea><br>
     <button class="green" onclick="completeWorkout(${w.id})">Guardar entrenamiento</button>
     <h2>Cronómetros</h2>
@@ -688,109 +673,26 @@ function renderDetail(){
     <button onclick="startCountdown(18*60,'AMRAP 18')">AMRAP 18'</button>
     <button onclick="startCountdown(20*60,'AMRAP 20')">AMRAP 20'</button>
     <button onclick="startEmom(20)">EMOM 20'</button>
-    <button onclick="startCountdown(25*60,'Chipper 25')">Chipper 25'</button>
-  `;
+    <button onclick="startCountdown(25*60,'Chipper 25')">Chipper 25'</button>`;
 }
-function completeWorkout(id){
-  const w=WORKOUTS.find(x=>x.id===id);
-  const logs=getLogs();
-  logs.unshift({
-    date:new Date().toISOString(), workoutId:id, name:w.name, block:w.block, 
-    time:$('resultTime').value, weight:$('resultWeight').value, notes:$('resultNotes').value
-  });
-  saveLogs(logs);
-  alert('Entrenamiento registrado.');
-}
-
-function renderLog(){
-  const logs=getLogs(), box=$('logList'); box.innerHTML='';
-  if(!logs.length){box.innerHTML='<p>No hay entrenamientos registrados todavía.</p>';return;}
-  logs.forEach((l,i)=>{
-    const d=new Date(l.date);
-    const div=document.createElement('div'); div.className='logItem';
-    div.innerHTML=`<b>${d.toLocaleDateString()} – ${l.name}</b><br><span class="small">${l.block}</span>
-      <p><b>Resultado:</b> ${l.time||'-'} · <b>Pesos:</b> ${l.weight||'-'}</p><p>${l.notes||''}</p>
-      <button class="red" onclick="deleteLog(${i})">Borrar</button>`;
-    box.appendChild(div);
-  });
-}
+function completeWorkout(id){const w=WORKOUTS.find(x=>x.id===id); const logs=getLogs(); logs.unshift({date:new Date().toISOString(),workoutId:id,name:w.name,block:w.block,time:$('resultTime').value,weight:$('resultWeight').value,notes:$('resultNotes').value}); saveLogs(logs); alert('Entrenamiento registrado.');}
+function renderLog(){const logs=getLogs(), box=$('logList'); box.innerHTML=''; if(!logs.length){box.innerHTML='<p>No hay entrenamientos registrados todavía.</p>';return;} logs.forEach((l,i)=>{const d=new Date(l.date); const div=document.createElement('div'); div.className='logItem'; div.innerHTML=`<b>${d.toLocaleDateString()} – ${l.name}</b><br><span class="small">${l.block}</span><p><b>Resultado:</b> ${l.time||'-'} · <b>Pesos:</b> ${l.weight||'-'}</p><p>${l.notes||''}</p><button class="red" onclick="deleteLog(${i})">Borrar</button>`; box.appendChild(div);});}
 function deleteLog(i){let logs=getLogs(); logs.splice(i,1); saveLogs(logs); renderLog();}
-function exportData(){
-  const data={logs:getLogs(), prs:getPR(), fav:getFav(), exportedAt:new Date().toISOString()};
-  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='navyfit_backup.json'; a.click();
-}
-function importData(ev){
-  const f=ev.target.files[0]; if(!f) return;
-  const r=new FileReader();
-  r.onload=()=>{try{const d=JSON.parse(r.result); if(d.logs)saveLogs(d.logs); if(d.prs)savePR(d.prs); if(d.fav)saveFav(d.fav); alert('Datos importados'); renderLog();}catch(e){alert('Archivo no válido')}};
-  r.readAsText(f);
-}
-
-function renderProgress(){
-  const logs=getLogs(), last30=logs.filter(l=>Date.now()-new Date(l.date).getTime()<30*24*3600*1000);
-  $('kpiTotal').textContent=logs.length; $('kpi30').textContent=last30.length;
-  const pr=getPR();
-  ['backSquat','frontSquat','deadlift','strictPress','pushPress','powerClean','cleanJerk'].forEach(k=>{$(k).value=pr[k]||''});
-}
-function savePRForm(){
-  const pr={};
-  ['backSquat','frontSquat','deadlift','strictPress','pushPress','powerClean','cleanJerk'].forEach(k=>pr[k]=$(k).value);
-  savePR(pr); alert('PRs guardados'); renderCalculator();
-}
-function renderCalculator(){
-  const pr=getPR(), ex=$('calcExercise').value, pct=parseFloat($('calcPct').value||'70');
-  const base=parseFloat(pr[ex]||0);
-  $('calcResult').textContent=base ? Math.round(base*pct/100)+' kg' : 'Introduce primero tus PRs en Progreso';
-}
-function quickPercentTable(){
-  const pr=getPR(), ex=$('calcExercise').value, base=parseFloat(pr[ex]||0), box=$('pctTable'); 
-  if(!base){box.innerHTML='<p>Introduce primero tus PRs.</p>';return;}
-  let html='<table><tr><th>%</th><th>kg</th></tr>';
-  [50,55,60,65,70,75,80,85,90].forEach(p=>html+=`<tr><td>${p}%</td><td>${Math.round(base*p/100)} kg</td></tr>`);
-  html+='</table>'; box.innerHTML=html;
-}
-
-function startCountdown(sec,title){
-  totalSeconds=sec; remaining=sec; timerKind=title; emomMinute=0;
-  $('timerTitle').textContent=title; $('timerBox').classList.remove('hidden'); updateTimer();
-  if(timer)clearInterval(timer);
-  timer=setInterval(tick,1000);
-}
+function exportData(){const data={logs:getLogs(),prs:getPR(),fav:getFav(),exportedAt:new Date().toISOString()}; const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='navyfit_backup.json'; a.click();}
+function importData(ev){const f=ev.target.files[0]; if(!f)return; const r=new FileReader(); r.onload=()=>{try{const d=JSON.parse(r.result); if(d.logs)saveLogs(d.logs); if(d.prs)savePR(d.prs); if(d.fav)saveFav(d.fav); alert('Datos importados'); renderLog();}catch(e){alert('Archivo no válido')}}; r.readAsText(f);}
+function renderProgress(){const logs=getLogs(), last30=logs.filter(l=>Date.now()-new Date(l.date).getTime()<30*24*3600*1000); $('kpiTotal').textContent=logs.length; $('kpi30').textContent=last30.length; const pr=getPR(); ['backSquat','frontSquat','deadlift','strictPress','pushPress','powerClean','cleanJerk'].forEach(k=>$(k).value=pr[k]||'');}
+function savePRForm(){const pr={}; ['backSquat','frontSquat','deadlift','strictPress','pushPress','powerClean','cleanJerk'].forEach(k=>pr[k]=$(k).value); savePR(pr); alert('PRs guardados'); renderCalculator();}
+function renderCalculator(){const pr=getPR(), ex=$('calcExercise').value, pct=parseFloat($('calcPct').value||'70'), base=parseFloat(pr[ex]||0); $('calcResult').textContent=base?Math.round(base*pct/100)+' kg':'Introduce PRs';}
+function quickPercentTable(){const pr=getPR(), ex=$('calcExercise').value, base=parseFloat(pr[ex]||0), box=$('pctTable'); if(!base){box.innerHTML='<p>Introduce primero tus PRs.</p>';return;} let html='<table><tr><th>%</th><th>kg</th></tr>'; [50,55,60,65,70,75,80,85,90].forEach(p=>html+=`<tr><td>${p}%</td><td>${Math.round(base*p/100)} kg</td></tr>`); html+='</table>'; box.innerHTML=html;}
+function startCountdown(sec,title){totalSeconds=sec; remaining=sec; timerKind=title; emomMinute=0; $('timerTitle').textContent=title; $('timerBox').classList.remove('hidden'); updateTimer(); if(timer)clearInterval(timer); timer=setInterval(tick,1000);}
 function startEmom(mins){startCountdown(mins*60,'EMOM '+mins+'\'');}
-function tick(){
-  remaining--; 
-  if(timerKind.startsWith('EMOM')) {
-    const elapsed=totalSeconds-remaining;
-    const m=Math.floor(elapsed/60)+1;
-    if(m!==emomMinute){emomMinute=m; try{navigator.vibrate && navigator.vibrate(150)}catch(e){}}
-  }
-  updateTimer();
-  if(remaining<=0){clearInterval(timer);timer=null;try{navigator.vibrate && navigator.vibrate([300,200,300])}catch(e){}}
-}
+function tick(){remaining--; if(timerKind.startsWith('EMOM')){const elapsed=totalSeconds-remaining; const m=Math.floor(elapsed/60)+1; if(m!==emomMinute){emomMinute=m; try{navigator.vibrate&&navigator.vibrate(150)}catch(e){}}} updateTimer(); if(remaining<=0){clearInterval(timer);timer=null;try{navigator.vibrate&&navigator.vibrate([300,200,300])}catch(e){}}}
 function pauseTimer(){if(timer){clearInterval(timer);timer=null;} else timer=setInterval(tick,1000);}
 function stopTimer(){if(timer)clearInterval(timer);timer=null;$('timerBox').classList.add('hidden');}
-function updateTimer(){
-  let m=Math.floor(remaining/60), s=remaining%60;
-  $('timer').textContent=m+':'+String(s).padStart(2,'0');
-  const pct=totalSeconds?100*(totalSeconds-remaining)/totalSeconds:0; $('timerProgress').style.width=Math.max(0,Math.min(100,pct))+'%';
-}
-
-function suggestToday(){
-  const fatigue=$('fatigue').value, calf=$('calf').checked;
-  let pool=WORKOUTS.filter(seaOk);
-  if(fatigue==='red') pool=pool.filter(w=>!w.intensity.includes('🔴') && (w.block==='GYM ONLY'||w.name==='MIDWATCH'));
-  if(fatigue==='yellow') pool=pool.filter(w=>!w.intensity.includes('🔴'));
-  if(calf) pool=pool.filter(w=>!w.wod.toLowerCase().includes('run') && !w.wod.toLowerCase().includes('lunges'));
-  if(!pool.length) pool=WORKOUTS.filter(w=>w.name==='MIDWATCH');
-  const w=pool[Math.floor(Math.random()*pool.length)];
-  openWorkout(w.id);
-}
-
+function updateTimer(){let m=Math.floor(remaining/60), s=remaining%60; $('timer').textContent=m+':'+String(s).padStart(2,'0'); const pct=totalSeconds?100*(totalSeconds-remaining)/totalSeconds:0; $('timerProgress').style.width=Math.max(0,Math.min(100,pct))+'%';}
+function suggestToday(){const fatigue=$('fatigue').value, calf=$('calf').checked; let pool=WORKOUTS.filter(seaOk); if(fatigue==='red')pool=pool.filter(w=>!w.intensity.includes('🔴')&&(w.seaCategory==='ROUGH'||w.name==='MIDWATCH')); if(fatigue==='yellow')pool=pool.filter(w=>!w.intensity.includes('🔴')); if(calf)pool=pool.filter(w=>!w.wod.toLowerCase().includes('run')&&!w.wod.toLowerCase().includes('lunges')); if(!pool.length)pool=WORKOUTS.filter(w=>w.name==='MIDWATCH'); const w=pool[Math.floor(Math.random()*pool.length)]; openWorkout(w.id);}
 document.addEventListener('DOMContentLoaded',()=>{render(); renderProgress(); renderCalculator();});
 </script>
-<script>
-if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}
-</script>
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}</script>
 </body>
 </html>
