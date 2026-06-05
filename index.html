@@ -1,0 +1,94 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NAVYFIT Embarcado Pro</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <meta name="theme-color" content="#071a2f">
+</head>
+<body>
+<header>
+  <div class="headerRow">
+    <img src="icons/icon-192.png" class="logo" alt="NAVYFIT">
+    <div><h1>NAVYFIT EMBARCADO</h1><p>FLEETEX Edition · Offline · PWA</p></div>
+  </div>
+  <nav>
+    <button class="tab active" id="tab-libraryView" onclick="showView('libraryView')">Biblioteca</button>
+    <button class="tab" id="tab-logView" onclick="showView('logView')">Registro</button>
+    <button class="tab" id="tab-statsView" onclick="showView('statsView')">Progreso</button>
+  </nav>
+</header>
+
+<main>
+  <section id="libraryView" class="view">
+    <div class="controls">
+      <input id="search" oninput="renderWorkouts()" placeholder="Buscar: clean, hombro, gym, carry...">
+      <div class="filters">
+        <button class="filter active" id="f-ALL" onclick="setFilter('ALL')">Todos</button>
+        <button class="filter" id="f-FAVORITOS" onclick="setFilter('FAVORITOS')">Favoritos</button>
+        <button class="filter" id="f-GYM_ONLY" onclick="setFilter('GYM ONLY')">Gym Only</button>
+        <button class="filter" id="f-FLIGHT_DECK_OPS" onclick="setFilter('FLIGHT DECK OPS')">Flight Deck Ops</button>
+        <button class="filter" id="f-OLYMPIC_TACTICAL" onclick="setFilter('OLYMPIC TACTICAL')">Olympic Tactical</button>
+      </div>
+      <div class="grid3">
+        <button onclick="recommend('calm')">🟢 Mar calma</button>
+        <button onclick="recommend('moderate')">🟡 Mar moderada</button>
+        <button onclick="recommend('rough')">🔴 Mala mar</button>
+      </div>
+    </div>
+    <div id="workoutList"></div>
+  </section>
+
+  <section id="detailView" class="view hidden">
+    <div id="detail" class="detail"></div>
+  </section>
+
+  <section id="logView" class="view hidden">
+    <div class="panel">
+      <h2>Registro de entrenamientos</h2>
+      <div class="grid2">
+        <button onclick="exportData()">Exportar backup</button>
+        <label><input type="file" onchange="importData(event)" style="display:none"> <span class="pill">Importar backup</span></label>
+      </div>
+      <div id="logList"></div>
+    </div>
+  </section>
+
+  <section id="statsView" class="view hidden">
+    <div class="grid2">
+      <div class="panel"><div class="kpi" id="kpiTotal">0</div><b>Total entrenamientos</b></div>
+      <div class="panel"><div class="kpi" id="kpi30">0</div><b>Últimos 30 días</b></div>
+    </div>
+    <div class="panel">
+      <h2>PRs / Pesos de referencia</h2>
+      <div class="grid2">
+        <label>Back Squat<input id="prBackSquat" placeholder="kg"></label>
+        <label>Front Squat<input id="prFrontSquat" placeholder="kg"></label>
+        <label>Deadlift<input id="prDeadlift" placeholder="kg"></label>
+        <label>Strict Press<input id="prStrictPress" placeholder="kg"></label>
+        <label>Power Clean<input id="prPowerClean" placeholder="kg"></label>
+        <label>Clean & Jerk<input id="prCleanJerk" placeholder="kg"></label>
+      </div>
+      <br><button class="green" onclick="savePRForm()">Guardar PRs</button>
+    </div>
+  </section>
+</main>
+
+<div id="timerBox" class="timerBox hidden">
+  <div id="timerTitle">Timer</div>
+  <div id="timer" class="timer">0:00</div>
+  <div class="timerControls">
+    <button class="gold" onclick="pauseTimer()">Pausa/seguir</button>
+    <button class="red" onclick="stopTimer()">Cerrar</button>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
+</script>
+</body>
+</html>

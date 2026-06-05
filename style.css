@@ -1,0 +1,52 @@
+
+:root{
+  --navy:#071a2f; --blue:#0f3b66; --gold:#d4a017; --red:#9d1b1e;
+  --bg:#f3f6fa; --card:#fff; --text:#111; --muted:#5f6b7a; --green:#1f7a4d;
+}
+*{box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;margin:0;background:var(--bg);color:var(--text)}
+header{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;padding:18px 16px 16px;position:sticky;top:0;z-index:5;box-shadow:0 3px 15px rgba(0,0,0,.25)}
+.headerRow{display:flex;align-items:center;gap:12px}
+.logo{width:52px;height:52px;border-radius:14px;background:#fff;object-fit:cover}
+header h1{margin:0;font-size:24px;letter-spacing:.8px}
+header p{margin:3px 0 0;color:#dce7f5;font-size:13px}
+nav{display:flex;gap:8px;overflow-x:auto;margin-top:12px;padding-bottom:2px}
+nav button{white-space:nowrap}
+main{padding:14px;max-width:920px;margin:auto}
+button{border:0;background:var(--blue);color:white;border-radius:12px;padding:11px 13px;font-weight:800;font-size:14px}
+button.secondary{background:#334}
+button.gold{background:var(--gold);color:#111}
+button.red{background:var(--red)}
+button.green{background:var(--green)}
+button.light{background:#e8eef7;color:var(--blue)}
+input,select,textarea{width:100%;padding:13px;border-radius:12px;border:1px solid #ccd;font-size:16px;background:#fff}
+textarea{min-height:90px}
+.controls{display:grid;gap:10px;margin:12px 0}
+.filters{display:flex;gap:8px;overflow:auto}
+.filter.active,.tab.active{background:var(--gold);color:#111}
+.card{background:var(--card);padding:14px;border-radius:18px;margin:10px 0;box-shadow:0 4px 14px rgba(0,0,0,.08);border-left:6px solid var(--blue)}
+.card.redBorder{border-left-color:var(--red)}
+.card.greenBorder{border-left-color:var(--green)}
+.card h3{margin:0;font-size:18px}
+.card p{margin:6px 0;color:#444}
+.row{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.hidden{display:none!important}
+.view{display:block}
+.detail{background:var(--card);border-radius:18px;padding:18px;box-shadow:0 4px 14px rgba(0,0,0,.08)}
+.detail h1{margin-top:0;color:var(--navy)}
+.detail h2{font-size:17px;border-bottom:1px solid #e2e2e2;padding-bottom:5px;color:var(--blue)}
+.detail li{margin:7px 0}
+.pill{display:inline-block;background:#e8eef7;color:var(--blue);padding:6px 10px;border-radius:999px;font-weight:800;margin:2px 4px 2px 0}
+.pill.redPill{background:#fde8e8;color:var(--red)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.grid2 div,.panel{background:#fff;border-radius:16px;padding:12px;box-shadow:0 3px 12px rgba(0,0,0,.07)}
+.kpi{font-size:28px;font-weight:900;color:var(--blue)}
+.small{font-size:12px;color:var(--muted)}
+.timerBox{position:fixed;left:14px;right:14px;bottom:14px;background:var(--navy);color:white;border-radius:20px;padding:16px;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.35);z-index:9}
+.timer{font-size:48px;font-weight:900;letter-spacing:2px}
+.timerControls{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.logItem{border-bottom:1px solid #eee;padding:10px 0}
+.badge{font-size:12px;background:#eef;padding:4px 8px;border-radius:999px;color:var(--blue);font-weight:800}
+@media(max-width:650px){.grid2,.grid3{grid-template-columns:1fr}.timer{font-size:42px}header h1{font-size:21px}}
+@media print{header,nav,.controls,button,.timerBox{display:none!important}main{max-width:none}.detail,.card{box-shadow:none;border:1px solid #ddd;page-break-inside:avoid}}
